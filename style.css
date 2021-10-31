@@ -1,0 +1,155 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-family: url("Montserrat/Montserrat-Bold.ttf");
+}
+.container{
+    width: 100%;
+}
+.navbar{
+    height: 130px;
+    width: 100%;
+}
+.navbar .top{
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    width: 100%;
+}
+.search{
+    margin-top: 10px;
+    width: 33%;
+}
+.searchicon{
+    width: 45px;
+    height: 45px;
+    margin-left: 10%;
+    float: left;
+    margin-top: 5px;
+}
+.searchbar{
+    float: left;
+    margin-top: 18px;
+    width: 5%;
+}
+.searchbar input[type=text]{
+    font-size: 12pt;
+    border: none;
+    transition: 0.7s;
+}
+.searchbar input[type=text]:focus{
+    font-size: 12pt;
+    border-style: none;
+    outline: none;
+    border-bottom: 3px solid gray;
+}
+.logo{
+    width: 33%;
+    margin-left: 12%;
+}
+.logo a{
+    color: black;
+}
+.logoicon{
+    float: left;
+}
+.logotext{
+    float: left;
+    font-size: 25pt;
+    font-weight: bolder;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+.shop{
+    width: 33%;
+    margin-top: 20px;
+}
+.shopicon{
+    width: 35px;
+    height: 35px;
+    float: right;
+    margin-right: 20px;
+}
+.loginicon{
+    width: 35px;
+    height: 35px;
+    float: right;
+    margin-right: 50px;
+}
+.navbar .bottom{
+    height: 50px;
+    width: 100%;
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+}
+.nav-item{
+    width: 100px;
+}
+.bottom a{
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+    border-bottom: black;
+    height: 45px;
+    transition: 0.5s;
+}
+.bottom a:hover{
+    border-bottom: 5px solid black;
+}
+.jumbotron{
+    width: 100%;
+    height: 500px;
+    background-color: grey;
+    font-size: 25pt;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url("images/jumbo1.jpg");
+    background-size: cover;
+    position: relative;
+}
+.jumbotron .left{
+    float: left;
+    margin-left: 20px;
+}
+.jumbotron .right{
+    float: right;
+    margin-right: 20px;
+}
+.jumbotron .shopnow{
+    width: 200px;
+    height: 70px;
+    background-color: black;
+    opacity: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 16pt;
+    font-weight: bolder;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: sans-serif;
+}
+.jumbo-wrap .caption{
+    font-size: 50pt;
+    font-weight: bolder;
+    color: white;
+    padding-bottom: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: sans-serif;
+}
+.jumbotron a{
+    text-decoration: none;
+}
+.jumbotron .shopnow:hover{
+    opacity: 40%;
+}
+
+  
