@@ -1,9 +1,13 @@
+@font-face {
+    font-family: "archivo";
+    src: url("font/Archivo_Narrow/ArchivoNarrow-Regular.ttf");
+}
 *{
     margin: 0;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    font-family: url("Montserrat/Montserrat-Bold.ttf");
+    font-family: "archivo";
 }
 .container{
     width: 100%;
@@ -81,7 +85,7 @@
 .navbar .bottom{
     height: 50px;
     width: 100%;
-    background-color: lightgray;
+    background-color: #e1e1e1;
     display: flex;
     justify-content: center;
 }
