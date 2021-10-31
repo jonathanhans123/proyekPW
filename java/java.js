@@ -2,6 +2,12 @@ $(document).ready(function(){
     $jumboindex = 1;
     $('.left').click(leftclick);
     $('.right').click(rightclick);
+    $('.category').mouseenter(function () { 
+        $('.categories-text').css("text-decoration","underline");
+    });
+    $('.cate-wrap').mouseleave(function () { 
+        $('.categories-text').css("text-decoration","none");
+    });
 
     function leftclick(){
         $jumboindex--;
