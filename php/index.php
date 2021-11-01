@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="java/jquery.min.js"></script>
-    <script src="java/java.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../java/jquery.min.js"></script>
+    <script src="../java/java.js"></script>
     
 </head>
 <body>
@@ -25,12 +25,12 @@
                 </div>
                 <div class="logo">
                     <a href="index.html">
-                    <object data="icon/logo.svg" width="80" height="80" class="logoicon"></object>
+                    <object data="../icon/logo.svg" width="80" height="80" class="logoicon"></object>
                     <p class="logotext">Shoes</p></a>
                 </div>
                 <div class="shop">
-                    <object data="icon/cart.svg" class="loginicon"></object>
-                    <object data="icon/person.svg" class="shopicon"></object>
+                    <object data="../icon/cart.svg" class="loginicon" name="login"></object>
+                    <object data="../icon/person.svg" class="shopicon" name="cart"></object>
                 </div>
             </div>
             <div class="bottom">

@@ -1,18 +1,18 @@
 @font-face {
     font-family: "archivo";
-    src: url("font/Archivo_Narrow/ArchivoNarrow-Regular.ttf");
+    src: url("../font/Archivo_Narrow/ArchivoNarrow-Regular.ttf");
 }
 @font-face {
     font-family: "archivo-italic-bold";
-    src: url("font/Archivo_Narrow/ArchivoNarrow-BoldItalic.ttf");
+    src: url("../font/Archivo_Narrow/ArchivoNarrow-BoldItalic.ttf");
 }
 @font-face {
     font-family: "archivo-bold";
-    src: url("font/Archivo_Narrow/ArchivoNarrow-Bold.ttf");
+    src: url("../font/Archivo_Narrow/ArchivoNarrow-Bold.ttf");
 }
 @font-face {
     font-family: "archivo-italic";
-    src: url("font/Archivo_Narrow/ArchivoNarrow-Italic.ttf");
+    src: url("../font/Archivo_Narrow/ArchivoNarrow-Italic.ttf");
 }
 *{
     margin: 0;
@@ -159,7 +159,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-image: url("images/jumbo1.jpg");
+    background-image: url("../images/jumbo1.jpg");
     background-size: cover;
     position: relative;
 }
@@ -252,15 +252,15 @@
     opacity: 70%;
 }
 .category.a{
-    background-image: url("images/catecasual.jpg");
+    background-image: url("../images/catecasual.jpg");
     background-size: cover;
 }
 .category.b{
-    background-image: url("images/catesport.jpeg");
+    background-image: url("../images/catesport.jpeg");
     background-size: cover;
 }
 .category.c{
-    background-image: url("images/cateformal.jpg");
+    background-image: url("../images/cateformal.jpg");
     background-size: cover;
 }
 .showcase{
@@ -275,7 +275,7 @@
     height: 100%;
     background-color: gray;
     float: left;
-    background-image: url("images/catecasual.jpg");
+    background-image: url("../images/catecasual.jpg");
     background-size: cover;
 }
 .showcase .right{
