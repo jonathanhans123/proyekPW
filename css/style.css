@@ -24,6 +24,7 @@
 }
 .container{
     width: 100%;
+    height: auto;
 }
 .navbar{
     height: 130px;
@@ -82,6 +83,9 @@
 .shop{
     width: 33%;
     margin-top: 20px;
+}
+.shop a{
+    display: block;
 }
 .shopicon{
     width: 30px;
@@ -226,7 +230,7 @@
     align-items: center;
 }
 .category .text{
-    font-size: 35pt;
+    font-size: 35pt;    
     font-family: archivo-italic-bold;
     color: white;
     opacity: 80%;
@@ -342,4 +346,76 @@ footer .footer-cont{
 }
 .footer-cont a:hover{
     color: grey;
+}
+.account{
+    width: 250px;
+    height: 400px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid blue;
+    border-radius: 10px;
+}
+.account .name{
+    font-weight: bold;
+}
+.account .email{
+    font-size: 10pt;
+}
+.account hr{
+    width: 80%;
+    background-color: blue;
+}
+.container2{
+    width: 70%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 100px;
+}
+.container2 .title{
+    font-size: 30pt;
+    font-family: archivo-bold;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.container2 .wrap{
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 10px;
+}
+.container2 .wrap .accountinfo{
+    font-family: archivo-bold;
+    font-size: 15pt;
+    margin-bottom: 5px;
+}
+.container2 .wrap input[type=text]{
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    padding-left: 15px;
+    font-size: 13pt;
+}
+.container .wrap input[type=submit]{
+    margin-top: 20px;
+    width: 100%;
+    height: 60px;
+    background-color: black;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16pt;
+}
+.container .wrap input[type=submit]:hover{
+    opacity: 70%;
+    cursor: pointer;
 }
