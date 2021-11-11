@@ -7,7 +7,7 @@
         $cpass = $_REQUEST["cpass"];
         $email = $_REQUEST["email"];
         $phone = $_REQUEST["phone"];
-        if ($uname!=""&&$upass!=""&&$cpass!=""&&$email!=""&&$phone!=""){
+        if ($uname!=""&&$upass!=""&&$cpass!=""&&$email!=""&&$phone!=""&&$uname!="admin"){
             if ($upass==$cpass){
                 $exist = false;
                 $stmt = $conn->query("SELECT * FROM user WHERE user_email='$email'");
@@ -19,7 +19,7 @@
                     $stmt->bind_param("ssss",$uname,$upass,$email,$phone);
                     $result =$stmt->execute();
                     if ($result){
-                        header("../php/login.php");
+                        header("Location:../php/login.php");
                     }else{
                         $_SESSION["error"] = "Error add ke Database!";
                     }

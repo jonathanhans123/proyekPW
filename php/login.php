@@ -5,11 +5,15 @@
         $uname = $_REQUEST["uname"];
         $upass = $_REQUEST["upass"];
         if ($uname!=""&&$upass!=""){
-            $exist = false;
-            $user=$conn->query("SELECT * FROM user WHERE user_name='$uname'")->fetch_assoc();
-            if (isset($user)){
-                $_SESSION["auth"] = $user;
-                header("Location:user.php");
+            if ($uname!="admin"&&$upass!="admin"){
+                $exist = false;
+                $user=$conn->query("SELECT * FROM user WHERE user_name='$uname'")->fetch_assoc();
+                if (isset($user)){
+                    $_SESSION["auth"] = $user;
+                    header("Location:../php/user.php");
+                }
+            }else {
+                header("Location:../php/admin.php");
             }
         }else {
             $_SESSION["error"] = "You need to fill everything!";
@@ -27,12 +31,12 @@
 <body>
     <div class="container">
         <?php require_once("../php/navbar.php") ?>
-        <div class="container2">
-            <form action="" method="post"></form>
+        <form action="" method="post">
+            <div class="container2">
                 <p class="title">Login</p>
                 <div class="wrap">
-                    <div class="accountinfo">Email</div>
-                    <input type="text" name="email" placeholder="example@gmail.com">
+                    <div class="accountinfo">Username</div>
+                    <input type="text" name="uname" placeholder="Your Username">
                 </div>
                 <div class="wrap">
                     <div class="accountinfo">Password</div>
@@ -44,8 +48,8 @@
                 <div class="wrap">
                     <center>Don't have an account? <a href="../php/register.php ">Register</a> now!</center>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
         <?php require_once("../php/footer.php") ?>
     </div>
 </body>
