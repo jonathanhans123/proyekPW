@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `proyekpw`
 --
-
+CREATE DATABASE IF NOT EXISTS `proyekpw` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `proyekpw`;
 -- --------------------------------------------------------
 
 --
