@@ -1,5 +1,7 @@
 <?php 
     require_once("koneksi.php"); 
+    
+    $items = $conn->query("select * from item")->fetch_all(MYSQLI_ASSOC);
 
     if (!isset($_SESSION["admin"])){
         header("Location:login.php");
@@ -24,7 +26,7 @@
     <div class="container">
         
         <div class="sidebar">
-            <form action="" method="post">
+        <form action="" method="post">
                 <input type="submit" value="Logout" name="logout">
             </form>
             <div class="nav-bold">Home</div>
@@ -47,35 +49,21 @@
                 </div>
             </div>
             <div class="container2">
-            <div class="kotak mx-6">
-                    <div id="chart_div"></div>
-                </div>
-                <div class="kotak mx-3 kecil">
-                    <p class="title">Revenue</p>
-                    <p class="result">Rp. 11024</p>
-                    <p class="percent">10.5% </p>
-                    <p class="time">Since Yesterday</p>
-                </div>
-                <div class="kotak mx-3 kecil">
-                    <p class="title">Visitors</p>
-                    <p class="result">1214</p>
-                    <p class="percent">5.5% </p>
-                    <p class="time">Since Yesterday</p>
-                </div>
-                <div class="kotak mx-3 kecil">
-                    <p class="title">Orders</p>
-                    <p class="result">100</p>
-                    <p class="percent">100.5% </p>
-                    <p class="time">Since Yesterday</p>
-                </div>
-                <div class="kotak mx-3 kecil">
-                    <p class="title">Time Visited</p>
-                    <p class="result">102 hours</p>
-                    <p class="percent">5.5% </p>
-                    <p class="time">Since Yesterday</p>
-                </div>
+                <?php
+                    foreach($items as $key=>$value){
+                        if (strlen($value["item_desc"])>100){
+                            $desc = substr($value["item_desc"],0,100) . "...";
+                        }else{
+                            $desc = $value["item_desc"];
+                        }
+                        echo '<div class="kotakitem">
+                        <strong>'.$value["item_nama"].'</strong>
+                        <p class="text">'.$desc.'</p>
+                        <p class="textbutton">Delete</p></div>';
+                    }
+                ?>
             </div>
-            
+
         </div>
     </div>
     
@@ -107,6 +95,24 @@
                         marginLeft: "15%"
                     }, { duration: 500});
                     open = true;
+                }
+            });
+            $(document).on("click",".textbutton",function(){
+                if (confirm("Are you sure you want to delete this item?")){
+                    var item_nama = $(this).parent().children().first().html();
+                    $.ajax({
+                        type:"post",
+                        url:"controller.php",
+                        data:{
+                            'action':'delete',
+                            'item_nama':item_nama
+                        },
+                        success:function(response){
+                            $(".container2").append(response);
+                        }
+                    });
+                }else{
+                    
                 }
             });
         });

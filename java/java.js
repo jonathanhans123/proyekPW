@@ -10,7 +10,18 @@ $(document).ready(function(){
     });
     $('.loginicon').click(function(){
         
-    })
+    });
+    $(window).scroll(function() {
+        var height = $(window).scrollTop();
+    
+        if(height >= 80) {
+            $(".bottom").css("position","fixed");
+            $(".bottom").css("z-index","1");
+            $(".bottom").css("top","0");
+        }else if (height<80){
+            $(".bottom").css("position","static");
+        }
+    });
     function leftclick(){
         $jumboindex--;
         if ($jumboindex % 2 == 1){

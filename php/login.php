@@ -13,6 +13,7 @@
                     header("Location:../php/user.php");
                 }
             }else {
+                $_SESSION["admin"] = "admin";
                 header("Location:../php/admin.php");
             }
         }else {
