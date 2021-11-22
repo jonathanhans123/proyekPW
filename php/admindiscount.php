@@ -1,8 +1,6 @@
 <?php 
     require_once("koneksi.php"); 
     
-    $items = $conn->query("select * from item")->fetch_all(MYSQLI_ASSOC);
-
 
     if (!isset($_SESSION["admin"])){
         header("Location:login.php");
@@ -12,6 +10,8 @@
         unset($_SESSION["admin"]);
         header("Location:index.php");
     }
+
+    $discounts = $conn->query("select * from discount")->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,19 +52,31 @@
             </div>
             <div class="container2">
                 <?php
-                    foreach($items as $key=>$value){
-                        if (strlen($value["item_desc"])>100){
-                            $desc = substr($value["item_desc"],0,100) . "...";
+                
+                    foreach($discounts as $key=>$value){
+                        $temp = $value["id_item"];
+                        $item = $conn->query("select * from item where id_item=$temp")->fetch_assoc();
+            
+                        echo '<div class="kotakdisc">
+                        <input type="hidden" id="indexdelete" value="'.$value["id_item"].'">
+                        <strong>'.$item["item_nama"].' - '.$item["item_color"].'</strong>
+                        <p class="text">Discount for ';
+                        if ($value["discount_type"]=="percentage"){
+                            echo $value["value"].'%';
                         }else{
-                            $desc = $value["item_desc"];
+                            echo 'Rp. '.$value["value"];
                         }
-                        echo '<div class="kotakitem">
-                        <strong>'.$value["item_nama"].' - '.$value["item_color"].'</strong>
-                        <p class="text">'.$desc.'</p>
-                        <p class="textbutton">Update</p></div>';
+                        echo '</p>
+                            <p class="textbutton">Delete Discount</p>
+                    </div>';
                     }
                 ?>
+                
+                <input type="submit" value="Add Discount" id="adddiscount">
             </div>
+            
+            
+
 
         </div>
     </div>
@@ -99,15 +111,37 @@
                     open = true;
                 }
             });
-            $(document).on("click",".textbutton",function(){
-                var item_nama = $(this).parent().children().first().html();
-                var index = $(this).parent().index();
+            $(document).on("change","#percentage",function(){
+                if ($(this).is(':checked')){
+                    $("#discvalue").attr("placeholder", "%");
+                    $("#discvalue").attr("max", "100");
+                    $("#discvalue").attr("min", "0");
+                }
+            });
+            $(document).on("change","#fixed",function(){
+                if ($(this).is(':checked')){
+                    $("#discvalue").attr("placeholder", "Rp. 0,-");
+                    $("#discvalue").attr("max", "1000000000");
+                    $("#discvalue").attr("min", "0");
+                }
+            });
+            $(document).on("click","#add",function(){
+                var type="";
+                if ($("#percentage").is(":checked")){
+                    type = "percentage";
+                }else{
+                    type = "fixed";
+                }
+                var value=$("#discvalue").val();
+                var itemindex = $("#item").find("option:selected").val();
                 $.ajax({
                     type:"post",
                     url:"controller.php",
                     data:{
-                        'action':'update',
-                        'item_nama':item_nama
+                        'action':'adddiscount2',
+                        'type':type,
+                        'item':itemindex,
+                        'value':value
                     },
                     success:function(response){
                         $(".container2").html("");
@@ -115,45 +149,37 @@
                     }
                 });
             });
-            $(document).on("click","#updatebarang",function(){
-                console.log("fjweoijfwo");
-                var nama = $("#namabarang").val();
-                var stok = $("#stokbarang").val();
-                var harga = $("#hargabarang").val();
-                var warna = $("#warnabarang").val();
-                var desc = $("#descriptionbarang").val();
-                var cate = $("#catebarang").find("option:selected").val();
-                var ukuran = "";
-                $("#ukuranbarang:checked").each(function(){
-                    ukuran += $(this).val()+ ",";
+            $(document).on("click","#adddiscount",function(){
+                $.ajax({
+                    type:"post",
+                    url:"controller.php",
+                    data:{
+                        'action':'adddiscount'
+                    },
+                    success:function(response){
+                        $(".container2").html("");
+                        $(".container2").append(response);
+                    }
                 });
-                
-                ukuran = ukuran.substr(0,ukuran.length-1);
-                if (nama!=""&&$.isNumeric(stok)&&stok!=""&&$.isNumeric(harga)&&harga!=""&&warna!=""&&desc!=""&&ukuran!=""){
-                    $.ajax({
-                        type:"post",
-                        url:"controller.php",
-                        data:{
-                            'action':'save',
-                            'item_nama':nama,
-                            'item_stock':stok,
-                            'item_price':harga,
-                            'item_color':warna,
-                            'item_desc':desc,
-                            'item_size':ukuran,
-                            'item_cate':cate
-                        },
-                        success:function(response){
-                            $(".container2").html("");
-                            $(".container2").append(response);
-                        }
-                    });
-                }else{
-                    alert("All fields need to be filled!");
-                }
+            });
+            $(document).on("click",".textbutton",function(){
+                var index = $(this).parent().children().first().val();
+                console.log(index);
+                $.ajax({
+                    type:"post",
+                    url:"controller.php",
+                    data:{
+                        'action':'deletediscount',
+                        'id_item':index
+                    },
+                    success:function(response){
+                        $(".container2").html("");
+                        $(".container2").append(response);
+                    }
+                });
             })
         });
-        
+    
     </script>
 </body>
 </html>

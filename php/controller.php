@@ -28,20 +28,22 @@
                 $desc = $value["item_desc"];
             }
             echo '<div class="kotakitem">
-            <strong>'.$value["item_nama"].'</strong>
+            <strong>'.$value["item_nama"].' - '.$value["item_color"].'</strong>
             <p class="text">'.$desc.'</p>
             <p class="textbutton">Delete</p></div>';
         }
+        
     }
     else if ($action=="update"){
         $item_nama = $_POST["item_nama"];
         $item = $conn->query("select * from item where item_nama='$item_nama'")->fetch_assoc();
+        $ukuran = explode(",",$item["item_size"]);
+
         echo '
-        <form action="" method="post" enctype="multipart/form-data">
                     <div class="kotak insert">
-                        <p class="title">Add new Item</p>
+                        <p class="title">Update existing item</p>
                             <div class="text">Nama Barang</div>
-                            <input type="text" id="namabarang" name="namabarang" placeholder="Item Name" disabled>
+                            <input type="text" id="namabarang" name="namabarang" placeholder="Item Name" disabled value="'.$item["item_nama"].'">
                             <div class="text">Stock</div>
                             <input type="text" id="stokbarang" name="stokbarang" placeholder="Item Stock" value="'.$item["item_stock"].'">
                             <div class="text">Price</div>
@@ -83,37 +85,146 @@
                             </select>
                             <div class="text">Size</div>
                             <div class="wrap2">
-                                <input type="checkbox" name="ukuranbarang[]" value="38" ';
-                                if ($item["item_cate"]=="Sneakers"){echo 'selected';} 
+                                <input type="checkbox" id="ukuranbarang" value="38" ';
+                                if (in_array("38",$ukuran)){echo 'checked';} 
                                 echo '>38
-                                <input type="checkbox" name="ukuranbarang[]" value="39">39
-                                <input type="checkbox" name="ukuranbarang[]" value="40">40
-                                <input type="checkbox" name="ukuranbarang[]" value="41">41
-                                <input type="checkbox" name="ukuranbarang[]" value="42">42
-                                <input type="checkbox" name="ukuranbarang[]" value="43">43
-                                <input type="checkbox" name="ukuranbarang[]" value="44">44
+                                <input type="checkbox" id="ukuranbarang" value="39" ';
+                                if (in_array("38",$ukuran)){echo 'checked';} 
+                                echo '>39
+                                <input type="checkbox" id="ukuranbarang" value="40" ';
+                                if (in_array("40",$ukuran)){echo 'checked';} 
+                                echo '>40
+                                <input type="checkbox" id="ukuranbarang" value="41" ';
+                                if (in_array("41",$ukuran)){echo 'checked';} 
+                                echo '>41
+                                <input type="checkbox" id="ukuranbarang" value="42" ';
+                                if (in_array("42",$ukuran)){echo 'checked';} 
+                                echo '>42
+                                <input type="checkbox" id="ukuranbarang" value="43" ';
+                                if (in_array("43",$ukuran)){echo 'checked';} 
+                                echo '>43
+                                <input type="checkbox" id="ukuranbarang" value="44" ';
+                                if (in_array("44",$ukuran)){echo 'checked';} 
+                                echo '>44
                                 
                             </div>
                             <div class="text">Description</div>
-                            <textarea name="descriptionbarang" id="descriptionbarang" maxlength="250"></textarea>                
+                            <textarea name="descriptionbarang" id="descriptionbarang" maxlength="250">'.$item["item_desc"].'</textarea>                
                         
-                        <div class="wrap">
-                            <div class="wrap1">
-                                Main Image <input type="file" name="file1">
-                            </div>
-                            <div class="wrap1">
-                                2nd Image <input type="file" name="file2">
-                            </div>
-                            <div class="wrap1">
-                                3rd Image <input type="file" name="file3">
-                            </div>
-                            <div class="wrap1">
-                                4th Image <input type="file" name="file4">
-                            </div>
-                        </div>
-                        <input type="submit" value="Add new item" name="add" id="addbarang">
+                        
+                        <input type="submit" value="Update Item" name="update" id="updatebarang">
                     </div>
-                </form>';
+                ';
+    }
+    else if ($action=="save"){
+        $item_nama = $_POST["item_nama"];
+        $item_stock = $_POST["item_stock"];
+        $item_price = $_POST["item_price"];
+        $item_color = $_POST["item_color"];
+        $item_desc = $_POST["item_desc"];
+        $item_size = $_POST["item_size"];
+        $item_cate = $_POST["item_cate"];
+
+        $stmt = $conn->prepare("UPDATE item SET item_stock=?,item_price=?,item_color=?,item_desc=?,item_size=?,item_cate=? WHERE item_nama=?");
+        $stmt->bind_param("sssssss",$item_stock,$item_price,$item_color,$item_desc,$item_size,$item_cate,$item_nama);
+        $stmt->execute();
+
+        echo '<script>alert("Update Successfull");</script>';
+        $items = $conn->query("select * from item")->fetch_all(MYSQLI_ASSOC);
+        foreach($items as $key=>$value){
+            if (strlen($value["item_desc"])>100){
+                $desc = substr($value["item_desc"],0,100) . "...";
+            }else{
+                $desc = $value["item_desc"];
+            }
+            echo '<div class="kotakitem">
+            <strong>'.$value["item_nama"].' - '.$value["item_color"].'</strong>
+            <p class="text">'.$desc.'</p>
+            <p class="textbutton">Update</p></div>';
+        }
+    }
+    else if ($action=="adddiscount2"){
+        $discount_type = $_POST["type"];
+        $value = $_POST["value"];
+        $id_item = $_POST["item"];
+        $stmt = $conn->prepare("insert into discount(id_item,value,discount_type) values(?,?,?)");
+        $stmt->bind_param("iss",$id_item,$value,$discount_type);
+        $stmt->execute();   
+
+        $discounts = $conn->query("select * from discount")->fetch_all(MYSQLI_ASSOC);
+        foreach($discounts as $key=>$value){
+            $temp = $value["id_item"];
+            $item = $conn->query("select * from item where id_item=$temp")->fetch_assoc();
+
+            echo '<div class="kotakdisc">
+            <input type="hidden" id="indexdelete" value="'.$value["id_item"].'">
+            <strong>'.$item["item_nama"].' - '.$item["item_color"].'</strong>
+            <p class="text">Discount for ';
+            if ($value["discount_type"]=="percentage"){
+                echo $value["value"].'%';
+            }else{
+                echo 'Rp. '.$value["value"];
+            }
+            echo '</p>
+                <p class="textbutton">Delete Discount</p>
+        </div>
+        <input type="submit" value="Add Discount" id="adddiscount">
+        ';
+        }
+    }
+    else if ($action=="adddiscount"){
+        $discounts = $conn->query("select * from discount")->fetch_all(MYSQLI_ASSOC);
+        $notvalid = [];
+        foreach($discounts as $key=>$value){
+            array_push($notvalid,$value["id_item"]);
+        }
+        
+        $items = $conn->query("select * from item")->fetch_all(MYSQLI_ASSOC);
+        echo '<div class="kotakinputdisc">
+
+        <strong>Type</strong><br>
+        <input type="radio" name="type" id="percentage" value="percentage" checked>Percentage <br>
+        <input type="radio" name="type" id="fixed" value="fixed">Fixed Amount <br>
+        <strong>Value</strong><br>
+        <input type="number" name="" id="discvalue" placeholder="%"><br>
+        <strong>Item</strong><br>
+        <select name="" id="item">';
+            
+        foreach($items as $key=>$value){
+            if (!in_array($value["id_item"],$notvalid)){
+                echo '<option value="'.$value["id_item"].'">'.$value["item_nama"].' - '.$value["item_color"].'</option>';
+            }
+        }
+        echo '</select><br><br>
+        <input type="submit" value="Add" id="add">
+    </div>';
+    }
+    else if ($action=="deletediscount"){
+        $index = $_POST["id_item"];
+        $stmt = $conn->prepare("delete from discount where id_item=?");
+        $stmt->bind_param("i",$index);
+        $stmt->execute();
+        $items = $conn->query("select * from item")->fetch_all(MYSQLI_ASSOC);
+        $discounts = $conn->query("select * from discount")->fetch_all(MYSQLI_ASSOC);
+        foreach($discounts as $key=>$value){
+            $temp = $value["id_item"];
+            $item = $conn->query("select * from item where id_item=$temp")->fetch_assoc();
+
+            echo '<div class="kotakdisc">
+            <input type="hidden" id="indexdelete" value="'.$value["id_item"].'">
+            <strong>'.$item["item_nama"].' - '.$item["item_color"].'</strong>
+            <p class="text">Discount for ';
+            if ($value["discount_type"]=="percentage"){
+                echo $value["value"].'%';
+            }else{
+                echo 'Rp. '.$value["value"];
+            }
+            echo '</p>
+                <p class="textbutton">Delete Discount</p>
+        </div>
+        <input type="submit" value="Add Discount" id="adddiscount">
+        ';
+        }
     }
 
 ?>

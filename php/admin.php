@@ -33,6 +33,7 @@
             <div class="nav add"><a href="../php/adminadd.php">Add products</a></div>
             <div class="nav update"><a href="../php/adminupdate.php">Update products</a></div>
             <div class="nav delete"><a href="../php/admindelete.php">Delete products</a></div>
+            <div class="nav discount"><a href="../php/admindiscount.php">Add Discount</a></div>
         </div>
         <div class="main">
             <div class="navbar">

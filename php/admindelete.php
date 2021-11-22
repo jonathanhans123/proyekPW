@@ -35,6 +35,7 @@
             <div class="nav add"><a href="../php/adminadd.php">Add products</a></div>
             <div class="nav update"><a href="../php/adminupdate.php">Update products</a></div>
             <div class="nav delete"><a href="../php/admindelete.php">Delete products</a></div>
+            <div class="nav discount"><a href="../php/admindiscount.php">Add Discount</a></div>
         </div>
         <div class="main">
             <div class="navbar">
@@ -57,7 +58,7 @@
                             $desc = $value["item_desc"];
                         }
                         echo '<div class="kotakitem">
-                        <strong>'.$value["item_nama"].'</strong>
+                        <strong>'.$value["item_nama"].' - '.$value["item_color"].'</strong>
                         <p class="text">'.$desc.'</p>
                         <p class="textbutton">Delete</p></div>';
                     }
@@ -108,6 +109,7 @@
                             'item_nama':item_nama
                         },
                         success:function(response){
+                        $(".container2").html("");
                             $(".container2").append(response);
                         }
                     });
