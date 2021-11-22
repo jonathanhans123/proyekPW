@@ -12,12 +12,12 @@
         .main{
             width: 100%;
             height: 1000px;
-            background-color: white;
+            background-color: red;
             margin-bottom: 50px;
         }
 
         .submain{
-            width: 80%;
+            width: 98%;
             margin-left: auto;
             margin-right: auto;
         }
@@ -25,55 +25,88 @@
         .kiri{
             width: 50%;
             height: 400px;
-            background-color: white;
+            background-color: #ccc;
             float: left;
         }
         .gambarutama{
             width: 100%;
             height: 400px;
-            background-image: url("../images/produk/sepatu1/aldo-amenabartieup-white-1.jpg");
-            background-size: cover;
-            background-position-y: -230px;
+            
         }
         .subgambar1{
             margin-top:10px;
             width: 150px;
             height: 150px;
-            background-color: black;
+            background-color: #ccc;
             float: left;
-            background-image: url("../images/produk/sepatu1/aldo-amenabartieup-white-2.jpg");
-            background-size: cover;
-            background-position-y: center;
+            text-align: center;
+            border: 2px solid black;
         }
         .subgambar2{
             margin-top:10px;
             width: 150px;
             height: 150px;
-            background-color: black;
+            background-color: #ccc;
             margin-left: 20px;
-            float: left;
-            background-image: url("../images/produk/sepatu1/aldo-amenabartieup-white-3.jpg");
-            background-size: cover;
-            background-position-y: center;        
+            float: left;      
+            text-align: center;
+            border: 2px solid #ccc;
         }
         .subgambar3{
             margin-top:10px;
             width: 150px;
             height: 150px;
-            background-color: black;
+            background-color: #ccc;
             margin-left: 20px;
-            float: left;
-            background-image: url("../images/produk/sepatu1/aldo-amenabartieup-white-4.jpg");
-            background-size: cover;
-            background-position-y: -19px;       
+            float: left;   
+            text-align: center;  
+            border: 2px solid #ccc;
 
         }
-        .kanan{
+        .subgambar4{
+            margin-top:10px;
+            width: 150px;
+            height: 150px;
+            background-color: #ccc;
+            margin-left: 20px;
+            float: left;   
+            text-align: center;  
+            border: 2px solid #ccc;
+
+        }
+        .kanans{
             float: left;
             width: 50%;
             height: 400px;
-            background-color: red;
+            background-color: white;
+            padding-left: 100px;
         }
+        .btnsize1:hover{
+            cursor: pointer;
+        }
+        .btnsize2:hover{
+            cursor: pointer;
+        }
+        .btnsize3:hover{
+            cursor: pointer;
+        }
+        .btnsize4:hover{
+            cursor: pointer;
+            
+        }
+        .btnsize5:hover{
+            cursor: pointer;
+        }
+        .btnsize6:hover{
+            cursor: pointer;
+        }
+        .btnclr1:hover{
+            cursor: pointer;
+        }
+        .btnclr2:hover{
+            cursor: pointer;
+        }
+
         .addtochart{
             width: 300px;
             height: 50px;
@@ -83,11 +116,17 @@
             padding-top: 15px;
             text-align: center;
             transition: 0.5s;
+            
         }
         .addtochart:hover{
             cursor: pointer;
             background-color:white ;
             color: black;
+            box-shadow: 0 0 50px #ccc;
+        }
+        .img{
+            max-height: 100%;
+            max-width: 100%;
         }
     </style>
 </head>
@@ -150,22 +189,24 @@
             <p>Home > All > Lite Knit Trainers</p>
             <div class="submain">
                 <div class="kiri">
-                    <div class="gambarutama"></div>
+                    <center>
+                    <div class="gambarutama"><img id="gmbrutama" src="../images/produk/sepatu1/aldo-amenabartieup-white-1.jpg" style="max-width: 100%;max-height: 100%;"/></div>
+                    </center>
                 </div>
-                <div class="kanan">
-                    <p>Lite Knit Trainers</p>
-                    <p>$100.00</p>
-                    <label for="size">Size : 8</label> <br>
-                    <div style="border: 2px solid black; border-radius: 10px; width:40px; height:40px; background-color: white; text-align: center; padding-top: 5px; float: left;"> 8</div>
-                    <div style="margin-left: 10px; border: 2px solid black; border-radius: 10px; width:40px; height:40px; background-color: white; text-align: center; padding-top: 5px; float: left;"> 9</div>
-                    <div style="margin-left: 10px; border: 2px solid black; border-radius: 10px; width:40px; height:40px; background-color: white; text-align: center; padding-top: 5px; float: left;"> 10</div>
-                    <div style="margin-left: 10px; border: 2px solid black; border-radius: 10px; width:40px; height:40px; background-color: white; text-align: center; padding-top: 5px; float: left;"> 11</div>
-                    <div style="margin-left: 10px; border: 2px solid black; border-radius: 10px; width:40px; height:40px; background-color: white; text-align: center; padding-top: 5px; float: left;"> 12</div>
-                    <div style="margin-left: 10px; border: 2px solid black; border-radius: 10px; width:40px; height:40px; background-color: white; text-align: center; padding-top: 5px; float: left;"> 13</div>
+                <div class="kanans">
+                    <p style="font-size: xx-large; font-weight: bold;">Lite Knit Trainers</p>
+                    <p style="font-size: larger;">$100.00</p>
+                    <label for="size" class="txtsize"><b>Size :</b> 8</label> <br>
+                    <div class="btnsize1" style="border: 2px solid black; border-radius: 10px; width:40px; height:40px; background-color: white; text-align: center; padding-top: 5px; float: left;"> 8</div>
+                    <div class="btnsize2" style="margin-left: 10px; border: 2px solid #ccc; border-radius: 10px; width:40px; height:40px; background-color: white; text-align: center; padding-top: 5px; float: left;"> 9</div>
+                    <div class="btnsize3" style="margin-left: 10px; border: 2px solid #ccc; border-radius: 10px; width:40px; height:40px; background-color: white; text-align: center; padding-top: 5px; float: left;"> 10</div>
+                    <div class="btnsize4" style="margin-left: 10px; border: 2px solid #ccc; border-radius: 10px; width:40px; height:40px; background-color: white; text-align: center; padding-top: 5px; float: left;"> 11</div>
+                    <div class="btnsize5" style="margin-left: 10px; border: 2px solid #ccc; border-radius: 10px; width:40px; height:40px; background-color: white; text-align: center; padding-top: 5px; float: left;"> 12</div>
+                    <div class="btnsize6" style="margin-left: 10px; border: 2px solid #ccc; border-radius: 10px; width:40px; height:40px; background-color: white; text-align: center; padding-top: 5px; float: left;"> 13</div>
                     <div style="clear: both;"></div>
                     <label for="color">Color : Red</label> <br>
-                    <div style="width:30px;height:30px;background-color:red;border-radius: 50%;float: left;"></div>
-                    <div style="margin-left: 10px;width:30px;height:30px;background-color:black;border-radius: 50%;float: left;"></div>
+                    <div class="btnclr1" style="width:30px;height:30px;border: 2px solid black;background-color:white;border-radius: 50%;float: left;"><div class="sbtnclr1" style="width:20px;height:20px;border: 2px solid #ccc;background-color:red;border-radius: 50%;margin:3px 0px 0px 3px;"></div></div>
+                    <div class="btnclr2" style="border: 2px solid #ccc;margin-left: 10px;width:30px;height:30px;background-color:black;border-radius: 50%;float: left;"><div class="sbtnclr2" style="width:20px;height:20px;border: 2px solid #ccc;background-color:black;border-radius: 50%;margin:3px 0px 0px 3px;"></div></div>
                     <div style="clear: both;"></div>
                     <br>
                     <div class="addtochart" >Add to Chart</div>
@@ -174,9 +215,11 @@
 
                 </div>
                 <div style="clear: both;"></div>
-                <div class="subgambar1"></div>
-                <div class="subgambar2"></div>
-                <div class="subgambar3"></div>
+                <div class="subgambar1"><img src="../images/produk/sepatu1/aldo-amenabartieup-white-1.jpg" alt="" style="max-width: 100%;max-height: 100%;"></div>
+                <div class="subgambar2"><img src="../images/produk/sepatu1/aldo-amenabartieup-white-2.jpg" alt="" style="max-width: 100%;max-height: 100%;"></div>
+                <div class="subgambar3"><img src="../images/produk/sepatu1/aldo-amenabartieup-white-3.jpg" alt="" style="max-width: 100%;max-height: 100%;"></div>
+                <div class="subgambar4"><img src="../images/produk/sepatu1/aldo-amenabartieup-white-4.jpg" alt="" style="max-width: 100%;max-height: 100%;"></div>
+
             </div>
         </div>
 
@@ -220,4 +263,106 @@
         </footer>
     </div>
 </body>
+<script>
+    $(document).ready(function(){
+        $(".sbtnclr2").hide();
+        
+        $(".subgambar1").click(function(){
+            $("#gmbrutama").attr({"src": "../images/produk/sepatu1/aldo-amenabartieup-white-1.jpg"});
+            $(".subgambar1").css("border-color", "black");
+            $(".subgambar2").css("border-color", "#ccc");
+            $(".subgambar3").css("border-color", "#ccc");
+            $(".subgambar4").css("border-color", "#ccc");
+        });
+        $(".subgambar2").click(function(){
+            $("#gmbrutama").attr({"src": "../images/produk/sepatu1/aldo-amenabartieup-white-2.jpg"});
+            $(".subgambar1").css("border-color", "#ccc");
+            $(".subgambar2").css("border-color", "black");
+            $(".subgambar3").css("border-color", "#ccc");
+            $(".subgambar4").css("border-color", "#ccc");
+        });
+        $(".subgambar3").click(function(){
+            $("#gmbrutama").attr({"src": "../images/produk/sepatu1/aldo-amenabartieup-white-3.jpg"});
+            $(".subgambar1").css("border-color", "#ccc");
+            $(".subgambar2").css("border-color", "#ccc");
+            $(".subgambar3").css("border-color", "black");
+            $(".subgambar4").css("border-color", "#ccc");
+        });
+        $(".subgambar4").click(function(){
+            $("#gmbrutama").attr({"src": "../images/produk/sepatu1/aldo-amenabartieup-white-4.jpg"});
+            $(".subgambar1").css("border-color", "#ccc");
+            $(".subgambar2").css("border-color", "#ccc");
+            $(".subgambar3").css("border-color", "#ccc");
+            $(".subgambar4").css("border-color", "black");
+        });
+
+        $(".btnsize1").click(function(){
+            $(".txtsize").html("<b>Size :</b> 8");
+            $(".btnsize1").css("border-color", "black");
+            $(".btnsize2").css("border-color", "#ccc");
+            $(".btnsize3").css("border-color", "#ccc");
+            $(".btnsize4").css("border-color", "#ccc");
+            $(".btnsize5").css("border-color", "#ccc");
+            $(".btnsize6").css("border-color", "#ccc");
+        });
+        $(".btnsize2").click(function(){
+            $(".txtsize").html("<b>Size :</b> 9");
+            $(".btnsize1").css("border-color", "#ccc");
+            $(".btnsize2").css("border-color", "black");
+            $(".btnsize3").css("border-color", "#ccc");
+            $(".btnsize4").css("border-color", "#ccc");
+            $(".btnsize5").css("border-color", "#ccc");
+            $(".btnsize6").css("border-color", "#ccc");            
+        });
+        $(".btnsize3").click(function(){
+            $(".txtsize").html("<b>Size :</b> 10");
+            $(".btnsize1").css("border-color", "#ccc");
+            $(".btnsize2").css("border-color", "#ccc");
+            $(".btnsize3").css("border-color", "black");
+            $(".btnsize4").css("border-color", "#ccc");
+            $(".btnsize5").css("border-color", "#ccc");
+            $(".btnsize6").css("border-color", "#ccc");
+        });
+        $(".btnsize4").click(function(){
+            $(".txtsize").html("<b>Size :</b> 11");
+            $(".btnsize1").css("border-color", "#ccc");
+            $(".btnsize2").css("border-color", "#ccc");
+            $(".btnsize3").css("border-color", "#ccc");
+            $(".btnsize4").css("border-color", "black");
+            $(".btnsize5").css("border-color", "#ccc");
+            $(".btnsize6").css("border-color", "#ccc");
+        });
+        $(".btnsize5").click(function(){
+            $(".txtsize").html("<b>Size :</b> 12");
+            $(".btnsize1").css("border-color", "#ccc");
+            $(".btnsize2").css("border-color", "#ccc");
+            $(".btnsize3").css("border-color", "#ccc");
+            $(".btnsize4").css("border-color", "#ccc");
+            $(".btnsize5").css("border-color", "black");
+            $(".btnsize6").css("border-color", "#ccc");
+        });
+        $(".btnsize6").click(function(){
+            $(".txtsize").html("<b>Size :</b> 13");
+            $(".btnsize1").css("border-color", "#ccc");
+            $(".btnsize2").css("border-color", "#ccc");
+            $(".btnsize3").css("border-color", "#ccc");
+            $(".btnsize4").css("border-color", "#ccc");
+            $(".btnsize5").css("border-color", "#ccc");
+            $(".btnsize6").css("border-color", "black");
+        });
+        
+        $(".btnclr1").click(function(){
+            $(".sbtnclr2").hide();
+            $(".sbtnclr1").show();
+            $(".btnclr2").css({"border-color": "#ccc","background": "black"});
+            $(".btnclr1").css({"border-color": "black","background": "white"});
+        });
+        $(".btnclr2").click(function(){
+            $(".sbtnclr2").show();
+            $(".sbtnclr1").hide();
+            $(".btnclr1").css({"border-color": "#ccc","background": "red"});
+            $(".btnclr2").css({"border-color": "black","background": "white"});
+        });
+    });
+</script>
 </html>
