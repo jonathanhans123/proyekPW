@@ -24,24 +24,24 @@
                         <a href="#">Categories <p style="font-size: 10pt;float: right;margin-top: 4%;">&#9660;</p> </a>
                         <div class="dropdown-content">
                             <div class="dropdown-wrap">
-                                <a href="#">Sneakers</a>
-                                <a href="#">Boots</a>
+                                <a href="productlist.php?category=Sneakers">Sneakers</a>
+                                <a href="productlist.php?category=Boots">Boots</a>
                             </div>
                             <div class="dropdown-wrap">
-                                <a href="#">Slip-on</a>
-                                <a href="#">Hiking</a>
+                                <a href="productlist.php?category=Slip-on">Slip-on</a>
+                                <a href="productlist.php?category=Hiking">Hiking</a>
                             </div>
                             <div class="dropdown-wrap">
-                                <a href="#">Oxford</a>
-                                <a href="#">Wedges</a>
+                                <a href="productlist.php?category=Oxford">Oxford</a>
+                                <a href="productlist.php?category=Wedges">Wedges</a>
                             </div>
                             <div class="dropdown-wrap">
-                                <a href="#">High heel</a>
-                                <a href="#">High-Tops</a>
+                                <a href="productlist.php?category=High+heel">High heel</a>
+                                <a href="productlist.php?category=High-Tops">High-Tops</a>
                             </div>
                             <div class="dropdown-wrap">
-                                <a href="#">Sandals</a>
-                                <a href="#">Sports</a>
+                                <a href="productlist.php?category=Sandals">Sandals</a>
+                                <a href="productlist.php?category=Sports">Sports</a>
                             </div>
                         </div>
                     </div>

@@ -25,6 +25,7 @@
 .container{
     width: 100%;
     height: auto;
+    padding: 0;
 }
 .navbar{
     height: 130px;
@@ -174,6 +175,12 @@
 .jumbotron .right{
     float: right;
     margin-right: 20px;
+}
+.jumbotron .left:hover{
+    cursor: pointer;
+}
+.jumbotron .right:hover{
+    cursor: pointer;
 }
 .jumbotron .shopnow{
     width: 200px;

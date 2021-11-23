@@ -100,14 +100,17 @@
                 }
             });
             $(document).on("click",".textbutton",function(){
-                var item_nama = $(this).parent().children().first().html();
+                var item = $(this).parent().children().first().html().split(" - ");
+                var nama = item[0];
+                var color = item[1];
                 var index = $(this).parent().index();
                 $.ajax({
                     type:"post",
                     url:"controller.php",
                     data:{
                         'action':'update',
-                        'item_nama':item_nama
+                        'item_nama':nama,
+                        'item_color':color
                     },
                     success:function(response){
                         $(".container2").html("");

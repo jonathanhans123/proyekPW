@@ -10,7 +10,7 @@
         if ($uname!=""&&$upass!=""&&$cpass!=""&&$email!=""&&$phone!=""&&$uname!="admin"){
             if ($upass==$cpass){
                 $exist = false;
-                $stmt = $conn->query("SELECT * FROM user WHERE user_email='$email'");
+                $stmt = $conn->query("SELECT * FROM user WHERE user_email='$email' and user_name='$uname'");
                 if (mysqli_num_rows($stmt)>0){
                     $exist = true;
                 }
@@ -24,7 +24,7 @@
                         $_SESSION["error"] = "Error add ke Database!";
                     }
                 }else {
-                    $_SESSION["error"] = "Account already exist!";
+                    $_SESSION["error"] = "Another account with the same name or email already exist!";
                 }
             }else{
                 $_SESSION["error"] = "Password and Confirm Password must be the same!";

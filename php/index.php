@@ -10,7 +10,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/style.css">
     <script src="../java/jquery.min.js"></script>
-    <script src="../java/java.js"></script>
     
 </head>
 <body>
@@ -22,9 +21,9 @@
             <div class="left">&#10094;</div>
             <div class="jumbo-wrap">
                 <p class="caption">Shoes For You</p>
-                <a href="#">
+                
                 <div class="shopnow">SHOP NOW</div>
-                </a>
+                
             </div>
             <div class="right">&#10095;</div>
         </div>
@@ -71,7 +70,99 @@
             <div class="left">
             </div>
         </div>
-        <?php require_once("../php/footer.php") ?>
+        <?php require_once("../php/footer.php"); ?>
     </div>
+    <script>
+        $(document).ready(function(){
+            $(".button").click(function (e) { 
+                var category = $(this).parent().children().first().html().replace(" ","+");
+                window.location.href="../php/productlist.php?category="+category;
+                
+            });
+            $(".shopnow").click(function (e) {
+                window.location.href="../php/productlist.php?category=all";
+                
+            });
+            $("a").click(function (e) {
+                var category = $(this).html();
+                window.location.href="../php/productlist.php?category="+category;
+                
+            });
+            $jumboindex = 1;
+            $('.left').click(leftclick);
+            $('.right').click(rightclick);
+            $('.category').mouseenter(function () { 
+                $('.categories-text').css("text-decoration","underline");
+            });
+            $('.cate-wrap').mouseleave(function () { 
+                $('.categories-text').css("text-decoration","none");
+            });
+            $('.loginicon').click(function(){
+                
+            });
+            $(window).scroll(function() {
+                var height = $(window).scrollTop();
+            
+                if(height >= 80) {
+                    $(".bottom").css("position","fixed");
+                    $(".bottom").css("z-index","1");
+                    $(".bottom").css("top","0");
+                }else if (height<80){
+                    $(".bottom").css("position","static");
+                }
+            });
+            function leftclick(){
+                console.log()
+                $jumboindex--;
+                if ($jumboindex % 2 == 1){
+                    console.log("jfiwoej");
+                    $(".jumbotron").animate({
+                        opacity: "0.4"
+                    },500,function(){
+                        $(".jumbotron").css("background-image","url('../images/jumbo1.jpg')");
+                        $(".jumbotron").animate({
+                            opacity: "1"
+                        },500,function(){
+                        });
+                    });
+                }else{
+                    $(".jumbotron").animate({
+                        opacity: "0.4"
+                    },500,function(){
+                        $(".jumbotron").css("background-image","url('../images/jumbo2.jpg')");
+                        $(".jumbotron").animate({
+                            opacity: "1"
+                        },500,function(){
+                        });
+                    });
+                }
+            }
+            function rightclick(){
+                $jumboindex++;
+                if ($jumboindex % 2 == 1){
+                    console.log("jfiwoej");
+                    $(".jumbotron").animate({
+                        opacity: "0.4"
+                    },500,function(){
+                        $(".jumbotron").css("background-image","url('../images/jumbo1.jpg')");
+                        $(".jumbotron").animate({
+                            opacity: "1"
+                        },500,function(){
+                        });
+                    });
+                }else{
+                    $(".jumbotron").animate({
+                        opacity: "0.4"
+                    },500,function(){
+                        $(".jumbotron").css("background-image","url('../images/jumbo2.jpg')");
+                        $(".jumbotron").animate({
+                            opacity: "1"
+                        },500,function(){
+                        });
+                    });
+                }
+            }
+        });
+    </script>
 </body>
 </html>

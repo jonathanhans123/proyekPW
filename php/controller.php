@@ -1,13 +1,14 @@
 <?php
     require_once("koneksi.php");
 
-    $action = $_POST["action"];
+    $action = $_REQUEST["action"];
 
     if ($action=="delete"){
         $items = $conn->query("select * from item")->fetch_all(MYSQLI_ASSOC);
 
         $item_nama = $_POST["item_nama"];
-        $item = $conn->query("select * from item where item_nama='$item_nama'")->fetch_assoc();
+        $item_color = $_POST["item_color"];
+        $item = $conn->query("select * from item where item_nama='$item_nama' and item_color='$item_color'")->fetch_assoc();
         $imageurl = explode($item["imageurl"],",");
         foreach($imageurl as $key=>$value){
             unlink($value);
@@ -36,7 +37,8 @@
     }
     else if ($action=="update"){
         $item_nama = $_POST["item_nama"];
-        $item = $conn->query("select * from item where item_nama='$item_nama'")->fetch_assoc();
+        $item_color = $_POST["item_color"];
+        $item = $conn->query("select * from item where item_nama='$item_nama' and item_color='$item_color'")->fetch_assoc();
         $ukuran = explode(",",$item["item_size"]);
 
         echo '
@@ -49,7 +51,7 @@
                             <div class="text">Price</div>
                             <input type="text" id="hargabarang" name="hargabarang" placeholder="Item Price"  value="'.$item["item_price"].'">
                             <div class="text">Color</div>
-                            <input type="text" id="warnabarang" name="warnabarang" placeholder="Item Color" value="'.$item["item_color"].'">
+                            <input type="text" id="warnabarang" disabled    name="warnabarang" placeholder="Item Color" value="'.$item["item_color"].'">
                             <div class="text">Category</div>
                             <select name="catebarang" id="catebarang">
                                 <option value="Sneakers" ';
@@ -225,6 +227,9 @@
         <input type="submit" value="Add Discount" id="adddiscount">
         ';
         }
+    }
+    else if ($action=="product"){
+        
     }
 
 ?>
