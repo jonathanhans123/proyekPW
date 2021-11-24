@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../java/jquery.min.js"></script>
+    <script src="../java/java.js"></script>
+    <style>
+        
+        .rating{
+            width: 100%;
+            height: 100vh;
+            background-color: white;
+        }
+        .ratingtiapprofile{
+            width: 100%;
+            height: 280px;
+            background-color: white;
+            padding-top: 20px;
+            padding-left: 20px;
+        }
+        .profilepicture{
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: rgb(245, 245, 245);
+            float: left;
+            margin-bottom: 10px;
+        }
+        .profilename{
+            margin-left: 20px;
+            float: left;
+        }
+        .verifiedbuyer{
+            color: rgb(45, 175, 45);
+            margin-left: 10px;
+            float: left;
+        }
+        .country{
+            margin-left: 20px;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="rating">
+        <div class="ratingtiapprofile"> 
+            <div class="profilepicture"><div class="sx" style="text-align:center;margin-top: 25px; color: grey;"></div><img src="../icon/veri.png" style="width: 30px;height: 30px;margin-left: 54px;"></div>
+            <label class="profilename">ryan reynaldi pratama</label>
+            <label class="verifiedbuyer"> Verified Buyer</label><br>
+            <label class="country">United States</label>
+            <div style="height: 20px;"><img src="../icon/star.png" style="max-width: 100%; max-height: 100%; margin-left: 20px;"></div>
+            <div style="clear: both;"></div>
+            <b>Not Sure</b><br>
+            <p>aidsjoiasjido</p>
+            <p>asduasd</p>
+            <div style="margin-left: 10px;margin-bottom: 50px;"><img src="../icon/share.png" style="width:15px;height: 10px;">Share</div>
+            <hr color="#ccc">
+        </div>
+        
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+        var text =$(".profilename").text();
+        if (/\s/.test($(".profilename").text())) {
+            
+            var pertama = text.charAt(0).toUpperCase();
+            var kedua = text.split(' ')[1].charAt(0).toUpperCase();
+            $(".sx").html(pertama+kedua);
+        }else{
+            var firstWord = text.charAt(0).toUpperCase();
+            var secondWord = text.charAt(1).toUpperCase();
+            $(".sx").html(firstWord + secondWord);
+        }
+    
+    });
+</script>
+</html>
