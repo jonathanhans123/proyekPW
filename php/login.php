@@ -7,10 +7,12 @@
         if ($uname!=""&&$upass!=""){
             if ($uname!="admin"&&$upass!="admin"){
                 $exist = false;
-                $user=$conn->query("SELECT * FROM user WHERE user_name='$uname'")->fetch_assoc();
+                $user=$conn->query("SELECT * FROM user WHERE user_nama='$uname'")->fetch_assoc();
                 if (isset($user)){
                     $_SESSION["auth"] = $user;
                     header("Location:../php/user.php");
+                }else{
+                    $_SESSION["error"] = "Account does not exist!";
                 }
             }else {
                 $_SESSION["admin"] = "admin";
@@ -45,6 +47,9 @@
                     <input type="text" name="upass" placeholder="Your Password">
                 </div>
                 <div class="wrap">
+                    <center><p style="color:red;"><?php if (isset($_SESSION["error"])){echo '*'.$_SESSION["error"]; unset($_SESSION["error"]);} ?></p></center>
+                </div>
+                <div class="wrap">
                     <input type="submit" value="Sign In" name="login">
                 </div>
                 <div class="wrap">
@@ -52,7 +57,7 @@
                 </div>
             </div>
         </form>
-        <?php require_once("../php/footer.php") ?>
+        <?php require_once("../php/footer.php"); ?>
     </div>
 </body>
 </html>

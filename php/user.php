@@ -1,3 +1,12 @@
+<?php
+    require_once("koneksi.php");
+
+    if (isset($_REQUEST["auth"])){
+
+    }else{
+        header("Location:login.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +15,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome, <?php echo $_SESSION["auth"]["user_name"];?></h1>
+    <div class="container-fluid">
+        require_once
+        <h1>Welcome, <?php echo $_SESSION["auth"]["user_name"];?></h1>
+    </div>
     
 </body>
 </html>

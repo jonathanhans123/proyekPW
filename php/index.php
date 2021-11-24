@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <script src="../java/jquery.min.js"></script>
+    <script src="../java/jquery.autocomplete.min.js"></script>
     <script src="../java/java.js"></script>
     
 </head>
@@ -83,7 +84,6 @@
             });
             $(".shopnow").click(function (e) {
                 window.location.href="../php/productlist.php?category=all";
-                
             });
             
         });

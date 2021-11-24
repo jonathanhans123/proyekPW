@@ -15,7 +15,7 @@
                     <p class="logotext">Shoes</p></a>
                 </div>
                 <div class="shop">
-                    <a href="../php/login.php"><img src="../icon/person.svg" class="loginicon" name="login"></object></a>
+                    <a href="../php/<?php if (isset($_SESSION["auth"])){ echo 'user.php'; }else { echo 'login.php';} ?>"><img src="../icon/person.svg" class="loginicon" name="login"></object></a>
                     <object data="../icon/cart.svg" class="shopicon" name="cart"></object>
                 </div>
             </div>
@@ -51,4 +51,16 @@
                 </ul>
             </div>
         </div>
-        
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                // Selector input yang akan menampilkan autocomplete.
+                $( "#search" ).autocomplete({
+                    serviceUrl: "source.php",   // Kode php untuk prosesing data.
+                    dataType: "JSON",           // Tipe data JSON.
+                    onSelect: function (suggestion) {
+                        $( "#search" ).val("" + suggestion.buah);
+                    }
+                });
+            });
+        </script>
