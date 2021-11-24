@@ -16,6 +16,9 @@
         }else{
             $query = "select * from item where item_cate='".$category."'";
         }
+    }else{
+        $category = "all";
+        $query = "select * from item";
     }
     $items = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
     $color = $conn->query("select distinct item_color from item")->fetch_all(MYSQLI_ASSOC);
@@ -81,13 +84,17 @@
         <div class="button">Apply filter</div>
         <div class="container-item">
             <?php
-                foreach($items as $key=>$value){
-                    $image = explode(",",$value["imageurl"]);
-                    echo '<div class="item">
-                        <img src="../upload/'.$image[0].'" alt="">
-                        <p class="name">'.$value["item_nama"].'</p>
-                        <p class="price">Rp. '.$value["item_price"].'</p>
-                    </div>';
+                if (!empty($items)){
+                    foreach($items as $key=>$value){
+                        $image = explode(",",$value["imageurl"]);
+                        echo '<div class="item">
+                            <img src="../upload/'.$image[0].'" alt="">
+                            <p class="name">'.$value["item_nama"].'</p>
+                            <p class="price">Rp. '.$value["item_price"].'</p>
+                        </div>';
+                    }
+                }else{
+                    echo '<h1>No products yet</h1>';
                 }
             ?>
         </div>

@@ -20,34 +20,35 @@
                 </div>
             </div>
             <div class="bottom">
-                    <div class="nav-child dropdown">
-                        <a href="#">Categories <p style="font-size: 10pt;float: right;margin-top: 4%;">&#9660;</p> </a>
-                        <div class="dropdown-content">
-                            <div class="dropdown-wrap">
+                    <div class="nav-child drop">
+                        <a href="">Categories <p style="font-size: 10pt;float: right;margin-top: 4%;">&#9660;</p> </a>
+                        <div class="drop-content">
+                            <div class="drop-wrap">
                                 <a href="productlist.php?category=Sneakers">Sneakers</a>
                                 <a href="productlist.php?category=Boots">Boots</a>
                             </div>
-                            <div class="dropdown-wrap">
+                            <div class="drop-wrap">
                                 <a href="productlist.php?category=Slip-on">Slip-on</a>
                                 <a href="productlist.php?category=Hiking">Hiking</a>
                             </div>
-                            <div class="dropdown-wrap">
+                            <div class="drop-wrap">
                                 <a href="productlist.php?category=Oxford">Oxford</a>
                                 <a href="productlist.php?category=Wedges">Wedges</a>
                             </div>
-                            <div class="dropdown-wrap">
+                            <div class="drop-wrap">
                                 <a href="productlist.php?category=High+heel">High heel</a>
                                 <a href="productlist.php?category=High-Tops">High-Tops</a>
                             </div>
-                            <div class="dropdown-wrap">
+                            <div class="drop-wrap">
                                 <a href="productlist.php?category=Sandals">Sandals</a>
                                 <a href="productlist.php?category=Sports">Sports</a>
                             </div>
                         </div>
                     </div>
-                    <div class="nav-child"><a href="#">Shop Men's</a></div>
-                    <div class="nav-child"><a href="#">Shop Women's</a></div>
-                    <div class="nav-child"><a href="#">About</a></div>
+                    <div class="nav-child"><a href="">Shop Men's</a></div>
+                    <div class="nav-child"><a href="">Shop Women's</a></div>
+                    <div class="nav-child"><a href="">About</a></div>
                 </ul>
             </div>
         </div>
+        

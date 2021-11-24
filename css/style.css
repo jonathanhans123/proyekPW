@@ -22,7 +22,7 @@
     font-family: "archivo";
     letter-spacing: 1px;
 }
-.container{
+.container-fluid{
     width: 100%;
     height: auto;
     padding: 0;
@@ -30,6 +30,7 @@
 .navbar{
     height: 130px;
     width: 100%;
+    margin-bottom: 8px;
 }
 .navbar .top{
     display: flex;
@@ -126,7 +127,7 @@
 .bottom a:hover{
     border-bottom: 5px solid black;
 }
-.dropdown-content{
+.drop-content{
     display: none;
     position: absolute;
     background-color: #f9f9f9;
@@ -134,14 +135,14 @@
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
-.dropdown-wrap{
+.drop-wrap{
     display: block;
     float: none;
     width: 320px;
     z-index: 1;
 
 }
-.dropdown-wrap a{
+.drop-wrap a{
     font-size: 10pt;
     float: left;
     width: 160px;
@@ -150,10 +151,10 @@
     display: block;
     text-align: left;
 }
-.dropdown-content a:hover {
+.drop-content a:hover {
     background-color: #ddd;
 }
-.dropdown:hover .dropdown-content {
+.drop:hover .drop-content {
     display: block;
 }
 .jumbotron{

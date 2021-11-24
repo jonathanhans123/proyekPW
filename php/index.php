@@ -8,12 +8,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <script src="../java/jquery.min.js"></script>
+    <script src="../java/java.js"></script>
     
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <!-- navbar -->
         <?php require_once("navbar.php"); ?>
         <!-- jumbotron -->
@@ -83,85 +85,7 @@
                 window.location.href="../php/productlist.php?category=all";
                 
             });
-            $("a").click(function (e) {
-                var category = $(this).html();
-                window.location.href="../php/productlist.php?category="+category;
-                
-            });
-            $jumboindex = 1;
-            $('.left').click(leftclick);
-            $('.right').click(rightclick);
-            $('.category').mouseenter(function () { 
-                $('.categories-text').css("text-decoration","underline");
-            });
-            $('.cate-wrap').mouseleave(function () { 
-                $('.categories-text').css("text-decoration","none");
-            });
-            $('.loginicon').click(function(){
-                
-            });
-            $(window).scroll(function() {
-                var height = $(window).scrollTop();
             
-                if(height >= 80) {
-                    $(".bottom").css("position","fixed");
-                    $(".bottom").css("z-index","1");
-                    $(".bottom").css("top","0");
-                }else if (height<80){
-                    $(".bottom").css("position","static");
-                }
-            });
-            function leftclick(){
-                console.log()
-                $jumboindex--;
-                if ($jumboindex % 2 == 1){
-                    console.log("jfiwoej");
-                    $(".jumbotron").animate({
-                        opacity: "0.4"
-                    },500,function(){
-                        $(".jumbotron").css("background-image","url('../images/jumbo1.jpg')");
-                        $(".jumbotron").animate({
-                            opacity: "1"
-                        },500,function(){
-                        });
-                    });
-                }else{
-                    $(".jumbotron").animate({
-                        opacity: "0.4"
-                    },500,function(){
-                        $(".jumbotron").css("background-image","url('../images/jumbo2.jpg')");
-                        $(".jumbotron").animate({
-                            opacity: "1"
-                        },500,function(){
-                        });
-                    });
-                }
-            }
-            function rightclick(){
-                $jumboindex++;
-                if ($jumboindex % 2 == 1){
-                    console.log("jfiwoej");
-                    $(".jumbotron").animate({
-                        opacity: "0.4"
-                    },500,function(){
-                        $(".jumbotron").css("background-image","url('../images/jumbo1.jpg')");
-                        $(".jumbotron").animate({
-                            opacity: "1"
-                        },500,function(){
-                        });
-                    });
-                }else{
-                    $(".jumbotron").animate({
-                        opacity: "0.4"
-                    },500,function(){
-                        $(".jumbotron").css("background-image","url('../images/jumbo2.jpg')");
-                        $(".jumbotron").animate({
-                            opacity: "1"
-                        },500,function(){
-                        });
-                    });
-                }
-            }
         });
     </script>
 </body>
