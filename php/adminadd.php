@@ -7,7 +7,7 @@
         $warna = $_POST["warnabarang"];
         $cate = $_POST["catebarang"];
         $description = $_POST["descriptionbarang"];
-        $ukuran = $_POST["ukuranbarang"];
+        $ukuran = $_POST["ukuranbarang"]??"";
         if ($nama!=""&&$stok!=""&&is_numeric($stok)&&$harga!=""&&is_numeric($harga)&&$warna!=""&&!empty($_POST["ukuranbarang"])&&$description!=""&&$_FILES["file1"]["error"]==0&&$_FILES["file2"]["error"]==0&&$_FILES["file3"]["error"]==0){
             $pathinfo1 = pathinfo($_FILES["file1"]["name"]);
             $filesize1 = $_FILES["file1"]["size"];

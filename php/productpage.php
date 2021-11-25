@@ -1,7 +1,7 @@
 <?php
     require_once("koneksi.php");
 
-    $item_nama = $_REQUEST["item_nama"];
+    $item_nama = $_REQUEST["item_name"];
     $item = $conn->query("select * from item where item_nama='$item_nama'")->fetch_assoc();
     $ukuran = explode(",",$item["item_size"]);
     $image = explode(",",$item["imageurl"]);
@@ -15,6 +15,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/styleproductpage.css">
     <script src="../java/jquery.min.js"></script>
     <script src="../java/java.js"></script>
     <style>
@@ -24,7 +25,7 @@
         .main{
             margin-top: 50px;
             width: 100%;
-            height: 1000px;
+            height: 600px;
             background-color: white;
             margin-bottom: 50px;
         }
@@ -142,6 +143,43 @@
             object-fit: cover;
             object-position: center center;
         }
+        .rating{
+            width: 100%;
+            background-color: white;
+        }
+        .ratingtiapprofile{
+            width: 100%;
+            height: 280px;
+            background-color: white;
+            padding-top: 20px;
+            padding-left: 20px;
+        }
+        .profilepicture{
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: rgb(245, 245, 245);
+            float: left;
+            margin-bottom: 10px;
+        }
+        .profilename{
+            margin-left: 20px;
+            float: left;
+        }
+        .verifiedbuyer{
+            color: rgb(45, 175, 45);
+            margin-left: 10px;
+            float: left;
+        }
+        .country{
+            margin-left: 20px;
+            color: #ccc;
+        }
+        #star{
+            width:120px;
+            margin-bottom:10px;
+            
+        }
     </style>
 </head>
 <body>
@@ -158,8 +196,23 @@
                     </center>
                 </div>
                 <div class="kanans">
-                    <p style="font-size: xx-large; font-weight: bold;"><?php echo $item["item_nama"]; ?></p>
-                    <p style="font-size: larger;">Rp. <?php echo $item["item_price"]; ?></p>
+                    <p style="font-size: xx-large; font-weight: bold;" class="item_name"><?php echo $item["item_nama"]; ?></p>
+                    <p style="font-size: larger;">Rp. 
+                    <?php  
+                    $temp = $item["id_item"];
+                    $discount = $conn->query("select * from discount where id_item=$temp")->fetch_assoc();
+                    if (empty($discount)){
+                        echo '<p class="price">Rp. '.number_format($item["item_price"],2).',-</p>';
+                    }else{
+                        if ($discount["discount_type"]=="percentage"){
+                            $truevalue = floor($item["item_price"]/100*(100-$discount["value"]));
+                        }else if ($discount["discount_type"]=="fixed"){
+                            $truevalue = $item["item_price"]-$discount["value"];
+                        }
+                        echo '<p class="price"><strike>Rp. '.number_format($item["item_price"],2) .',-</strike><br>';
+                        echo 'Rp. '.number_format($truevalue,2) .',-</p>';
+                    }
+                    ?></p>
                     <label for="size" class="txtsize"><b>Size :</b> </label> <br>
                     <?php
                         foreach($ukuran as $key=>$value){
@@ -180,9 +233,9 @@
                     <hr>
                     <p><?php echo $item["item_desc"]; ?></p>
                     <br>
-                    <div class="addtochart" >Add to Chart</div>
+                    <div class="addtochart">Add to Cart</div><br>
+                    <div class="addtochart">Add to Wish List</div>
                     <br>
-                    <p>Size Guide</p>
 
                 </div>
                 <div style="clear: both;"></div>
@@ -192,49 +245,60 @@
 
             </div>
         </div>
-
-
-        <footer>
-            <div class="footer-cont">
-                <div class="title">Shoes</div>
-                <p><a href="#">shoes</a></p>
-                <p><a href="#">shoes</a></p>
-                <p><a href="#">shoes</a></p>
-                <br>
-                <div class="title">Shoes</div>
-                <p><a href="#">shoes</a></p>
-                <p><a href="#">shoes</a></p>
+        <div class="review">
+            <textarea name="comment" id="comment" placeholder="Rate Your Shoes"></textarea>
+        
+            <div class="rating">
+                <div class="ratingtiapprofile"> 
+                    <div class="profilepicture"><div class="sx" style="text-align:center;margin-top: 25px; color: grey;"></div><img src="../icon/veri.png" style="width: 30px;height: 30px;margin-left: 54px; object-fit:contain;"></div>
+                    <label class="profilename">ryan reynaldi pratama</label>
+                    <label class="verifiedbuyer"> Verified Buyer</label><br>
+                    <label class="country">United States</label>
+                    <div style="height: 20px;"><img src="../icon/star.png" id="star" style="margin-left: 20px;"></div>
+                    <div style="clear: both;"></div>
+                    <b>Not Sure</b><br>
+                    <p>aidsjoiasjido</p>
+                    <p>asduasd</p>
+                    <hr color="#ccc">
+                </div>
             </div>
-            <div class="footer-cont">
-                <div class="title">Shoes</div>
-                <p><a href="#">shoes</a></p>
-                <p><a href="#">shoes</a></p>
-                <p><a href="#">shoes</a></p>
-                <p><a href="#">shoes</a></p>
-                <p><a href="#">shoes</a></p>
-                <p><a href="#">shoes</a></p>
-                <p><a href="#">shoes</a></p>
-
-            </div>
-            <div class="footer-cont">
-                <div class="title">Shoes</div>
-                <p><a href="#">shoes</a></p>
-                <p><a href="#">shoes</a></p>
-                <p><a href="#">shoes</a></p>
-                <br>
-                <div class="title">Shoes</div>
-                <p><a href="#">shoes</a></p>
-                <p><a href="#">shoes</a></p>
-            </div>
-            <div class="footer-cont">
-                <div class="title">Contact us</div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, quia saepe illo in laboriosam ipsum nihil, aliquam illum provident, dolor itaque quos quam doloribus. Nihil qui quo hic pariatur laboriosam?</p>
-            </div>
-        </footer>
+        </div>
+        <?php require_once("footer.php"); ?>
     </div>
 </body>
 <script>
     $(document).ready(function(){
+        var text =$(".profilename").text();
+        if (/\s/.test($(".profilename").text())) {
+            
+            var pertama = text.charAt(0).toUpperCase();
+            var kedua = text.split(' ')[1].charAt(0).toUpperCase();
+            $(".sx").html(pertama+kedua);
+        }else{
+            var firstWord = text.charAt(0).toUpperCase();
+            var secondWord = text.charAt(1).toUpperCase();
+            $(".sx").html(firstWord + secondWord);
+        }
+        $(document).on("click",".addtochart", function () {
+            if($(this).html()=="Add to Wish List"){
+                var item_name = $(".item_name").html();
+                $.ajax({
+                    type:"post",
+                    url:"controller.php",
+                    data:{
+                        'action':'addtowishlist',
+                        'item_name':item_name
+                    },
+                    success:function(response){
+                        $(".container-fluid").append(response);
+                    }
+                });
+            }else if ($(this).html()=="Add to Cart"){
+
+            }
+        });
+    
+
         $(".sbtnclr2").hide();
         
         $(".subgambar1").click(function(){

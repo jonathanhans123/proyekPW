@@ -36,7 +36,7 @@
 }
 .item{
     width: 30%;
-    height: 320px;
+    height: 360px;
     margin-bottom: 20px;
     padding: 10px;
     float: left;
@@ -57,4 +57,7 @@
     font-weight: bold;
     font-size: 20px;
     margin-bottom: 0;
+}
+.item .price{
+    margin-bottom: 5px;
 }

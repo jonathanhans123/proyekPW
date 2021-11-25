@@ -231,5 +231,119 @@
     else if ($action=="product"){
         
     }
+    else if ($action=="listproduct"){
+        $available = $_POST["available"];
+        $min=$_POST["min"];
+        $max=$_POST["max"];
+        $color=$_POST["color"];
+        $category=$_POST["category"];
+        $query = "select * from item where";
+        if ($available=="All"){
+            
+        }else{
+            if (str_ends_with($available,"where")){
+                if ($available=="instock"){
+                    $query .= " item_stock>0";
+                }else{
+                    $query .= " item_stock=0";
+                }
+            }else {
+                if ($available=="outofstock"){
+                    $query .= " and item_stock>0";
+                }else{
+                    $query .= " and item_stock=0";
+                }
+            }
+        }
+        if ($color=="All"){
+            
+        }else{
+            if (str_ends_with($query,"where")){
+                $query .= " color='$color'";
+            }else {
+                $query .= " and color='$color'";
+            }
+        }
+        if ($category=="All"){
+
+        }else{
+            if (str_ends_with($query,"where")){
+                $query .= " item_cate='$category'";
+            }else {
+                $query .= " and item_cate='$category'";
+            }
+        }
+        if (str_ends_with($query,"where")){
+            if ($min!=""){
+                $query .= " item_price>$min";
+            }
+        }else{
+            if ($min!=""){
+                $query .= " and item_price>$min";
+            }
+        }
+        if (str_ends_with($query,"where")){
+            if ($max!=""){
+                $query .= " item_price<$max";
+            }
+        }else{
+            if ($max!=""){
+                $query .= " and item_price<$max";
+            }
+        }
+        
+        if (str_ends_with($query,"where")){
+            $query = substr($query,0,strlen($query)-5);
+        }
+        $items = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
+
+        if (!empty($items)){
+            foreach($items as $key=>$value){
+                $image = explode(",",$value["imageurl"]);
+                echo '<div class="item">
+                    <img src="../upload/'.$image[0].'" alt="">
+                    <p class="name">'.$value["item_nama"].'</p>';
+                $temp = $value["id_item"];
+                $discount = $conn->query("select * from discount where id_item=$temp")->fetch_assoc();
+                if (empty($discount)){
+                    echo '<p class="price">Rp. '.number_format($value["item_price"],2).',-</p>';
+                }else{
+                    if ($discount["discount_type"]=="percentage"){
+                        $truevalue = floor($value["item_price"]/100*(100-$discount["value"]));
+                    }else if ($discount["discount_type"]=="fixed"){
+                        $truevalue = $value["item_price"]-$discount["value"];
+                    }
+                    echo '<p class="price"><strike>Rp. '.number_format($value["item_price"],2) .',-</strike>';
+                    echo '&nbsp;&nbsp;Rp. '.number_format($truevalue,2) .',-</p>';
+                    if ($value["item_stock"]>0){
+                        echo '<p>In Stock</p>';
+                    }else{
+                        echo '<p>Out of Stock</p>';
+                    }
+                }
+                echo '</div>';
+            }
+        }else{
+            echo '<h1>No products yet</h1>';
+        }
+    }
+    else if ($action=="addtowishlist"){
+        if (isset($_SESSION["auth"])){
+            $item_nama = $_POST["item_name"];
+            $item = $conn->query("select * from item where item_nama='$item_nama'")->fetch_assoc();
+            $id_item = $item["id_item"];
+            $id_user = $_SESSION["auth"]["id_user"];
+            $stmt = $conn->prepare("insert into wishlist(id_item,id_user) values(?,?)");
+            $stmt->bind_param("ii",$id_item,$id_user);
+            $stmt->execute();
+            echo '<script>alert("Successfully added to your wishlist");</script>';
+        }else{
+            $item_nama = $_POST["item_name"];
+            $item_nama = str_replace($item_nama," ","+");
+            $_SESSION["previous_page"] = "../php/productpage.php?item_name=$item_nama";
+            echo '<script>window.location.href="../php/login.php";</script>';
+        }
+        
+    }
 
 ?>

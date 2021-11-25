@@ -89,9 +89,26 @@
                         $image = explode(",",$value["imageurl"]);
                         echo '<div class="item">
                             <img src="../upload/'.$image[0].'" alt="">
-                            <p class="name">'.$value["item_nama"].'</p>
-                            <p class="price">Rp. '.$value["item_price"].'</p>
-                        </div>';
+                            <p class="name">'.$value["item_nama"].'</p>';
+                        $temp = $value["id_item"];
+                        $discount = $conn->query("select * from discount where id_item=$temp")->fetch_assoc();
+                        if (empty($discount)){
+                            echo '<p class="price">Rp. '.number_format($value["item_price"],2).',-</p>';
+                        }else{
+                            if ($discount["discount_type"]=="percentage"){
+                                $truevalue = floor($value["item_price"]/100*(100-$discount["value"]));
+                            }else if ($discount["discount_type"]=="fixed"){
+                                $truevalue = $value["item_price"]-$discount["value"];
+                            }
+                            echo '<p class="price"><strike>Rp. '.number_format($value["item_price"],2) .',-</strike>';
+                            echo '&nbsp;&nbsp;Rp. '.number_format($truevalue,2) .',-</p>';
+                            if ($value["item_stock"]>0){
+                                echo '<p>In Stock</p>';
+                            }else{
+                                echo '<p>Out of Stock</p>';
+                            }
+                        }
+                        echo '</div>';
                     }
                 }else{
                     echo '<h1>No products yet</h1>';
@@ -99,7 +116,10 @@
             ?>
         </div>
 
+        
+
     </div>
+    <?php require_once("footer.php"); ?>
 
     <script>
         $(document).ready(function () {
@@ -115,10 +135,38 @@
                         'item_nama':item
                     },
                     success:function(response){
-                        window.location.href = "../php/productpage.php?item_nama="+item2;
+                        window.location.href = "../php/productpage.php?item_name="+item2;
                     }
                 });
             });
+        });
+        $(document).on("click",".button",function(){
+            console.log("fijowef");
+            var available = $("#availability").find("option:selected").val();
+            var min = $("#min").val();
+            var max = $("#max").val();
+            var color = $("#color").find("option:selected").val();
+            var category = $("#category").find("option:selected").val();
+            if (min>=max && min!="" && max!=""){
+                alert("Minimum value needs to be smaller than maximum value");
+            }else{
+                $.ajax({
+                    type:"post",
+                    url:"controller.php",
+                    data:{
+                        'action':'listproduct',
+                        'available':available,
+                        'min':min,
+                        'max':max,
+                        'color':color,
+                        'category':category
+                    },
+                    success:function(response){
+                        $(".container-item").html("");
+                        $(".container-item").append(response);
+                    }
+                });
+            }
         });
     </script>
 </body>
