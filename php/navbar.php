@@ -17,6 +17,7 @@
                 <div class="shop">
                     <a href="../php/<?php if (isset($_SESSION["auth"])){ echo 'user.php'; }else { echo 'login.php';} ?>"><img src="../icon/person.svg" class="loginicon" name="login"></object></a>
                     <object data="../icon/cart.svg" class="shopicon" name="cart"></object>
+                    <a href="../php/wishlist.php"><img src="../icon/wishlist.png" class="wishlist" style="float:right;width:30px; height:30px; margin-right:20px;margin-top: 2%;" alt=""></a>
                 </div>
             </div>
             <div class="bottom">

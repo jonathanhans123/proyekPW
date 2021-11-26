@@ -32,22 +32,22 @@ tabel images
 - index
 
 1. Admin:
-- master barang (done)
+- master barang (done) (hans)
 - update info status pemesanan
 - laporan (tentukan 5 laporan minimal) 
-- diskon (buat minimal 3 jenis diskon) (done)
+- diskon (buat minimal 3 jenis diskon) (done) (hans)
 
 2. Pembeli
-- search (done)
-- advanced search (done)
-- wishlish
-- add to cart
+- search (done) (reagen)
+- advanced search (done) (hans)
+- wishlist(done) (hans)
+- add to cart (ryan)
 - checkout 
 - pembayaran -- dengan payment gateway
-- history transaksi 
+- history transaksi (fritz)
 - tracking status pembelian
-- review
-- ratting
-- view detail product (done)
-- view ratting dan review 
-- login dan register (done)
+- review (ryan)
+- ratting (ryan)
+- view detail product (done) (ryan)
+- view ratting dan review (ryan)
+- login dan register (done) (hans)

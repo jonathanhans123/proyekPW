@@ -9,13 +9,7 @@
                 $user=$conn->query("SELECT * FROM user WHERE user_name='$uname'")->fetch_assoc();
                 if (!empty($user)){
                     $_SESSION["auth"] = $user;
-                    if (isset($_SESSION["previous_page"])){
-                        $temp = $_SESSION["previous_page"];
-                        unset($_SESSION["previous_page"]);
-                        header($temp);
-                    }else{
-                        header("Location:../php/user.php");
-                    }
+                    header("Location:../php/user.php");
                 }else{
                     $_SESSION["error"] = "Account does not exist!";
                 }

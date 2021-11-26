@@ -197,20 +197,20 @@
                 </div>
                 <div class="kanans">
                     <p style="font-size: xx-large; font-weight: bold;" class="item_name"><?php echo $item["item_nama"]; ?></p>
-                    <p style="font-size: larger;">Rp. 
+                    <p style="font-size: larger;">
                     <?php  
                     $temp = $item["id_item"];
                     $discount = $conn->query("select * from discount where id_item=$temp")->fetch_assoc();
                     if (empty($discount)){
-                        echo '<p class="price">Rp. '.number_format($item["item_price"],2).',-</p>';
+                        echo 'Rp. '.number_format($item["item_price"],2).',-';
                     }else{
                         if ($discount["discount_type"]=="percentage"){
                             $truevalue = floor($item["item_price"]/100*(100-$discount["value"]));
                         }else if ($discount["discount_type"]=="fixed"){
                             $truevalue = $item["item_price"]-$discount["value"];
                         }
-                        echo '<p class="price"><strike>Rp. '.number_format($item["item_price"],2) .',-</strike><br>';
-                        echo 'Rp. '.number_format($truevalue,2) .',-</p>';
+                        echo '<strike>Rp. '.number_format($item["item_price"],2) .',-</strike><br>';
+                        echo 'Rp. '.number_format($truevalue,2) .',-';
                     }
                     ?></p>
                     <label for="size" class="txtsize"><b>Size :</b> </label> <br>
@@ -233,7 +233,29 @@
                     <hr>
                     <p><?php echo $item["item_desc"]; ?></p>
                     <br>
-                    <div class="addtochart">Add to Cart</div><br>
+                    <div class="addtochart" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" >Add to Chart</div>
+
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                        <div class="offcanvas-header">
+                            <h5 id="offcanvasRightLabel">My Chart</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <label for="">1 item</label><br><br>
+                            <div style="width:100%;height:100px">
+                                <div style="width:100px;height:100px;float:left;"><img src="../images/catecasual.jpg" alt=""></div>
+                                <div style="margin-left:150px">
+                                    <label style="font-weight:bold;font-size:lager">Nama Item</label><br>
+                                    <label for="">Harga</label><br>
+                                    <label for="">Ukuran</label><br>
+                                    <label for="">Warna</label><br>
+                                </div>
+                                <hr color="#ccc">
+                            </div>
+                            <div class="checkout">Checkout</div>
+                        </div>
+                        </div>
+                        <br>
                     <div class="addtochart">Add to Wish List</div>
                     <br>
 

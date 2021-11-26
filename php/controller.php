@@ -333,15 +333,17 @@
             $item = $conn->query("select * from item where item_nama='$item_nama'")->fetch_assoc();
             $id_item = $item["id_item"];
             $id_user = $_SESSION["auth"]["id_user"];
-            $stmt = $conn->prepare("insert into wishlist(id_item,id_user) values(?,?)");
-            $stmt->bind_param("ii",$id_item,$id_user);
-            $stmt->execute();
-            echo '<script>alert("Successfully added to your wishlist");</script>';
+            $exist = $conn->query("select * from wishlist where id_item='$id_item' and id_user='$id_user'")->fetch_assoc();
+            if (!exist($exist)){
+                $stmt = $conn->prepare("insert into wishlist(id_item,id_user) values(?,?)");
+                $stmt->bind_param("ii",$id_item,$id_user);
+                $stmt->execute();
+                echo '<script>alert("Successfully added to your wishlist");</script>';
+            }else{
+                echo '<script>alert("Item already added to your wishlist");</script>';
+            }
         }else{
-            $item_nama = $_POST["item_name"];
-            $item_nama = str_replace($item_nama," ","+");
-            $_SESSION["previous_page"] = "../php/productpage.php?item_name=$item_nama";
-            echo '<script>window.location.href="../php/login.php";</script>';
+            echo '<script>alert("You need to sign before add wishlist");</script>';
         }
         
     }
