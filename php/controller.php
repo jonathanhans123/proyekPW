@@ -4,8 +4,6 @@
     $action = $_REQUEST["action"];
 
     if ($action=="delete"){
-        $items = $conn->query("select * from item")->fetch_all(MYSQLI_ASSOC);
-
         $item_nama = $_POST["item_nama"];
         $item_color = $_POST["item_color"];
         $item = $conn->query("select * from item where item_nama='$item_nama' and item_color='$item_color'")->fetch_assoc();
@@ -14,14 +12,16 @@
             unlink($value);
         }
 
-        $stmt = $conn->prepare("DELETE FROM item WHERE item_nama=?");
-        $stmt->bind_param("s",$item_nama);
+        $stmt = $conn->prepare("DELETE FROM item WHERE item_nama=? and item_color=?");
+        $stmt->bind_param("ss",$item_nama,$item_color);
         $stmt->execute();
+
         if ($stmt){
             echo '<script>alert("Berhasil Delete");</script>';
         }else {
             echo '<script>alert("Fail");</script>';
         }
+        $items = $conn->query("select * from item")->fetch_all(MYSQLI_ASSOC);
         foreach($items as $key=>$value){
             if (strlen($value["item_desc"])>100){
                 $desc = substr($value["item_desc"],0,100) . "...";
@@ -29,7 +29,7 @@
                 $desc = $value["item_desc"];
             }
             echo '<div class="kotakitem">
-            <strong>'.$value["item_nama"].' - '.$value["item_color"].'</strong>
+            <strong>'.$value["item_nama"].' ~ '.$value["item_color"].'</strong>
             <p class="text">'.$desc.'</p>
             <p class="textbutton">Delete</p></div>';
         }
@@ -140,7 +140,7 @@
                 $desc = $value["item_desc"];
             }
             echo '<div class="kotakitem">
-            <strong>'.$value["item_nama"].' - '.$value["item_color"].'</strong>
+            <strong>'.$value["item_nama"].' ~ '.$value["item_color"].'</strong>
             <p class="text">'.$desc.'</p>
             <p class="textbutton">Update</p></div>';
         }
@@ -160,7 +160,7 @@
 
             echo '<div class="kotakdisc">
             <input type="hidden" id="indexdelete" value="'.$value["id_item"].'">
-            <strong>'.$item["item_nama"].' - '.$item["item_color"].'</strong>
+            <strong>'.$item["item_nama"].' ~ '.$item["item_color"].'</strong>
             <p class="text">Discount for ';
             if ($value["discount_type"]=="percentage"){
                 echo $value["value"].'%';
@@ -194,7 +194,7 @@
             
         foreach($items as $key=>$value){
             if (!in_array($value["id_item"],$notvalid)){
-                echo '<option value="'.$value["id_item"].'">'.$value["item_nama"].' - '.$value["item_color"].'</option>';
+                echo '<option value="'.$value["id_item"].'">'.$value["item_nama"].' ~ '.$value["item_color"].'</option>';
             }
         }
         echo '</select><br><br>
@@ -214,7 +214,7 @@
 
             echo '<div class="kotakdisc">
             <input type="hidden" id="indexdelete" value="'.$value["id_item"].'">
-            <strong>'.$item["item_nama"].' - '.$item["item_color"].'</strong>
+            <strong>'.$item["item_nama"].' ~ '.$item["item_color"].'</strong>
             <p class="text">Discount for ';
             if ($value["discount_type"]=="percentage"){
                 echo $value["value"].'%';
@@ -334,7 +334,7 @@
             $id_item = $item["id_item"];
             $id_user = $_SESSION["auth"]["id_user"];
             $exist = $conn->query("select * from wishlist where id_item='$id_item' and id_user='$id_user'")->fetch_assoc();
-            if (!exist($exist)){
+            if (empty($exist)){
                 $stmt = $conn->prepare("insert into wishlist(id_item,id_user) values(?,?)");
                 $stmt->bind_param("ii",$id_item,$id_user);
                 $stmt->execute();

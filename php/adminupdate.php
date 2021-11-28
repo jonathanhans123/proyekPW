@@ -59,7 +59,7 @@
                             $desc = $value["item_desc"];
                         }
                         echo '<div class="kotakitem">
-                        <strong>'.$value["item_nama"].' - '.$value["item_color"].'</strong>
+                        <strong>'.$value["item_nama"].' ~ '.$value["item_color"].'</strong>
                         <p class="text">'.$desc.'</p>
                         <p class="textbutton">Update</p></div>';
                     }
@@ -100,7 +100,7 @@
                 }
             });
             $(document).on("click",".textbutton",function(){
-                var item = $(this).parent().children().first().html().split(" - ");
+                var item = $(this).parent().children().first().html().split(" ~ ");
                 var nama = item[0];
                 var color = item[1];
                 var index = $(this).parent().index();

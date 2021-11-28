@@ -58,7 +58,7 @@
                             $desc = $value["item_desc"];
                         }
                         echo '<div class="kotakitem">
-                        <strong>'.$value["item_nama"].' - '.$value["item_color"].'</strong>
+                        <strong>'.$value["item_nama"].' ~ '.$value["item_color"].'</strong>
                         <p class="text">'.$desc.'</p>
                         <p class="textbutton">Delete</p></div>';
                     }
@@ -100,7 +100,7 @@
             });
             $(document).on("click",".textbutton",function(){
                 if (confirm("Are you sure you want to delete this item?")){
-                    var item = $(this).parent().children().first().html().split(" - ");
+                    var item = $(this).parent().children().first().html().split(" ~ ");
                     var nama = item[0];
                     var color = item[1];                    
                     $.ajax({
@@ -112,7 +112,7 @@
                             'item_color':color
                         },
                         success:function(response){
-                        $(".container2").html("");
+                            $(".container2").html("");
                             $(".container2").append(response);
                         }
                     });

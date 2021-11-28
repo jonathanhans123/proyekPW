@@ -2,7 +2,8 @@
     require_once("koneksi.php");
 
     $item_nama = $_REQUEST["item_name"];
-    $item = $conn->query("select * from item where item_nama='$item_nama'")->fetch_assoc();
+    $item_color = $_REQUEST["item_color"];
+    $item = $conn->query("select * from item where item_nama='$item_nama' and item_color='$item_color'")->fetch_assoc();
     $ukuran = explode(",",$item["item_size"]);
     $image = explode(",",$item["imageurl"]);
 ?>
@@ -17,6 +18,8 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/styleproductpage.css">
     <script src="../java/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="../java/java.js"></script>
     <style>
         *{
@@ -120,7 +123,7 @@
             cursor: pointer;
         }
 
-        .addtochart{
+        .addtochart,.addtowishlist{
             width: 70%;
             height: 50px;
             background-color: black;
@@ -131,7 +134,7 @@
             transition: 0.5s;
             
         }
-        .addtochart:hover{
+        .addtochart:hover,.addtowishlist:hover{
             cursor: pointer;
             background-color:white ;
             color: black;
@@ -224,43 +227,23 @@
                         }
                     ?>
                     <div style="clear: both;"></div>
-                    <label for="color">Color : Red</label> <br>
-                    <div class="btnclr1" style="width:30px;height:30px;border: 2px solid black;background-color:white;border-radius: 50%;float: left;"><div class="sbtnclr1" style="width:20px;height:20px;border: 2px solid #ccc;background-color:red;border-radius: 50%;margin:3px 0px 0px 3px;"></div></div>
-                    <div class="btnclr2" style="border: 2px solid #ccc;margin-left: 10px;width:30px;height:30px;background-color:black;border-radius: 50%;float: left;"><div class="sbtnclr2" style="width:20px;height:20px;border: 2px solid #ccc;background-color:black;border-radius: 50%;margin:3px 0px 0px 3px;"></div></div>
+                    <label for="color" class="color" style="font-size: larger;" >Color : <?php echo ucfirst($item["item_color"]); ?></label> <br>
+                    <!-- <div class="btnclr1" style="width:30px;height:30px;border: 2px solid black;background-color:white;border-radius: 50%;float: left;"><div class="sbtnclr1" style="width:20px;height:20px;border: 2px solid #ccc;background-color:red;border-radius: 50%;margin:3px 0px 0px 3px;"></div></div>
+                    <div class="btnclr2" style="border: 2px solid #ccc;margin-left: 10px;width:30px;height:30px;background-color:black;border-radius: 50%;float: left;"><div class="sbtnclr2" style="width:20px;height:20px;border: 2px solid #ccc;background-color:black;border-radius: 50%;margin:3px 0px 0px 3px;"></div></div> -->
                     <div style="clear: both;"></div><br>
                     
                     <p style="font-size:15pt">Description  </p>
                     <hr>
                     <p><?php echo $item["item_desc"]; ?></p>
                     <br>
-                    <div class="addtochart" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" >Add to Chart</div>
-
-                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                        <div class="offcanvas-header">
-                            <h5 id="offcanvasRightLabel">My Chart</h5>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body">
-                            <label for="">1 item</label><br><br>
-                            <div style="width:100%;height:100px">
-                                <div style="width:100px;height:100px;float:left;"><img src="../images/catecasual.jpg" alt=""></div>
-                                <div style="margin-left:150px">
-                                    <label style="font-weight:bold;font-size:lager">Nama Item</label><br>
-                                    <label for="">Harga</label><br>
-                                    <label for="">Ukuran</label><br>
-                                    <label for="">Warna</label><br>
-                                </div>
-                                <hr color="#ccc">
-                            </div>
-                            <div class="checkout">Checkout</div>
-                        </div>
-                        </div>
-                        <br>
-                    <div class="addtochart">Add to Wish List</div>
+                    <div class="addtochart" >Add to Cart</div>
+                    <br>
+                    <div class="addtowishlist">Add to Wish List</div>
                     <br>
 
                 </div>
                 <div style="clear: both;"></div>
+                
                 <div class="subgambar1"><img src="../upload/<?php echo $image[0]; ?>" alt=""></div>
                 <div class="subgambar2"><img src="../upload/<?php echo $image[1]; ?>" alt=""></div>
                 <div class="subgambar3"><img src="../upload/<?php echo $image[2]; ?>" alt=""></div>
@@ -285,6 +268,7 @@
                 </div>
             </div>
         </div>
+</div>
         <?php require_once("footer.php"); ?>
     </div>
 </body>
@@ -301,26 +285,46 @@
             var secondWord = text.charAt(1).toUpperCase();
             $(".sx").html(firstWord + secondWord);
         }
-        $(document).on("click",".addtochart", function () {
-            if($(this).html()=="Add to Wish List"){
-                var item_name = $(".item_name").html();
-                $.ajax({
-                    type:"post",
-                    url:"controller.php",
-                    data:{
-                        'action':'addtowishlist',
-                        'item_name':item_name
-                    },
-                    success:function(response){
-                        $(".container-fluid").append(response);
-                    }
-                });
-            }else if ($(this).html()=="Add to Cart"){
+        $(document).on("click",".addtowishlist", function () {
+            console.log("feiwojowf");
+            var item_name = $(".item_name").html();
+            $.ajax({
+                type:"post",
+                url:"controller.php",
+                data:{
+                    'action':'addtowishlist',
+                    'item_name':item_name
+                },
+                success:function(response){
+                    $(".container-fluid").append(response);
+                }
+            });
 
-            }
         });
     
-
+        $(document).on("click",".addtochart", function () {
+            var item_name = $(".item_name").html();
+            var item_color = $(".color").html().substring(8).toLowerCase();
+            var item_size = "";
+            $(".btnsize").each(function () { 
+                if ($(this).css("border-color")=="black"){
+                    item_size = $(this).html();
+                }
+            });
+            $.ajax({
+                type:"post",
+                url:"controller.php",
+                data:{
+                    'action':'addtocart',
+                    'item_name':item_name,
+                    'item_color':item_color,
+                    'item_size':item_size
+                },
+                success:function(response){
+                    $(".container-fluid").append(response);
+                }
+            });
+        });
         $(".sbtnclr2").hide();
         
         $(".subgambar1").click(function(){

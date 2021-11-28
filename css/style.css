@@ -200,6 +200,7 @@
     margin-left: auto;
     margin-right: auto;
     font-family: url(font/Archivo_Narrow/ArchivoNarrow-MediumItalic.ttf);
+    transition: 0.5s;
 }
 .jumbo-wrap .caption{
     font-size: 50pt;
@@ -316,6 +317,7 @@
     justify-content: space-evenly;
     margin-left: auto;
     margin-right: auto;
+    transition: 0.4s;
 }
 .showcase .right .button:hover{
     background-color: green;
@@ -425,8 +427,37 @@ footer .footer-cont{
     align-items: center;
     justify-content: center;
     font-size: 16pt;
+    transition: 0.5s;
 }
 .container-fluid .wrap input[type=submit]:hover{
     opacity: 70%;
     cursor: pointer;
+}
+.offcanvas-body img{
+    height: 100%;
+    width:100%;
+    object-fit: cover;
+    object-position: center center;
+}
+.checkout{
+    width:50%;
+    margin-left: 25%;
+    height: 50px;
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    padding-top: 15px;
+    text-align: center;
+    transition: 0.5s;
+}
+.checkout:hover{
+    cursor: pointer;
+    background-color:white ;
+    color: black;
+    box-shadow: 0 0 50px #ccc;
+}
+.container-checkout{
+    width: 100%;
+    height: 80%;
+    overflow-y: scroll;
 }

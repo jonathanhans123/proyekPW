@@ -20,7 +20,6 @@
                 $filetype1 = $_FILES['file1']['type'];
                 $filetype2 = $_FILES['file2']['type'];
                 $filetype3 = $_FILES['file3']['type'];
-                $filetype4 = $_FILES['file4']['type'];
                 $allowed = array("image/png", "image/jpg", "image/jpeg");
                 if(in_array($filetype1, $allowed)&&in_array($filetype2, $allowed)&&in_array($filetype3, $allowed)) {
                     $items = $conn->query("select * from item where item_nama='$nama' and item_color='$warna'")->fetch_all(MYSQLI_ASSOC);

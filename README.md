@@ -40,14 +40,14 @@ tabel images
 2. Pembeli
 - search (done) (reagen)
 - advanced search (done) (hans)
-- wishlist(done) (hans)
-- add to cart (ryan)
+- wishlist (done) (hans)
+- add to cart (done) (ryan)
 - checkout 
 - pembayaran -- dengan payment gateway
 - history transaksi (fritz)
 - tracking status pembelian
-- review (ryan)
-- ratting (ryan)
+- review 
+- ratting
 - view detail product (done) (ryan)
 - view ratting dan review (ryan)
 - login dan register (done) (hans)

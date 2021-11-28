@@ -15,9 +15,73 @@
                     <p class="logotext">Shoes</p></a>
                 </div>
                 <div class="shop">
-                    <a href="../php/<?php if (isset($_SESSION["auth"])){ echo 'user.php'; }else { echo 'login.php';} ?>"><img src="../icon/person.svg" class="loginicon" name="login"></object></a>
-                    <object data="../icon/cart.svg" class="shopicon" name="cart"></object>
-                    <a href="../php/wishlist.php"><img src="../icon/wishlist.png" class="wishlist" style="float:right;width:30px; height:30px; margin-right:20px;margin-top: 2%;" alt=""></a>
+                    <a href="../php/<?php if (isset($_SESSION["auth"])){ echo 'user.php'; }else { echo 'login.php';} ?>" data-bs-toggle="tooltip" title="Account"><img src="../icon/person.svg" class="loginicon" name="login"></object></a>
+                    <a href=""  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" data-bs-toggle="tooltip" title="Cart"><img src="../icon/cart.svg" class="shopicon" name="cart" ></a>
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                            <div class="offcanvas-header">
+                                <h5 id="offcanvasRightLabel">My Cart</h5>
+                                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <label for="">1 item</label><br><br>
+                                <div class="container-checkout">
+                                    <div style="width:100%;height:100px;margin-bottom:30px;">
+                                        <div style="width:100px;height:100px;float:left;"><img src="../images/catecasual.jpg" alt=""></div>
+                                        <div style="margin-left:150px">
+                                            <label style="font-weight:bold;font-size:lager">Nama Item</label><br>
+                                            <label for="">Harga</label><br>
+                                            <label for="">Ukuran</label><br>
+                                            <label for="">Warna</label><br>
+                                        </div>
+                                        <hr color="#ccc">
+                                    </div>
+                                    <div style="width:100%;height:100px;margin-bottom:30px;">
+                                        <div style="width:100px;height:100px;float:left;"><img src="../images/catecasual.jpg" alt=""></div>
+                                        <div style="margin-left:150px">
+                                            <label style="font-weight:bold;font-size:lager">Nama Item</label><br>
+                                            <label for="">Harga</label><br>
+                                            <label for="">Ukuran</label><br>
+                                            <label for="">Warna</label><br>
+                                        </div>
+                                        <hr color="#ccc">
+                                    </div><div style="width:100%;height:100px;margin-bottom:30px;">
+                                        <div style="width:100px;height:100px;float:left;"><img src="../images/catecasual.jpg" alt=""></div>
+                                        <div style="margin-left:150px">
+                                            <label style="font-weight:bold;font-size:lager">Nama Item</label><br>
+                                            <label for="">Harga</label><br>
+                                            <label for="">Ukuran</label><br>
+                                            <label for="">Warna</label><br>
+                                        </div>
+                                        <hr color="#ccc">
+                                    </div><div style="width:100%;height:100px;margin-bottom:30px;">
+                                        <div style="width:100px;height:100px;float:left;"><img src="../images/catecasual.jpg" alt=""></div>
+                                        <div style="margin-left:150px">
+                                            <label style="font-weight:bold;font-size:lager">Nama Item</label><br>
+                                            <label for="">Harga</label><br>
+                                            <label for="">Ukuran</label><br>
+                                            <label for="">Warna</label><br>
+                                        </div>
+                                        <hr color="#ccc">
+                                    </div><div style="width:100%;height:100px;margin-bottom:30px;">
+                                        <div style="width:100px;height:100px;float:left;"><img src="../images/catecasual.jpg" alt=""></div>
+                                        <div style="margin-left:150px">
+                                            <label style="font-weight:bold;font-size:lager">Nama Item</label><br>
+                                            <label for="">Harga</label><br>
+                                            <label for="">Ukuran</label><br>
+                                            <label for="">Warna</label><br>
+                                        </div>
+                                        <hr color="#ccc">
+                                    </div>
+                                    
+                                </div>
+                                <div class="checkout">Checkout</div>
+                            </div>
+                        </div>
+                    <?php
+                        if (isset($_SESSION["auth"])){
+                            echo '<a href="../php/wishlist.php"><img src="../icon/wishlist.png" class="wishlist" data-bs-toggle="tooltip" title="Wishlist" style="float:right;width:30px; height:30px; margin-right:20px;margin-top: 2%;" alt=""></a>';
+                        }
+                    ?>
                 </div>
             </div>
             <div class="bottom">
