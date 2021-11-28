@@ -36,13 +36,13 @@
                         $target_dir = "../upload/";
 
                         $extension1 = $pathinfo1["extension"];
-                        $nama_file_tujuan1 = $target_dir . $nama."1.".$extension1;
+                        $nama_file_tujuan1 = $target_dir . $nama."1".$warna.".".$extension1;
                         $asal1 = $_FILES["file1"]["tmp_name"];
                         $extension2 = $pathinfo2["extension"];
-                        $nama_file_tujuan2 = $target_dir . $nama."2.".$extension2;
+                        $nama_file_tujuan2 = $target_dir . $nama."2".$warna.".".$extension2;
                         $asal2 = $_FILES["file2"]["tmp_name"];
                         $extension3 = $pathinfo3["extension"];
-                        $nama_file_tujuan3 = $target_dir . $nama."3.".$extension3;
+                        $nama_file_tujuan3 = $target_dir . $nama."3".$warna.".".$extension3;
                         $asal3 = $_FILES["file3"]["tmp_name"];
                         
                         $imageurl = $nama_file_tujuan1.",".$nama_file_tujuan2.",".$nama_file_tujuan3;

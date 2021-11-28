@@ -44,6 +44,7 @@
     <?php include_once("navbar.php"); ?>
     <div class="container">
         <h1><?php echo ucfirst($category); ?></h1>
+        <div class="wrapper" style="overflow:hidden;">
         <div class="wrap">
         Availability <br>
         <select name="availability" id="availability">
@@ -87,6 +88,7 @@
         </select>
         </div>
         <div class="button">Apply filter</div>
+        </div>
         <div class="container-item">
             <?php
                 if (!empty($items)){

@@ -32,7 +32,9 @@
 }
 .container-item{
     width: 100%;
-    display: flex;
+    margin-top: 50px;
+    height: auto;
+    overflow: hidden;
 }
 .item{
     width: 30%;
