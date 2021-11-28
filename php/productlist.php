@@ -95,7 +95,7 @@
                     foreach($items as $key=>$value){
                         $image = explode(",",$value["imageurl"]);
                         echo '<div class="item">
-                            <img src="../upload/'.$image[0].'" alt="">
+                            <img src="'.$image[0].'" alt="">
                             <p class="name">'.$value["item_nama"].' ~ '.ucfirst($value["item_color"]).'</p>';
                         $temp = $value["id_item"];
                         $discount = $conn->query("select * from discount where id_item=$temp")->fetch_assoc();
