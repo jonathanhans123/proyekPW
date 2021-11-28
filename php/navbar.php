@@ -23,55 +23,47 @@
                                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                             </div>
                             <div class="offcanvas-body">
-                                <label for="">1 item</label><br><br>
+                                <label for="">
+                                <?php
+                                    $count = 0;
+                                    foreach($_SESSION["order"] as $key=>$value){
+                                        $count += $value["quantity"];
+                                    }
+                                    echo $count;
+                                ?> item</label><br><br>
                                 <div class="container-checkout">
-                                    <div style="width:100%;height:100px;margin-bottom:30px;">
-                                        <div style="width:100px;height:100px;float:left;"><img src="../images/catecasual.jpg" alt=""></div>
-                                        <div style="margin-left:150px">
-                                            <label style="font-weight:bold;font-size:lager">Nama Item</label><br>
-                                            <label for="">Harga</label><br>
-                                            <label for="">Ukuran</label><br>
-                                            <label for="">Warna</label><br>
-                                        </div>
-                                        <hr color="#ccc">
-                                    </div>
-                                    <div style="width:100%;height:100px;margin-bottom:30px;">
-                                        <div style="width:100px;height:100px;float:left;"><img src="../images/catecasual.jpg" alt=""></div>
-                                        <div style="margin-left:150px">
-                                            <label style="font-weight:bold;font-size:lager">Nama Item</label><br>
-                                            <label for="">Harga</label><br>
-                                            <label for="">Ukuran</label><br>
-                                            <label for="">Warna</label><br>
-                                        </div>
-                                        <hr color="#ccc">
-                                    </div><div style="width:100%;height:100px;margin-bottom:30px;">
-                                        <div style="width:100px;height:100px;float:left;"><img src="../images/catecasual.jpg" alt=""></div>
-                                        <div style="margin-left:150px">
-                                            <label style="font-weight:bold;font-size:lager">Nama Item</label><br>
-                                            <label for="">Harga</label><br>
-                                            <label for="">Ukuran</label><br>
-                                            <label for="">Warna</label><br>
-                                        </div>
-                                        <hr color="#ccc">
-                                    </div><div style="width:100%;height:100px;margin-bottom:30px;">
-                                        <div style="width:100px;height:100px;float:left;"><img src="../images/catecasual.jpg" alt=""></div>
-                                        <div style="margin-left:150px">
-                                            <label style="font-weight:bold;font-size:lager">Nama Item</label><br>
-                                            <label for="">Harga</label><br>
-                                            <label for="">Ukuran</label><br>
-                                            <label for="">Warna</label><br>
-                                        </div>
-                                        <hr color="#ccc">
-                                    </div><div style="width:100%;height:100px;margin-bottom:30px;">
-                                        <div style="width:100px;height:100px;float:left;"><img src="../images/catecasual.jpg" alt=""></div>
-                                        <div style="margin-left:150px">
-                                            <label style="font-weight:bold;font-size:lager">Nama Item</label><br>
-                                            <label for="">Harga</label><br>
-                                            <label for="">Ukuran</label><br>
-                                            <label for="">Warna</label><br>
-                                        </div>
-                                        <hr color="#ccc">
-                                    </div>
+                                    <?php
+                                        foreach($_SESSION["order"] as $key=>$value){
+                                            $id_itemnavbar = $value["id_item"];
+                                            $itemnavbar = $conn->query("select * from item where id_item=$id_itemnavbar")->fetch_assoc();
+                                            $imagenavbar = explode(",",$itemnavbar["imageurl"]);
+                                            $image1navbar = $imagenavbar[0];
+                                            
+                                            echo '<div style="width:100%;height:100px;margin-bottom:30px;">
+                                            <div style="width:100px;height:100px;float:left;"><img src="'.$image1navbar.'" alt=""></div>
+                                            <div style="margin-left:150px">
+                                                <label style="font-weight:bold;font-size:lager">'.$itemnavbar["item_nama"].' ~ '.$itemnavbar["item_color"].'</label><br>
+                                                <label for="">';
+                                            $discount = $conn->query("select * from discount where id_item=$id_itemnavbar")->fetch_assoc();
+                                            if (empty($discount)){
+                                                echo 'Rp. '.number_format($item["item_price"],2).',-';
+                                            }else{
+                                                if ($discount["discount_type"]=="percentage"){
+                                                    $truevalue = floor($item["item_price"]/100*(100-$discount["value"]));
+                                                }else if ($discount["discount_type"]=="fixed"){
+                                                    $truevalue = $item["item_price"]-$discount["value"];
+                                                }
+                                                echo 'Rp. '.number_format($truevalue,2) .',-';
+                                            }    
+                                            echo '</label><br>
+                                                <label for="">Size : '.$value["item_size"].'</label><br>
+                                                <label for="">Quantity : '.$value["quantity"].'</label><br>
+                                            </div>
+                                            <hr color="#ccc">
+                                        </div>';
+                                        }
+                                    ?>
+                                    
                                     
                                 </div>
                                 <div class="checkout">Checkout</div>

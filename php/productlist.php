@@ -133,8 +133,8 @@
             $(document).on("click",".item", function () {
                 var item = $(this).children().first().next().html().split(" ~ ");
                 var item_name = item[0];
-                var color = item[1].toLowerCase();
-                var item2 = item_name.replace(" ","+");
+                var color = item[1].replace(/ /g,"+");
+                var item2 = item_name.replace(/ /g,"+");
                 console.log(item);
                 $.ajax({
                     type:"get",
@@ -151,7 +151,6 @@
             });
         });
         $(document).on("click",".button",function(){
-            console.log("fijowef");
             var available = $("#availability").find("option:selected").val();
             var min = $("#min").val();
             var max = $("#max").val();

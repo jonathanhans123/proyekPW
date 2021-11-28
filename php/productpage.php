@@ -304,26 +304,30 @@
     
         $(document).on("click",".addtochart", function () {
             var item_name = $(".item_name").html();
-            var item_color = $(".color").html().substring(8).toLowerCase();
+            var item_color = $(".color").html().substring(8);
             var item_size = "";
             $(".btnsize").each(function () { 
-                if ($(this).css("border-color")=="black"){
+                if ($(this).css("border-color")=="rgb(0, 0, 0)"){
                     item_size = $(this).html();
                 }
             });
-            $.ajax({
-                type:"post",
-                url:"controller.php",
-                data:{
-                    'action':'addtocart',
-                    'item_name':item_name,
-                    'item_color':item_color,
-                    'item_size':item_size
-                },
-                success:function(response){
-                    $(".container-fluid").append(response);
-                }
-            });
+            if (item_size!=""){
+                $.ajax({
+                    type:"post",
+                    url:"controller.php",
+                    data:{
+                        'action':'addtocart',
+                        'item_name':item_name,
+                        'item_color':item_color,
+                        'item_size':item_size
+                    },
+                    success:function(response){
+                        $(".container-fluid").append(response);
+                    }
+                });
+            }else{
+                alert("Pick the shoe size");    
+            }
         });
         $(".sbtnclr2").hide();
         

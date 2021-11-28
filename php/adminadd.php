@@ -36,7 +36,7 @@
                         $target_dir = "../upload/";
 
                         $extension1 = $pathinfo1["extension"];
-                        $nama_file_tujuan1 = $target_dir . $nama."1".$warna.".".$extension1;
+                        $nama_file_tujuan1 = $target_dir . $nama."1".$warna .".".$extension1;
                         $asal1 = $_FILES["file1"]["tmp_name"];
                         $extension2 = $pathinfo2["extension"];
                         $nama_file_tujuan2 = $target_dir . $nama."2".$warna.".".$extension2;

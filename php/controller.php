@@ -347,5 +347,34 @@
         }
         
     }
+    else if ($action=="addtocart"){
+        $item_nama = $_REQUEST["item_name"];
+        $item_color = $_REQUEST["item_color"];
+        $item_size = $_REQUEST["item_size"];
+        $item = $conn->query("select * from item where item_nama='$item_nama' and item_color='$item_color'")->fetch_assoc();
+        $id_item = $item["id_item"];
+        $order = [
+            "id_item"=>$id_item,
+            "item_size"=>$item_size,
+            "quantity"=>1
+        ];
+        if (isset($_SESSION["order"])){
+            $exist = false;
+            foreach($_SESSION["order"] as $key=>$value){
+                echo $order["id_item"].$value["id_item"].$order["item_size"].$value["item_size"];
+                if ($order["id_item"] == $value["id_item"]&&$order["item_size"] == $value["item_size"]){
+                    $_SESSION["order"][$key]["quantity"]++; 
+                    $exist = true;
+                }
+            }
+            if (!$exist){
+                array_push($_SESSION["order"],$order);
+            }
+        }else{
+            $_SESSION["order"] = [];
+            array_push($_SESSION["order"],$order);
+        }
+        print_r($_SESSION["order"]);
+    }
 
 ?>
