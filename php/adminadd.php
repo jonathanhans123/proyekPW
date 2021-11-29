@@ -131,11 +131,11 @@
                                 <option value="Slip-on">Slip-on</option>
                                 <option value="Oxford">Oxford</option>
                                 <option value="Hiking">Hiking</option>
-                                <option value="Hiking">Wedges</option>
-                                <option value="Hiking">High-heels</option>
-                                <option value="Hiking">High-Tops</option>
-                                <option value="Hiking">Sandals</option>
-                                <option value="Hiking">Sports</option>
+                                <option value="Wedges">Wedges</option>
+                                <option value="High-heels">High-heels</option>
+                                <option value="High-Tops">High-Tops</option>
+                                <option value="Sandals">Sandals</option>
+                                <option value="Sports">Sports</option>
                             </select>
                             <div class="text">Size</div>
                             <div class="wrap2">
