@@ -370,11 +370,60 @@
             if (!$exist){
                 array_push($_SESSION["order"],$order);
             }
+            echo '<script>
+                alert("Item added to cart");
+                location.reload();
+                
+                </script>';
         }else{
             $_SESSION["order"] = [];
             array_push($_SESSION["order"],$order);
+            echo '<script>
+                alert("Item added to cart");
+                location.reload();
+                
+                </script>';
         }
-        print_r($_SESSION["order"]);
+    }
+    else if ($action=="gotocheckout"){
+        echo "berhasil";
+        if (isset($_SESSION["auth"])&&isset($_SESSION["order"])){
+            echo '<script>window.location.href = "../php/checkout.php";</script>';
+        }else{
+            echo '<script>alert("Sign in to go to checkout page!");</script>';
+        }
+    }
+    else if ($action=="payment"){
+        $total = 0;
+        foreach($_SESSION["order"] as $key=>$value){
+            $temp = $value["id_item"];
+            $item = $conn->query("select * from item where id_item=$temp")->fetch_assoc();
+            $discount = $conn->query("select * from discount where id_item=$temp")->fetch_assoc();
+            if (empty($discount)){
+                $truevalue = $item["item_price"];
+            }else{
+                if ($discount["discount_type"]=="percentage"){
+                    $truevalue = floor($item["item_price"]/100*(100-$discount["value"]));
+                }else if ($discount["discount_type"]=="fixed"){
+                    $truevalue = $item["item_price"]-$discount["value"];
+                }
+            }
+            $orders = $conn->query("SELECT * FROM `order`")->fetch_all(MYSQLI_ASSOC);
+            $count = count($orders);
+            $id_order = "ORDER".$count;
+            $stmt = $conn->prepare("INSERT INTO `ordered_item`(id_order,id_item,item_price,quantity,item_size) VALUES(?,?,?,?,?)");
+            $stmt->bind_param("siiii",$id_order,$temp,$truevalue,$value["quantity"],$value["item_size"]);
+            $stmt->execute();
+            $total += $value["quantity"]*$truevalue;
+        }
+        $orders = $conn->query("SELECT * FROM `order`")->fetch_all(MYSQLI_ASSOC);
+        $count = count($orders);
+        $id_order = "TEST".$count;
+        $date = date('m/d/Y h:i:s a', time());
+        $status = "Pending";
+        $stmt = $conn->prepare ("INSERT INTO `order`(`id_order`, `id_user`, `harga_total`, `tanggal_order`, `status`, `address`) VALUES (?,?,?,?,?,?)");
+        $stmt->bind_param("ssssss",$id_order,$_SESSION["auth"]["id_user"],$total,$date,$status,$_SESSION["shipping_address"]["address"]);
+        $stmt->execute();
     }
 
 ?>

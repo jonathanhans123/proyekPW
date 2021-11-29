@@ -39,8 +39,8 @@
                     foreach($items as $key=>$value){
                         $image = explode(",",$value["imageurl"]);
                         echo '<div class="item">
-                            <img src="../upload/'.$image[0].'" alt="">
-                            <p class="name">'.$value["item_nama"].'</p>';
+                            <img src="'.$image[0].'" alt="">
+                            <p class="name">'.$value["item_nama"].' ~ '.ucfirst($value["item_color"]).'</p>';
                         $temp = $value["id_item"];
                         $discount = $conn->query("select * from discount where id_item=$temp")->fetch_assoc();
                         if (empty($discount)){
@@ -62,7 +62,7 @@
                         echo '</div>';
                     }
                 }else{
-                    echo '<h1>No products in Wish List</h1>';
+                    echo '<h1>No products yet</h1>';
                 }
             ?>
         </div>
@@ -75,18 +75,21 @@
     <script>
         $(document).ready(function () {
             $(document).on("click",".item", function () {
-                var item = $(this).children().first().next().html();
-                var item2 = item.replace(" ","+");
+                var item = $(this).children().first().next().html().split(" ~ ");
+                var item_name = item[0];
+                var color = item[1].replace(/ /g,"+");
+                var item2 = item_name.replace(/ /g,"+");
                 console.log(item);
                 $.ajax({
                     type:"get",
                     url:"controller.php",
                     data:{
                         'action':'product',
-                        'item_nama':item
+                        'item_nama':item2,
+                        'item_color':color
                     },
                     success:function(response){
-                        window.location.href = "../php/productpage.php?item_name="+item2;
+                        window.location.href = "../php/productpage.php?item_name="+item2+"&item_color="+color;
                     }
                 });
             });

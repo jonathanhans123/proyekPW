@@ -1,3 +1,5 @@
+<script src="../java/jquery.autocomplete.min.js"></script>
+
 <div class="navbar">
             <div class="top">
                 <div class="search">
@@ -44,20 +46,21 @@
                                                 $itemnavbar = $conn->query("select * from item where id_item=$id_itemnavbar")->fetch_assoc();
                                                 $imagenavbar = explode(",",$itemnavbar["imageurl"]);
                                                 $image1navbar = $imagenavbar[0];
+                                                echo '<button type="button" class="btn-close text-reset"></button>
                                                 
-                                                echo '<div style="width:100%;height:100px;margin-bottom:30px;">
+                                                <div style="width:100%;height:100px;margin-bottom:30px;">
                                                 <div style="width:100px;height:100px;float:left;"><img src="'.$image1navbar.'" alt=""></div>
                                                 <div style="margin-left:150px">
                                                     <label style="font-weight:bold;font-size:lager">'.$itemnavbar["item_nama"].' ~ '.$itemnavbar["item_color"].'</label><br>
                                                     <label for="">';
                                                 $discount = $conn->query("select * from discount where id_item=$id_itemnavbar")->fetch_assoc();
                                                 if (empty($discount)){
-                                                    echo 'Rp. '.number_format($item["item_price"],2).',-';
+                                                    echo 'Rp. '.number_format($itemnavbar["item_price"],2).',-';
                                                 }else{
                                                     if ($discount["discount_type"]=="percentage"){
-                                                        $truevalue = floor($item["item_price"]/100*(100-$discount["value"]));
+                                                        $truevalue = floor($itemnavbar["item_price"]/100*(100-$discount["value"]));
                                                     }else if ($discount["discount_type"]=="fixed"){
-                                                        $truevalue = $item["item_price"]-$discount["value"];
+                                                        $truevalue = $itemnavbar["item_price"]-$discount["value"];
                                                     }
                                                     echo 'Rp. '.number_format($truevalue,2) .',-';
                                                 }    
@@ -118,12 +121,24 @@
 
         <script type="text/javascript">
             $(document).ready(function() {
-                // Selector input yang akan menampilkan autocomplete.
                 $( "#search" ).autocomplete({
-                    serviceUrl: "source.php",   // Kode php untuk prosesing data.
-                    dataType: "JSON",           // Tipe data JSON.
+                    serviceUrl: "source.php",
+                    dataType: "JSON",
                     onSelect: function (suggestion) {
                         $( "#search" ).val("" + suggestion.buah);
+                    }
+                });
+            });
+            $(document).on("click",".checkout",function(){
+                $.ajax({
+                    type:"post",
+                    url:"controller.php",
+                    data:{
+                        'action':'gotocheckout'
+                    },
+                    success:function(response){
+                        $(".container-fluid").append(response);
+                        $(".container").append(response);
                     }
                 });
             });
