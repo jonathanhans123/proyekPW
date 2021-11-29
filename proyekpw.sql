@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2021 at 11:26 AM
+-- Generation Time: Nov 29, 2021 at 07:23 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -30,12 +30,13 @@ USE `proyekpw`;
 --
 
 DROP TABLE IF EXISTS `discount`;
-CREATE TABLE `discount` (
-  `id_discount` int(100) NOT NULL,
+CREATE TABLE IF NOT EXISTS `discount` (
+  `id_discount` int(100) NOT NULL AUTO_INCREMENT,
   `id_item` int(100) NOT NULL,
   `value` int(10) NOT NULL,
-  `discount_type` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `discount_type` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_discount`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `discount`
@@ -51,8 +52,8 @@ INSERT INTO `discount` (`id_discount`, `id_item`, `value`, `discount_type`) VALU
 --
 
 DROP TABLE IF EXISTS `item`;
-CREATE TABLE `item` (
-  `id_item` int(100) NOT NULL,
+CREATE TABLE IF NOT EXISTS `item` (
+  `id_item` int(100) NOT NULL AUTO_INCREMENT,
   `item_nama` varchar(100) NOT NULL,
   `item_stock` varchar(100) NOT NULL,
   `item_price` varchar(100) NOT NULL,
@@ -60,15 +61,15 @@ CREATE TABLE `item` (
   `item_desc` varchar(250) NOT NULL,
   `imageurl` varchar(10000) NOT NULL,
   `item_size` varchar(100) NOT NULL,
-  `item_cate` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `item_cate` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_item`)
+) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `item`
 --
 
 INSERT INTO `item` (`id_item`, `item_nama`, `item_stock`, `item_price`, `item_color`, `item_desc`, `imageurl`, `item_size`, `item_cate`) VALUES
-(2, 'Vizzano Mina', '100', '299000', 'Pink', 'These are Vizzano Mina shoes.', '../upload/Vizzano Mina1.jpg,../upload/Vizzano Mina2.jpg,../upload/Vizzano Mina3.jpg,../upload/Vizzan', '38,39,40', 'Wedges'),
 (11, 'New Balance 574 Classic Sneakers', '23', '1599000', 'White and Brown', '- Colour blocked panelled leather sneakers with brand details\r\n- Textile/leather/synthetic upper\r\n- Textile insole\r\n- ENCAP midsole cushioning combines lightweight foam with a durable polyurethane rim to deliver all-day support\r\n- Lightweight EVA foa', '../upload/New Balance 574 Classic Sneakers1.jpg,../upload/New Balance 574 Classic Sneakers2.jpg,../upload/New Balance 574 Classic Sneakers3.jpg', '38,39,42,43', 'Sneakers'),
 (12, 'New Balance 574 Classic Sneakers', '15', '1599000', 'Cream', '- Colour blocked panelled leather sneakers with brand details\r\n- Textile/leather/synthetic upper\r\n- Textile insole\r\n- ENCAP midsole cushioning combines lightweight foam with a durable polyurethane rim to deliver all-day support\r\n- Lightweight EVA foa', '../upload/New Balance 574 Classic Sneakers1.jpg,../upload/New Balance 574 Classic Sneakers2.jpg,../upload/New Balance 574 Classic Sneakers3.jpg', '39,40,41', 'Sneakers'),
 (13, 'New Balance 574 Classic Sneakers', '10', '1599000', 'Black', '- Colour blocked panelled leather sneakers with brand details\r\n- Textile/leather/synthetic upper\r\n- Textile insole\r\n- ENCAP midsole cushioning combines lightweight foam with a durable polyurethane rim to deliver all-day support\r\n- Lightweight EVA foa', '../upload/New Balance 574 Classic Sneakers1.jpg,../upload/New Balance 574 Classic Sneakers2.jpg,../upload/New Balance 574 Classic Sneakers3.jpg', '38,39,40,42,43,44', 'Sneakers'),
@@ -117,7 +118,58 @@ INSERT INTO `item` (`id_item`, `item_nama`, `item_stock`, `item_price`, `item_co
 (58, 'Cole Haan Men Original grand Cloudfeel Energy Merid Sw Oxford', '5', '1062043', 'British Tan Full Grain', 'Made in USA or Imported\r\nRubber sole\r\nOxford with wingtip upper pattern in rich leather\r\nLined in moisture-wicking textile\r\nREBOUND TECHNOLOGY - engineered fusion of Cole Haan Rebound cushioning compound and Grandfoam.', '../upload/Cole Haan Men Original grand Cloudfeel Energy Merid Sw Oxford1British Tan Full Grain.jpg,.', '38,39,40,42,44', 'Oxford'),
 (59, 'Cole Haan Men Lenox Hill Cap Oxford', '10', '1007070', 'British Tan', '100% Leather\r\nImported\r\nRubber sole\r\nShaft measures approximately low-top from arch\r\nClassic lace-up oxford featuring blind eyelets and cap toe\r\nStacked heel', '../upload/Cole Haan Men Lenox Hill Cap Oxford1British Tan.jpg,../upload/Cole Haan Men Lenox Hill Cap', '38,40,41,44', 'Oxford'),
 (60, 'Cole Haan Men Zerogrand Stitchlite Wingtip Oxford', '7', '4632984', 'Marine/Ivory', '100% Synthetic\r\nImported\r\nRubber sole\r\nShaft measures approximately low-top from arch\r\nRipstop and nylon upper\r\nNatural storm welt\r\nEVA midsole with rubber outsole\r\nCole Haan Grand OS technology for ultimate comfort', '../upload/Cole Haan Men Zerogrand Stitchlite Wingtip Oxford1Marine/Ivory.jpg,../upload/Cole Haan Men', '38,39,41,43,44', 'Oxford'),
-(61, 'Cole Haan Men Zerogrand Stitchlite Wingtip Oxford', '10', '4632984', 'Ironstone/Ivory', '100% Synthetic\r\nImported\r\nRubber sole\r\nShaft measures approximately low-top from arch\r\nRipstop and nylon upper\r\nNatural storm welt\r\nEVA midsole with rubber outsole\r\nCole Haan Grand OS technology for ultimate comfort', '../upload/Cole Haan Men Zerogrand Stitchlite Wingtip Oxford1Ironstone/Ivory.jpg,../upload/Cole Haan ', '40,41,42,44', 'Oxford');
+(61, 'Cole Haan Men Zerogrand Stitchlite Wingtip Oxford', '10', '4632984', 'Ironstone/Ivory', '100% Synthetic\r\nImported\r\nRubber sole\r\nShaft measures approximately low-top from arch\r\nRipstop and nylon upper\r\nNatural storm welt\r\nEVA midsole with rubber outsole\r\nCole Haan Grand OS technology for ultimate comfort', '../upload/Cole Haan Men Zerogrand Stitchlite Wingtip Oxford1Ironstone/Ivory.jpg,../upload/Cole Haan ', '40,41,42,44', 'Oxford'),
+(62, 'Vizzano Jiwoo', '10', '795000', 'Begie', '- Wedges detail statementable embellishment bergaya chic\n- Warna krem\n- Upper sintetis\n- Insole sintetis\n- Rubber outsole\n- Round toe', '../upload/Vizzano Jiwoo1Begie.jpg,../upload/Vizzano Jiwoo2Begie.jpg,../upload/Vizzano Jiwoo3Begie.jpg', '38,39,40', 'Wedges'),
+(63, 'Vizzano Minna', '11', '807000', 'Begie', 'Upper Material : Sintetis\nInsole Material : Sintetis\nOutsole Material : Rubber\nKondisi 100% BARU\nSize Chart :\n38: 24.5 cm\n39: 25 cm\n40: 25.5 cm', '../upload/Vizzano Minna1Begie.jpg,../upload/Vizzano Minna2Begie.jpg,../upload/Vizzano Minna3Begie.jpg', '38,39,40,42', 'Wedges'),
+(64, 'Vizzano Micha', '10', '595.000', 'Yellow', '- Warna kuning\n- Upper sintetis\n- Insole sintetis\n- Rubber outsole\n- Tinggi wedges: 4cm\n- Adjustable pin buckle strap\n- Pointed toe', '../upload/Vizzano Micha1Yellow.jpg,../upload/Vizzano Micha2Yellow.jpg,../upload/Vizzano Micha3Yellow.jpg', '40,42', 'Wedges'),
+(65, 'Hush Puppies Odell Ornament Pump', '11', '1799000', 'Brown', '- Sepatu wedge klasik detail debossed logo\n- Warna cokelat\n- Leather upper\n- Leather insole\n- Rubber outsole\n- Tinggi wedge: 6cm\n- Almond toe', '../upload/Hush Puppies Odell Ornament Pump1Brown.jpg,../upload/Hush Puppies Odell Ornament Pump2Brown.jpg,../upload/Hush Puppies Odell Ornament Pump3Brown.jpg', '38,39,41,42', 'Wedges'),
+(66, 'Hush Puppies Camila', '7', '699000', 'Black', '- Sepatu bergaya feminine chic dengan desain sleek\n- Warna hitam\n- PVC upper\n- PVC insole\n- Rubber outsole\n- Adjustable ankle strap\n- Pointed toe', '../upload/Hush Puppies Camila1Black.jpg,../upload/Hush Puppies Camila2Black.jpg,../upload/Hush Puppies Camila3Black.jpg', '38,39,40,41', 'Wedges'),
+(67, 'Hush Puppies Monza', '9', '1599000', 'Black', '- Wedges tekstur kulit nuansa monokrom\n- Warna hitam\n- Leather upper\n- Leather insole\n- Rubber outsole\n- Tinggi wedges: 9cm\n- Peep toe', '../upload/Hush Puppies Monza1Black.jpg,../upload/Hush Puppies Monza2Black.jpg,../upload/Hush Puppies Monza3Black.jpg', '38,39,40,42', 'Wedges'),
+(68, 'PAYLESS Dexflex Womens Karlile', '9', '399000', 'Black', 'Dexflex Womens Karlile - BLACK Breathable women shoe with soft lining, foam insole and durable outsole\n\n', '../upload/PAYLESS Dexflex Womens Karlile1Black.jpg,../upload/PAYLESS Dexflex Womens Karlile2Black.jpg,../upload/PAYLESS Dexflex Womens Karlile3Black.jpg', '38,39,40,42', 'Wedges'),
+(69, 'PAYLESS Dexflex Womens Karlile', '9', '399000', 'Black', 'Dexflex Womens Karlile - BLACK Breathable women shoe with soft lining, foam insole and durable outsole\n\n', '../upload/PAYLESS Dexflex Womens Karlile1Begie.jpg,../upload/PAYLESS Dexflex Womens Karlile2Begie.jpg,../upload/PAYLESS Dexflex Womens Karlile3Begie.jpg', '38,39,40,42', 'Wedges'),
+(70, 'STACCATO SC7 SM20 W Z1055 BLACK', '8', '1399000', 'Black', 'Wedges Sandals\nUpper Material: Mesh / Fabric\nlining material: Sheep\nSole material: Rubber\n\nSize Disclaimer:\nThere may be a 1-2cm difference in measurements depending on the development and manufacturing process.', '../upload/STACCATO SC7 SM20 W Z1055 BLACK1Black.jpg,../upload/STACCATO SC7 SM20 W Z1055 BLACK2Black.jpg,../upload/STACCATO SC7 SM20 W Z1055 BLACK3Black.jpg', '38,39,40,42', 'Wedges'),
+(71, 'Obermain Nava Dericka - Slide', '6', '1499000', 'Begie', '- Sandal wedges untuk tampilan feminin yang stylish\n- Warna beige\n- Leather upper\n- Leather insole\n- Rubber outsole\n- Open toe', '../upload/Obermain Nava Dericka - Slide1Begie.jpg,../upload/Obermain Nava Dericka - Slide2Begie.jpg,../upload/Obermain Nava Dericka - Slide3Begie.jpg', '38,39,41,43', 'Wedges'),
+(72, 'PAYLESS Fioni Women Lucre Lucite Pointy High Heel', '10', '399000', 'Black', 'Fioni Women Lucre Lucite Pointy High Heel - Black smooth lining with a soft sole and durable outsole, equipped with comfortable heels, adjustable straps make it easy for you to walk comfortably', '../upload/PAYLESS Fioni Women Lucre Lucite Pointy High Heel1Black.jpg,../upload/PAYLESS Fioni Women Lucre Lucite Pointy High Heel2Black.jpg,../upload/PAYLESS Fioni Women Lucre Lucite Pointy High Heel3Black.jpg', '38,39,40,42', 'High-heels'),
+(73, 'PAYLESS Fioni Women Haha Pointy High Heel Pump', '8', '359000', 'Black', 'Fioni Women Haha Pointy High Heel Pump - Black smooth lining with a soft sole and durable outsole, equipped with comfortable heels, adjustable straps make it easy for you to walk comfortably', '../upload/PAYLESS Fioni Women Haha Pointy High Heel Pump1Black.jpg,../upload/PAYLESS Fioni Women Haha Pointy High Heel Pump2Black.jpg,../upload/PAYLESS Fioni Women Haha Pointy High Heel Pump3Black.jpg', '38,39,41,42', 'High-heels'),
+(74, 'ALDO Amenabar Tie Up Stiletto Heels', '5', '1889000', 'Brown', '- Solid tone lace up faux suede heels \n- Textile and synthetic upper\n- Leather insole\n- Synthetic outsole\n- Heel height: 11.5cm\n- Lace up fastening', '../upload/ALDO Amenabar Tie Up Stiletto Heels1Brown.jpg,../upload/ALDO Amenabar Tie Up Stiletto Heels2Brown.jpg,../upload/ALDO Amenabar Tie Up Stiletto Heels3Brown.jpg', '38,39,41', 'High-heels'),
+(75, 'ALDO Sepatu Wanita GLASSSLIPPER', '1', '1199000', 'Light Blue', 'Disney x ALDO | Cinderella CollectionStep ke sandal gelas Anda sendiri. dongeng ini terinspirasi pompa transparan dengan halus rincian warni dan jelas tali pergelangan kaki akan menginspirasi keajaiban di dalam kamu', '../upload/ALDO Sepatu Wanita GLASSSLIPPER1Light Blue.jpg,../upload/ALDO Sepatu Wanita GLASSSLIPPER2Light Blue.jpg,../upload/ALDO Sepatu Wanita GLASSSLIPPER3Light Blue.jpg', '38,39,40', 'High-heels'),
+(76, 'ALDO Scarlett Platform Stiletto Heels', '3', '2199000', 'Dark Brown', '- Perspex strap platform stiletto heels\n- Polyurethane and TPU upper\n- Synthetic insole\n- Synthetic outsole\n- Heel height: 12cm\n- Adjustable pin buckle ankle strap fastening', '../upload/ALDO Scarlett Platform Stiletto Heels1Dark Brown.jpg,../upload/ALDO Scarlett Platform Stiletto Heels2Dark Brown.jpg,../upload/ALDO Scarlett Platform Stiletto Heels3Dark Brown.jpg', '38,39,40,42', 'High-heels'),
+(77, 'London Rag Black Clear Detail Sling-back Stiletto Sandal', '5', '696150', 'Black and Begie', 'Quite a treat to feet: stylish pointed heel sandal with clear detail in croc textured PU with pointed toe cap. \nUpper material: Croc Polyurethane\nLining Material: Polyurethane\nOuter sole: TPR \nQuality Insole\nClosed Pointed Toe', '../upload/London Rag Black Clear Detail Sling-back Stiletto Sandal1Black and Begie.jpg,../upload/London Rag Black Clear Detail Sling-back Stiletto Sandal2Black and Begie.jpg,../upload/London Rag Black Clear Detail Sling-back Stiletto Sandal3Black and Begie.jpg', '38,39', 'High-heels'),
+(78, 'London Rag Patent PU Slip on Stiletto', '3', '960149', 'Black and Red', 'In color blocked pattern – the high heeled stiletto dress shoe is a perfect shoe for the evening. Comes in two color options to choose from – the stylish heels definitely deserve some room in wardrobe.\nUpper Material: Patent PU ', '../upload/London Rag Patent PU Slip on Stiletto1Black and Red.jpg,../upload/London Rag Patent PU Slip on Stiletto2Black and Red.jpg,../upload/London Rag Patent PU Slip on Stiletto3Black and Red.jpg', '38,39', 'High-heels'),
+(79, 'London Rag Tiara Clear Stiletto Sling-back', '3', '1256149', 'Black', 'You are one queen and let this tiara styled jeweled stiletto put it clear. Absolute stunner and party wear, this peep – toe shoe is!\nUpper material: Thermoplastic Polyurethane\nLining Material: Synthetic\nOuter sole: Rubber', '../upload/London Rag Tiara Clear Stiletto Sling-back1Black.jpg,../upload/London Rag Tiara Clear Stiletto Sling-back2Black.jpg,../upload/London Rag Tiara Clear Stiletto Sling-back3Black.jpg', '38,39,41', 'High-heels'),
+(80, 'London Rag Suede Stiletto Sling-back Sandal', '4', '1034149', 'Black', 'Braided Suede straps that settle on feet elegantly, this pair of stilettos keep all your formal dates sorted.\r\nUpper material: Polyurethane\r\nLining Material: Synthetic\r\nOuter sole: Rubber \r\nHeel Height: \r\nSling-back Design\r\nOpen Square Toe\r\nSlip-On S', '../upload/London Rag Suede Stiletto Sling-back Sandal1Black.jpg,../upload/London Rag Suede Stiletto Sling-back Sandal2Black.jpg,../upload/London Rag Suede Stiletto Sling-back Sandal3Black.jpg', '38,39,41,42', 'High-heels'),
+(81, 'MANGO Asymmetric Stiletto Shoes', '2', '799000', 'Wine', 'Soft finish.\r\nAsymmetric design.\r\nSide slit.\r\nPointed.\r\nStiletto heel. 9.5 cm heel.\r\nParty collection.', '../upload/MANGO Asymmetric Stiletto Shoes1Wine.jpg,../upload/MANGO Asymmetric Stiletto Shoes2Wine.jpg,../upload/MANGO Asymmetric Stiletto Shoes3Wine.jpg', '38,39,41,42', 'High-heels'),
+(83, 'WaterMonkey Men Casual Skateboarding Shoes High Top Sneakers Sports Shoes Men Outdoor Breathable Wal', '5', '757092', 'Black and Red', 'SKU : 32945989130\r\nGender : Men \r\nHeel Type : Flat \r\nOutsole Material : Rubber \r\nInsole Material : EVA \r\nClosure Type : Lace-Up \r\nSports Type : FINALE EVO \r\nAthletic Shoe Type : Skateboarding Shoes \r\nElements : Thread \r\nApplicable Place : Hard Court', '../upload/WaterMonkey Men Casual Skateboarding Shoes High Top Sneakers Sports Shoes Men Outdoor Breathable Walking Shoes Street Shoes Chaussure Homme1Black and Red.jpg,../upload/WaterMonkey Men Casual Skateboarding Shoes High Top Sneakers Sports Shoes Men Outdoor Breathable Walking Shoes Street Shoes Chaussure Homme2Black and Red.jpg,../upload/WaterMonkey Men Casual Skateboarding Shoes High Top Sneakers Sports Shoes Men Outdoor Breathable Walking Shoes Street Shoes Chaussure Homme3Black and Red.jpg', '41,42,43,44', 'Sneakers'),
+(84, 'WaterMonkey Men Casual Skateboarding Shoes High Top Sneakers Sports Shoes Men Outdoor Breathable Wal', '5', '757092', 'Black and White', 'SKU : 32945989130\r\nGender : Men \r\nHeel Type : Flat \r\nOutsole Material : Rubber \r\nInsole Material : EVA \r\nClosure Type : Lace-Up \r\nSports Type : FINALE EVO \r\nAthletic Shoe Type : Skateboarding Shoes \r\nElements : Thread \r\nApplicable Place : Hard Court ', '../upload/WaterMonkey Men Casual Skateboarding Shoes High Top Sneakers Sports Shoes Men Outdoor Breathable Walking Shoes Street Shoes Chaussure Homme1Black and White.jpg,../upload/WaterMonkey Men Casual Skateboarding Shoes High Top Sneakers Sports Shoes Men Outdoor Breathable Walking Shoes Street Shoes Chaussure Homme2Black and White.jpg,../upload/WaterMonkey Men Casual Skateboarding Shoes High Top Sneakers Sports Shoes Men Outdoor Breathable Walking Shoes Street Shoes Chaussure Homme3Black and White.jpg', '41,42,43,44', 'High-Tops'),
+(85, 'Sepatu High Top Kasual Cowok', '10', '257500', 'Black', '• Berbahan 100% kulit sapi full grain berkualitas maksimal\r\nToleransi ukuran tiap size : ± 0.25 cm\r\nSize 39 Fit to  : 24 cm \r\nSize 40 Fit to  : 25 cm \r\nSize 41 Fit to  : 26 cm \r\nSize 42 Fit to  : 27 cm \r\nSize 43 Fit to  : 28 cm ', '../upload/Sepatu High Top Kasual Cowok1Black.jpg,../upload/Sepatu High Top Kasual Cowok2Black.jpg,../upload/Sepatu High Top Kasual Cowok3Black.jpg', '39,40,41,42,43', 'High-Tops'),
+(86, 'Sepatu High Top Kasual Cowok', '5', '257500', 'Brown', '• Berbahan 100% kulit sapi full grain berkualitas maksimal\r\nToleransi ukuran tiap size : ± 0.25 cm\r\nSize 39 Fit to  : 24 cm \r\nSize 40 Fit to  : 25 cm \r\nSize 41 Fit to  : 26 cm \r\nSize 42 Fit to  : 27 cm \r\nSize 43 Fit to  : 28 cm ', '../upload/Sepatu High Top Kasual Cowok1Brown.jpg,../upload/Sepatu High Top Kasual Cowok2Brown.jpg,../upload/Sepatu High Top Kasual Cowok3Brown.jpg', '39,40,41,42,43', 'High-Tops'),
+(87, 'ALDO Masari Sneakers', '3', '2099000', 'Black', '- High top sneakers with croc panels and accent buckles\r\n- Polyurethane upper\r\n- Polyester inner\r\n- Rubber outsole\r\n- Lace up fastening', '../upload/ALDO Masari Sneakers1Black.jpg,../upload/ALDO Masari Sneakers2Black.jpg,../upload/ALDO Masari Sneakers3Black.jpg', '39,41,42,43', 'High-Tops'),
+(88, 'ALDO Frealia-Wr Sneakers', '3', '1879000', 'Black and Orange', '- Perforated high cut lace up sneakers\r\n- Polyester blend\r\n- Textile inner\r\n- Rubber outsole\r\n- Round toe\r\n- Lace closure', '../upload/ALDO Frealia-Wr Sneakers1Black and Orange.jpg,../upload/ALDO Frealia-Wr Sneakers2Black and Orange.jpg,../upload/ALDO Frealia-Wr Sneakers3Black and Orange.jpg', '40,41,42,43', 'High-Tops'),
+(89, 'Hummel Stadil 3.0 Classic High Sneakers', '10', '1399000', 'Navy, Orange, and White', '- Sneakers bergaya klasik dengan desain high cut\r\n- Warna navy\r\n- Suede upper\r\n- Insole tekstil\r\n- Rubber outsole\r\n- Tali depan\r\n- Round toe\r\n- Produk unisex', '../upload/Hummel Stadil 3.0 Classic High Sneakers1Navy, Orange, and White.jpg,../upload/Hummel Stadil 3.0 Classic High Sneakers2Navy, Orange, and White.jpg,../upload/Hummel Stadil 3.0 Classic High Sneakers3Navy, Orange, and White.jpg', '40,41,42,43', 'High-Tops'),
+(90, 'Hummel Slimmer Stadil High Sneakers', '3', '949000', 'Grey', '- Sneakers desain hi-top dengan aksen chevron kontras\r\n- Warna abu-abu\r\n- Upper kanvas dan suede leather\r\n- PU insole\r\n- Rubber outsole\r\n- Tali depan\r\n- Round toe\r\n- Produk unisex', '../upload/Hummel Slimmer Stadil High Sneakers1Grey.jpg,../upload/Hummel Slimmer Stadil High Sneakers2Grey.jpg,../upload/Hummel Slimmer Stadil High Sneakers3Grey.jpg', '40,41,42,43', 'High-Tops'),
+(91, 'Converse Run Star Hike', '10', '1582991', 'Black and White', 'A chunky platform and jagged rubber sole put an unexpected twist on your everyday Chucks. Details like a canvas build, rubber toe cap and Chuck Taylor ankle patch stay true to the original.', '../upload/Converse Run Star Hike1Black and White.jpg,../upload/Converse Run Star Hike2Black and White.jpg,../upload/Converse Run Star Hike3Black and White.jpg', '41,42,43', 'High-Tops'),
+(92, 'Converse Chuck Taylor All Star', '10', '863450', 'Black and White', 'We could tell you that it’s the OG basketball shoe, created over 100 years ago. Or that the design has largely stayed the same, because why mess with a good thing.', '../upload/Converse Chuck Taylor All Star1Black and White.jpg,../upload/Converse Chuck Taylor All Star2Black and White.jpg,../upload/Converse Chuck Taylor All Star3Black and White.jpg', '40,42,43', 'High-Tops'),
+(93, 'Converse Chuck Taylor 70s Hi Optical', '5', '399000', 'White', 'Converse Chuck Taylor 70s Hi \r\n\r\nCondition : Brand New In Box Premium Import Perfect Kick \r\n\r\n( Tidak sesui Foto Garansi Uang Kembali ) \r\n\r\n\r\n#converseoriginal #converse70sopticalwhite\r\n#converseallstar #allstar #sepatuallstar\r\n', '../upload/Converse Chuck Taylor 70s Hi Optical1White.jpg,../upload/Converse Chuck Taylor 70s Hi Optical2White.jpg,../upload/Converse Chuck Taylor 70s Hi Optical3White.jpg', '40,42,43', 'High-Tops'),
+(94, 'Nike Asuna Crater', '12', '749000', 'Cream, White, Orange, and Black', 'Bridging sport and fashion, the Nike Asuna Crater takes a fresh step towards sustainability. Made from at least 20% recycled material by weight, the design features soft Crater foam underfoot and a rugged tread pattern that grips sand.', '../upload/Nike Asuna Crater1Cream, White, Orange, and Black.png,../upload/Nike Asuna Crater2Cream, White, Orange, and Black.png,../upload/Nike Asuna Crater3Cream, White, Orange, and Black.png', '40,42,43', 'Sandals'),
+(95, 'Nike Victori One', '12', '529000', 'Black, Off-Noir, and Dark Smoke', 'From the beach to the streets, the Nike Victori One perfects a classic, must-have design. Delivering lightweight comfort that is easy to wear, it features new, softer foam that feels comfortable while the contoured footbed with grip pattern.', '../upload/Nike Victori One1Black, Off-Noir, and Dark Smoke.png,../upload/Nike Victori One2Black, Off-Noir, and Dark Smoke.png,../upload/Nike Victori One3Black, Off-Noir, and Dark Smoke.png', '40,41,42,44', 'Sandals'),
+(96, 'Nike Air Max Camden', '13', '649000', 'Anthracite, Dark Grey, Cool Grey, and Volt', 'Inspired by an icon, the Nike Air Max Camden Slide uses soft foam, deep flex grooves and a cushioned upper strap to give you 360 degrees of comfort.', '../upload/Nike Air Max Camden1Anthracite, Dark Grey, Cool Grey, and Volt.jpg,../upload/Nike Air Max Camden2Anthracite, Dark Grey, Cool Grey, and Volt.jpg,../upload/Nike Air Max Camden3Anthracite, Dark Grey, Cool Grey, and Volt.jpg', '38,40,41,42', 'Sandals'),
+(97, 'Nike Canyon', '14', '999000', 'Moon Fossil - Orange - Black - Racer Blue', 'Your journey starts with the Nike Canyon Sandal. This rugged hiker is ready to explore. The Nike heritage-inspired design features a beefy outsole, plush foam midsole, triple-strap closure and premium metallic finishes.', '../upload/Nike Canyon1MMoon Fossil - Orange - Black - Racer Blue.jpg,../upload/Nike Canyon2Moon Fossil - Orange - Black - Racer Blue.jpg,../upload/Nike Canyon3Moon Fossil - Orange - Black - Racer Blue.jpg', '38,40,41,42', 'Sandals'),
+(98, 'CERRUTI 1881 Unisex Slide Sandals', '8', '5320000', 'Black', 'Comfortable and relaxed sandals :\r\n100% Calf Leather mix\r\nNew anti slippery technology soles\r\nMade in Italy', '../upload/CERRUTI 1881 Unisex Slide Sandals1Black.jpg,../upload/CERRUTI 1881 Unisex Slide Sandals2Black.jpg,../upload/CERRUTI 1881 Unisex Slide Sandals3Black.jpg', '39,41,42', 'Sandals'),
+(99, 'CERRUTI 1881 Unisex Slide Sandals (Strap)', '4', '3420000', 'Black', 'Comfortable and relaxed sandals :\r\nNylon and Cotton mix\r\nNew anti slippery technology soles\r\nMade in Italy', '../upload/CERRUTI 1881 Unisex Slide Sandals (Strap)1Black.jpg,../upload/CERRUTI 1881 Unisex Slide Sandals (Strap)2Black.jpg,../upload/CERRUTI 1881 Unisex Slide Sandals (Strap)3Black.jpg', '39,42,43,44', 'Sandals'),
+(100, 'CERRUTI 1881 Unisex Slide Sandals (Backbelt and Strap)', '5', '3608100', 'Black', 'Comfortable and relaxed sandals :\r\nNylon and Cotton mix\r\nNew anti slippery technology soles\r\nMade in Italy', '../upload/CERRUTI 1881 Unisex Slide Sandals (Backbelt and Strap)1Black.jpg,../upload/CERRUTI 1881 Unisex Slide Sandals (Backbelt and Strap)2Black.jpg,../upload/CERRUTI 1881 Unisex Slide Sandals (Backbelt and Strap)3Black.jpg', '38,39,40,42', 'Sandals'),
+(101, 'Sandal MyFeet F4 Kids', '1', '499000', 'Wood and Black', 'Pada pemakaian awal akan terasa sakit & pegal pada bagian tertentu, khususnya telapak kaki dan betis. Hentikan pemakaian sementara pada sandal jika terasa sakit sampai sakitnya reda, atau gunakan kaos kaki sebagai alat bantu.', '../upload/Sandal MyFeet F4 Kids1Wood and Black.jpg,../upload/Sandal MyFeet F4 Kids2Wood and Black.jpg,../upload/Sandal MyFeet F4 Kids3Wood and Black.jpg', '39,40,42', 'Sandals'),
+(102, 'Sandal MyFeet F2 Classic', '2', '1710000', 'Brown', 'MyFeet adalah Sandal kesehatan yang berfungsi untuk menjaga keseimbangan kaki, sehingga kaki akan terasa lebih nyaman saat melakukan perjalanan jauh, atau untuk mengatasi penyakit ringan seperti tumit sakit, sakit pada lutut, dll.', '../upload/Sandal MyFeet F2 Classic1Brown.jpg,../upload/Sandal MyFeet F2 Classic2Brown.jpg,../upload/Sandal MyFeet F2 Classic3Brown.jpg', '38,39,41,42', 'Sandals'),
+(103, 'MYFEET Sandal MyFeet F1 Classic', '5', '1280000', 'Camel', '-Solid tone\r\n-Warna Camel\r\n-Oiled Leather Upper\r\n-Genuine Leather Insole\r\n-Natural Rubber Outsole\r\n-Adjustable Strap\r\n-Open toe', '../upload/MYFEET Sandal MyFeet F1 Classic1Camel.jpg,../upload/MYFEET Sandal MyFeet F1 Classic2Camel.jpg,../upload/MYFEET Sandal MyFeet F1 Classic3Camel.jpg', '38,39,41,42', 'Sandals'),
+(104, 'Nike Wildhorse 7', '3', '1799000', 'Turqoise', 'Take on those tough and extreme trail runs with the rugged build of the Nike Wildhorse 7.Confidently take on rocky terrain with high-abrasion rubber on the outsole that adds durable traction.', '../upload/Nike Wildhorse 71Turqoise.png,../upload/Nike Wildhorse 72Turqoise.png,../upload/Nike Wildhorse 73Turqoise.png', '39,40,41,43', 'Sports'),
+(105, 'Nike ZoomX Vaporfly Next 2', '1', '3209000', 'Black', 'Continue the next evolution of speed with a racing shoe made to help you chase new goals and records. It helps improve comfort and breathability with a redesigned upper.', '../upload/Nike ZoomX Vaporfly Next 21Black.png,../upload/Nike ZoomX Vaporfly Next 22Black.png,../upload/Nike ZoomX Vaporfly Next 23Black.png', '40,41,42', 'Sports'),
+(106, 'Nike Revolution 6 Next Nature', '3', '799000', 'Red', 'Here is to new beginnings between you and the tarmac.Lace up the 100% recycled laces and set the pace at the start of your running journey with the plush feel of the Nike Revolution 6 Next Nature.', '../upload/Nike Revolution 6 Next Nature1Red.png,../upload/Nike Revolution 6 Next Nature2Red.png,../upload/Nike Revolution 6 Next Nature3Red.png', '40,41,42', 'Sports'),
+(107, 'Nike Zoom Mamba V', '4', '1799000', 'Barely Volt', 'Designed specifically for the steeplechase, the Nike Zoom Mamba V delivers traction and a secure fit in wet conditions.', '../upload/Nike Zoom Mamba V1Barely Volt.png,../upload/Nike Zoom Mamba V2Barely Volt.png,../upload/Nike Zoom Mamba V3Barely Volt.png', '38,39,41,42', 'Sports'),
+(108, 'ULTRABOOST 20 EXPLORER SHOES', '3', '3200000', 'White and Black', 'Even with its innovative design and legendary technology, the vision behind Ultraboost is quite simple — comfort. Lace into these adidas running shoes and find it wherever the day takes you. Boost cushioning fuels every step with energy.', '../upload/ULTRABOOST 20 EXPLORER SHOES1White and Black.jpg,../upload/ULTRABOOST 20 EXPLORER SHOES2White and Black.jpg,../upload/ULTRABOOST 20 EXPLORER SHOES3White and Black.jpg', '39,41,42,44', 'Sports'),
+(109, 'ULTRABOOST 5.0 DNA SHOES', '5', '2800000', 'Black and Red', 'Comfort that is rooted in running meets effortless style in these adidas Ultraboost 5.0 DNA Shoes. Boost cushioning turns up the energy return so you can look good and feel great all day. The adidas Primeknit upper is stretchy and supportive.', '../upload/ULTRABOOST 5.0 DNA SHOES1Black and Red.jpg,../upload/ULTRABOOST 5.0 DNA SHOES2Black and Red.jpg,../upload/ULTRABOOST 5.0 DNA SHOES3Black and Red.jpg', '39,42,43,44', 'Sports'),
+(110, 'PUREBOOST 21 SHOES', '6', '2000000', 'Black and Grey', 'A training plan is only as good as the effort you put into its execution. These adidas running shoes support your dedication with the incredible energy-return of Boost.', '../upload/PUREBOOST 21 SHOES1Black and Grey.jpg,../upload/PUREBOOST 21 SHOES2Black and Grey.jpg,../upload/PUREBOOST 21 SHOES3Black and Grey.jpg', '39,40,42,44', 'Sports'),
+(111, 'New Balance Fresh Foam 1080v11', '10', '2158481', 'Deep Ocean', 'Our Fresh Foam 1080v11 provides luxurious comfort for the long run. This soft, plush shoe features responsive underfoot Fresh Foam partnered perfectly with a soft, selectively stretchy knit upper offering 360-degree comfort for high mileage. ', '../upload/New Balance Fresh Foam 1080v111Deep Ocean.jpg,../upload/New Balance Fresh Foam 1080v112Deep Ocean.jpg,../upload/New Balance Fresh Foam 1080v113Deep Ocean.jpg', '39,40,41,42', 'Sports'),
+(112, 'New Balance FuelCell RC Elite v2', '3', '3237793', 'Pink', 'The FuelCell RC Elite v2 is designed to give you a competitive edge on race day. This lightweight men’s running shoe features our high-rebound FuelCell midsole compound paired with a full-length carbon fiber plate to help promote energy return.', '../upload/New Balance FuelCell RC Elite v21Pink.jpg,../upload/New Balance FuelCell RC Elite v22Pink.jpg,../upload/New Balance FuelCell RC Elite v23Pink.jpg', '38,41,42,44', 'Sports'),
+(113, 'New Balance Made in USA 990v5', '3', '2662160', 'Grey', 'Proof that quality still exists, our Made in the USA 990v5 is the ultimate blend of performance and style. Made without compromise, the 990v5 is a staple of both morning runs and fashion runways.', '../upload/New Balance Made in USA 990v51Grey.jpg,../upload/New Balance Made in USA 990v52Grey.jpg,../upload/New Balance Made in USA 990v53Grey.jpg', '38,39,40,41,42,43,44', 'Sports');
 
 -- --------------------------------------------------------
 
@@ -126,7 +178,7 @@ INSERT INTO `item` (`id_item`, `item_nama`, `item_stock`, `item_price`, `item_co
 --
 
 DROP TABLE IF EXISTS `order`;
-CREATE TABLE `order` (
+CREATE TABLE IF NOT EXISTS `order` (
   `id_order` varchar(150) NOT NULL,
   `id_user` varchar(150) NOT NULL,
   `harga_total` varchar(150) NOT NULL,
@@ -142,12 +194,13 @@ CREATE TABLE `order` (
 --
 
 DROP TABLE IF EXISTS `ordered_item`;
-CREATE TABLE `ordered_item` (
+CREATE TABLE IF NOT EXISTS `ordered_item` (
   `id_order` int(100) NOT NULL,
   `id_item` int(100) NOT NULL,
   `item_price` int(100) NOT NULL,
   `quantity` int(100) NOT NULL,
-  `item_size` int(100) NOT NULL
+  `item_size` int(100) NOT NULL,
+  PRIMARY KEY (`id_order`,`id_item`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -157,13 +210,14 @@ CREATE TABLE `ordered_item` (
 --
 
 DROP TABLE IF EXISTS `review`;
-CREATE TABLE `review` (
-  `id_review` int(100) NOT NULL,
+CREATE TABLE IF NOT EXISTS `review` (
+  `id_review` int(100) NOT NULL AUTO_INCREMENT,
   `id_item` int(100) NOT NULL,
   `id_user` int(100) NOT NULL,
   `stars` int(100) NOT NULL,
   `title` varchar(100) NOT NULL,
-  `comment` varchar(255) NOT NULL
+  `comment` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_review`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -173,13 +227,16 @@ CREATE TABLE `review` (
 --
 
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
-  `id_user` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `user` (
+  `id_user` int(10) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(100) NOT NULL,
   `user_password` varchar(100) NOT NULL,
   `user_email` varchar(100) NOT NULL,
-  `user_phone` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `user_phone` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_user`),
+  UNIQUE KEY `user_email` (`user_email`),
+  UNIQUE KEY `user_phone` (`user_phone`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
@@ -196,11 +253,12 @@ INSERT INTO `user` (`id_user`, `user_name`, `user_password`, `user_email`, `user
 --
 
 DROP TABLE IF EXISTS `wishlist`;
-CREATE TABLE `wishlist` (
-  `id_wishlist` int(100) NOT NULL,
+CREATE TABLE IF NOT EXISTS `wishlist` (
+  `id_wishlist` int(100) NOT NULL AUTO_INCREMENT,
   `id_item` int(100) NOT NULL,
-  `id_user` int(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_user` int(100) NOT NULL,
+  PRIMARY KEY (`id_wishlist`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `wishlist`
@@ -208,82 +266,6 @@ CREATE TABLE `wishlist` (
 
 INSERT INTO `wishlist` (`id_wishlist`, `id_item`, `id_user`) VALUES
 (1, 2, 1);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `discount`
---
-ALTER TABLE `discount`
-  ADD PRIMARY KEY (`id_discount`);
-
---
--- Indexes for table `item`
---
-ALTER TABLE `item`
-  ADD PRIMARY KEY (`id_item`);
-
---
--- Indexes for table `ordered_item`
---
-ALTER TABLE `ordered_item`
-  ADD PRIMARY KEY (`id_order`,`id_item`);
-
---
--- Indexes for table `review`
---
-ALTER TABLE `review`
-  ADD PRIMARY KEY (`id_review`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`),
-  ADD UNIQUE KEY `user_email` (`user_email`),
-  ADD UNIQUE KEY `user_phone` (`user_phone`);
-
---
--- Indexes for table `wishlist`
---
-ALTER TABLE `wishlist`
-  ADD PRIMARY KEY (`id_wishlist`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `discount`
---
-ALTER TABLE `discount`
-  MODIFY `id_discount` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `item`
---
-ALTER TABLE `item`
-  MODIFY `id_item` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
-
---
--- AUTO_INCREMENT for table `review`
---
-ALTER TABLE `review`
-  MODIFY `id_review` int(100) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `wishlist`
---
-ALTER TABLE `wishlist`
-  MODIFY `id_wishlist` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
