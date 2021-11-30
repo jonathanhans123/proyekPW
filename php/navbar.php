@@ -46,9 +46,9 @@
                                                 $itemnavbar = $conn->query("select * from item where id_item=$id_itemnavbar")->fetch_assoc();
                                                 $imagenavbar = explode(",",$itemnavbar["imageurl"]);
                                                 $image1navbar = $imagenavbar[0];
-                                                echo '<button type="button" class="btn-close text-reset"></button>
+                                                echo '<button type="button" class="btn-close text-reset" id="deleteorder"></button>
                                                 
-                                                <div style="width:100%;height:100px;margin-bottom:30px;">
+                                                <div style="width:100%;height:100px;margin-bottom:40px;">
                                                 <div style="width:100px;height:100px;float:left;"><img src="'.$image1navbar.'" alt=""></div>
                                                 <div style="margin-left:150px">
                                                     <label style="font-weight:bold;font-size:lager">'.$itemnavbar["item_nama"].' ~ '.$itemnavbar["item_color"].'</label><br>
@@ -128,18 +128,35 @@
                         $( "#search" ).val("" + suggestion.buah);
                     }
                 });
-            });
-            $(document).on("click",".checkout",function(){
-                $.ajax({
-                    type:"post",
-                    url:"controller.php",
-                    data:{
-                        'action':'gotocheckout'
-                    },
-                    success:function(response){
-                        $(".container-fluid").append(response);
-                        $(".container").append(response);
-                    }
+                $(document).on("click",".checkout",function(){
+                    $.ajax({
+                        type:"post",
+                        url:"controller.php",
+                        data:{
+                            'action':'gotocheckout'
+                        },
+                        success:function(response){
+                            $(".container-fluid").append(response);
+                            $(".container").append(response);
+                        }
+                    });
+                });
+                $(document).on("click","#deleteorder",function(){
+                    var index = $(this).index()/2;
+                    console.log(index);
+                    $.ajax({
+                        type:"post",
+                        url:"controller.php",
+                        data:{
+                            'action':'deleteorder',
+                            'index':index
+                        },
+                        success:function(response){
+                            $(".offcanvas-body").html("");
+                            $(".offcanvas-body").append(response);
+                        }
+                    });
                 });
             });
+            
         </script>

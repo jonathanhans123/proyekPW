@@ -3,6 +3,7 @@
     if (!isset($_REQUEST["detail"])){
         header("Location:../php/user.php");
     }
+    
     $id_order = $_REQUEST["index"];
     $order = $conn->query("SELECT * FROM `order` where id_order='$id_order'")->fetch_assoc();
     $ordered_item = $conn->query("SELECT * FROM `ordered_item` where id_order='$id_order'")->fetch_all(MYSQLI_ASSOC);
@@ -26,7 +27,44 @@
     <div class="container-fluid">
         <?php require_once("navbar.php"); ?>
 
-        
+        <div class="info">
+            <p>Order Placed <br><strong><?php echo date("d-M-Y",strtotime($order["tanggal_order"])); ?></strong></p>
+            <p>Status <br><strong><?php echo $order["status"]; ?></strong></p>
+            <p>Total <br><strong>Rp. <?php echo number_format($order["harga_total"],2); ?>,-</strong></p>
+            <p>Shipment <br><strong><?php echo $order["address"]; ?></strong></p>
+            <p>Order ID <br><strong><?php echo $order["id_order"]; ?></strong></p>
+        </div>
+        <table>
+            <tr>
+                <td>Item ID</td>
+                <td>Item Name</td>
+                <td>Quantity</td>
+                <td>Size</td>
+                <td>Price</td>
+            </tr>
+            <?php
+            foreach($ordered_item as $key=>$value){
+                $temp = $value["id_item"];
+                $item = $conn->query("select * from item where id_item=$temp")->fetch_assoc();
+                echo '<tr>
+                <td>ITEM'.$value["id_item"].'</td>
+                <td>'.$item["item_nama"].'</td>
+                <td>'.$value["quantity"].'</td>
+                <td>'.$value["item_size"].'</td>
+                <td>'.$value["item_price"].'</td>
+            </tr>';
+            }
+            ?>
+        </table>
+        <div class="wrap">
+            <form action="trackorder.php" method="post">
+                <input type="hidden" name="index" value="<?php echo $id_order; ?>">
+                <input type="submit" value="Track Order" name="track">
+            </form>
+            <form action="user.php" method="post">
+                <input type="submit" value="Back to Order History">
+            </form>
+        </div>
     </div>
     <?php require_once("footer.php"); ?>
 </body>
