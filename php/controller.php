@@ -482,5 +482,15 @@
         echo '</div>
         <div class="checkout">Checkout</div>';
     }
+    else if ($action=="addreview"){
+        $id_item = $_REQUEST["id_item"];
+        $comment = $_REQUEST["comment"];
+        $star = $_REQUEST["star"];
+
+        $stmt = $conn->prepare("INSERT INTO `review`(id_item,id_user,stars,comment) VALUES(?,?,?,?)");
+        $stmt->bind_param("iiis",$id_item,$_SESSION["auth"]["id_user"],$star,$comment);
+        $stmt->execute();
+        echo '<script>alert("Thank you for rating and reviewing our product");</script>';
+    }
 
 ?>

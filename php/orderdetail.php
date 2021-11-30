@@ -41,18 +41,29 @@
                 <td>Quantity</td>
                 <td>Size</td>
                 <td>Price</td>
+                <?php
+                if ($order["status"]=="Finished"){
+                    echo '<td>Action</td>';
+                }
+                ?>
             </tr>
             <?php
             foreach($ordered_item as $key=>$value){
                 $temp = $value["id_item"];
                 $item = $conn->query("select * from item where id_item=$temp")->fetch_assoc();
+                $item_name = str_replace(' ','+',$item["item_nama"]);
+                $item_color = str_replace(' ','+',$item["item_color"]);
+                
                 echo '<tr>
                 <td>ITEM'.$value["id_item"].'</td>
                 <td>'.$item["item_nama"].'</td>
                 <td>'.$value["quantity"].'</td>
                 <td>'.$value["item_size"].'</td>
-                <td>'.$value["item_price"].'</td>
-            </tr>';
+                <td>'.$value["item_price"].'</td>';
+                if ($order["status"]=="Finished"){
+                    echo '<td><a href="../php/productpage.php?item_name='.$item_name.'&item_color='.$item_color.'"><input type="submit" value="Review" id="review"></a></td>';
+                }
+            echo '</tr>';
             }
             ?>
         </table>
@@ -67,5 +78,12 @@
         </div>
     </div>
     <?php require_once("footer.php"); ?>
+    <script>
+        $(document).ready(function () {
+            $(document).on("click",".review", function () {
+                
+            });
+        });
+    </script>
 </body>
 </html>

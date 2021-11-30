@@ -1,11 +1,17 @@
 <?php
     require_once("koneksi.php");
 
-    $item_nama = $_REQUEST["item_name"];
-    $item_color = $_REQUEST["item_color"];
-    $item = $conn->query("select * from item where item_nama='$item_nama' and item_color='$item_color'")->fetch_assoc();
-    $ukuran = explode(",",$item["item_size"]);
-    $image = explode(",",$item["imageurl"]);
+    if (isset($_REQUEST["item_name"])&&isset($_REQUEST["item_color"])){
+        $item_nama = $_REQUEST["item_name"];
+        $item_color = $_REQUEST["item_color"];
+        $item = $conn->query("select * from item where item_nama='$item_nama' and item_color='$item_color'")->fetch_assoc();
+        $id_item = $item["id_item"];
+        $ukuran = explode(",",$item["item_size"]);
+        $image = explode(",",$item["imageurl"]);
+        $review = $conn->query("SELECT * FROM `review` WHERE id_item=$id_item")->fetch_all(MYSQLI_ASSOC);
+    }else{
+        header("Location:../php/index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +27,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="../java/java.js"></script>
+    <script src="../java/rater.min.js"></script>
+
     <style>
         *{
             margin: 0;
@@ -28,9 +36,10 @@
         .main{
             margin-top: 50px;
             width: 100%;
-            height: 600px;
+            height: auto;
             background-color: white;
             margin-bottom: 50px;
+            padding-bottom: 15%;
         }
 
         .submain{
@@ -152,7 +161,7 @@
         }
         .ratingtiapprofile{
             width: 100%;
-            height: 280px;
+            height: auto;
             background-color: white;
             padding-top: 20px;
             padding-left: 20px;
@@ -250,30 +259,113 @@
 
             </div>
         </div>
-        <div class="review">
-            <textarea name="comment" id="comment" placeholder="Rate Your Shoes"></textarea>
-        
-            <div class="rating">
-                <div class="ratingtiapprofile"> 
-                    <div class="profilepicture"><div class="sx" style="text-align:center;margin-top: 25px; color: grey;"></div><img src="../icon/veri.png" style="width: 30px;height: 30px;margin-left: 54px; object-fit:contain;"></div>
-                    <label class="profilename">ryan reynaldi pratama</label>
-                    <label class="verifiedbuyer"> Verified Buyer</label><br>
-                    <label class="country">United States</label>
-                    <div style="height: 20px;"><img src="../icon/star.png" id="star" style="margin-left: 20px;"></div>
-                    <div style="clear: both;"></div>
-                    <b>Not Sure</b><br>
-                    <p>aidsjoiasjido</p>
-                    <p>asduasd</p>
-                    <hr color="#ccc">
-                </div>
-            </div>
+        <div class="review" style="margin-bottom:200px;">
+            <center><h1>Reviews</h1></center>
+            <?php
+                $temp = $_SESSION["auth"]["id_user"];
+                $orders = $conn->query("SELECT * FROM `order` where id_user=$temp")->fetch_all(MYSQLI_ASSOC);
+                $bought = false;
+                foreach($orders as $key=>$value){
+                    $temp = $value["id_order"];
+                    $ordered_item = $conn->query("SELECT * FROM `ordered_item` where id_order='$temp' and id_item=$id_item")->fetch_assoc();
+                    if (!empty($ordered_item)){
+                        $bought = true;
+                    }
+                }
+                $reviewed = false;
+                $temp = $_SESSION["auth"]["id_user"];
+
+                $reviewcheck = $conn->query("SELECT * FROM `review` WHERE `id_item`=$id_item and `id_user`=$temp")->fetch_all(MYSQLI_ASSOC);
+                if (!empty($reviewcheck)){
+                    $reviewed = true;
+                }
+                if (!$reviewed&&$bought){
+                    echo '<div class="starrating" style="font-size:30pt;margin-left:5%;color:rgb(255,215,00);"></div>
+                    <div class="wrapper" style="margin-bottom:5%;overflow:hidden;">
+                        <textarea name="comment" id="comment" placeholder="Rate Your Shoes" style="float:left"></textarea>
+                        <input type="submit" id="reviewconfirm" value="&#8594;" style="height:50px;margin-top:12px;margin-left:1%;border-radius:20%;float:left;">
+                        <input type="hidden" id="index_item" value="'. $item["id_item"].'">
+                    </div>';
+                }
+            ?>
+            
+            <?php 
+            if (!empty($review)){
+                foreach($review as $key=>$value){
+                    $temp = $value["id_user"];
+                    $user = $conn->query("select * from user where id_user=$temp")->fetch_assoc();
+                    $star = $value["stars"];
+                    $starempty = 5 - $value["stars"];
+                    echo '<div class="rating">
+                        <div class="ratingtiapprofile"> 
+                            <div class="profilepicture">
+                                <div class="sx" style="text-align:center;margin-top: 25px; color: grey;"></div>
+                                <img src="../icon/veri.png" style="width: 30px;height: 30px;margin-left: 54px; object-fit:contain;">
+                            </div>
+                            <label class="profilename">'.$user["user_name"].'</label>
+                            <label class="verifiedbuyer"> Verified Buyer</label><br>
+                            <div style="height: auto;color:rgb(255,215,00);font-size:20pt;margin-left:10%;overflow:hidden;">';
+                            for ($i=0;$i<$star;$i++){
+                                echo '&#9733;';
+                            }
+                            for ($i=0;$i<$starempty;$i++){
+                                echo '&#9734;';
+                            }
+                            echo '</div>
+                            <div style="clear: both;"></div>
+                            <p>'.$value["comment"].'</p>
+                            <hr color="#ccc">
+                        </div>
+                    </div>';
+                }
+            }else{
+                echo '<h1><center>No reviews yet!</center></h1>';
+            }
+            ?>
         </div>
-</div>
-        <?php require_once("footer.php"); ?>
     </div>
+
+        <?php require_once("footer.php"); ?>
+</div>
 </body>
 <script>
     $(document).ready(function(){
+        var options = {
+            max_value: 5,
+            step_size: 1,
+            initial_value: 0,
+            selected_symbol_type: 'utf8_star', // Must be a key from symbols
+            cursor: 'default',
+            readonly: false,
+            change_once: false
+        }
+
+        $(".starrating").rate(options);
+        $(document).on("click","#reviewconfirm", function () {
+            var id_item = $("#index_item").val();
+            var comment = $("#comment").val();
+            var star = $(".starrating").rate("getValue");
+            if (comment!=""&&star!=0){
+                $.ajax({
+                    type:"post",
+                    url:"controller.php",
+                    data:{
+                        'action':'addreview',
+                        'id_item':id_item,
+                        'comment':comment,
+                        'star':star
+                    },
+                    success:function(response){
+                        $(".container-fluid").append(response);
+                        location.reload();
+                    }
+                });
+            }else{
+                alert("Rate and Comment first!");
+            }
+        });
+
+
         var text =$(".profilename").text();
         if (/\s/.test($(".profilename").text())) {
             
@@ -323,6 +415,7 @@
                     },
                     success:function(response){
                         $(".container-fluid").append(response);
+                    
                     }
                 });
             }else{
