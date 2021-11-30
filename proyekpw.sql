@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2021 at 07:23 AM
+-- Generation Time: Nov 30, 2021 at 01:02 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -30,13 +30,12 @@ USE `proyekpw`;
 --
 
 DROP TABLE IF EXISTS `discount`;
-CREATE TABLE IF NOT EXISTS `discount` (
-  `id_discount` int(100) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `discount` (
+  `id_discount` int(100) NOT NULL,
   `id_item` int(100) NOT NULL,
   `value` int(10) NOT NULL,
-  `discount_type` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_discount`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+  `discount_type` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `discount`
@@ -52,8 +51,8 @@ INSERT INTO `discount` (`id_discount`, `id_item`, `value`, `discount_type`) VALU
 --
 
 DROP TABLE IF EXISTS `item`;
-CREATE TABLE IF NOT EXISTS `item` (
-  `id_item` int(100) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `item` (
+  `id_item` int(100) NOT NULL,
   `item_nama` varchar(100) NOT NULL,
   `item_stock` varchar(100) NOT NULL,
   `item_price` varchar(100) NOT NULL,
@@ -61,9 +60,8 @@ CREATE TABLE IF NOT EXISTS `item` (
   `item_desc` varchar(250) NOT NULL,
   `imageurl` varchar(10000) NOT NULL,
   `item_size` varchar(100) NOT NULL,
-  `item_cate` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_item`)
-) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8mb4;
+  `item_cate` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `item`
@@ -84,14 +82,14 @@ INSERT INTO `item` (`id_item`, `item_nama`, `item_stock`, `item_price`, `item_co
 (24, 'The North Face Men M Thermoball Boot-NF0A4OAIV75', '14', '1645000', 'Dark Brown', '-Lightweight ThermoBall™ Eco\r\n-Water-resistant\r\n-PU-coated medial zipper for easy on/off\r\n-OrthoLite® Eco LT™ footbed\r\n-Material: 100% recycled PET (non-PFC DWR)', '../upload/The North Face Men M Thermoball Boot-NF0A4OAIV751.jpg,../upload/The North Face Men M Thermoball Boot-NF0A4OAIV752.jpg,../upload/The North Face Men M Thermoball Boot-NF0A4OAIV753.jpg', '39,41,42,43', 'Boots'),
 (25, 'The North Face Men Thermoball Boot Zip Up Black Grey-NF0A4OAIKZ2', '2', '3290000', 'Black and Gray', '- 100% recycled PET\n- Lightweight ThermoBall™ Eco insulation \n- Water-resistant\n- PU-coated medial zipper \n- OrthoLite® Eco LT™ footbed\n- UPPER: Waterproof, PU-coated leather upper \n- SOLE UNIT: Lightweight, injection-molded, ground-contact EVA', '../upload/The North Face Men Thermoball Boot Zip Up Black Grey-NF0A4OAIKZ21.jpg,../upload/The North Face Men Thermoball Boot Zip Up Black Grey-NF0A4OAIKZ22.jpg,../upload/The North Face Men Thermoball Boot Zip Up Black Grey-NF0A4OAIKZ23.jpg', '38,39,40,41,42', 'Boots'),
 (26, 'Timberland Men White Ledge Mid Waterproof Ankle Boot', '11', '1294455', 'Black', '100% Leather\r\nImported\r\nRubber sole\r\nOur White Ledge Men Hiking Boots have premium full-grain waterproof leather uppers, seam-sealed waterproof construction, and rustproof speed lace hardware with hooks at top for secure lacing.', '../upload/Timberland Men White Ledge Mid Waterproof Ankle Boot1.jpg,../upload/Timberland Men White Ledge Mid Waterproof Ankle Boot2.jpg,../upload/Timberland Men White Ledge Mid Waterproof Ankle Boot3.jpg', '39,40,42', 'Boots'),
-(27, 'Timberland Men Classic Boot Ankle', '10', '2158625', 'Wheat Nubuck', '100% Leather\r\nImported\r\nRubber sole\r\nPlatform measures approximately .05 inches\r\nUpper made with premium leather from an LWG Silver-rated tannery\r\nSeam-sealed construction with rustproof hardware for long-lasting wear\r\n400 Grams Of PrimaLoft insulati', '../upload/Timberland Men Classic Boot Ankle1Wheat Nubuck.jpg,../upload/Timberland Men Classic Boot Ankle2Wheat Nubuck.jpg,../upload/Timberland Men Classic Boot Ankle4Wheat Nubuck.jpg', '38,40,42', 'Boots'),
+(27, 'Timberland Men Classic Boot Ankle', '10', '2158625', 'Wheat Nubuck', '100% Leather\r\nImported\r\nRubber sole\r\nPlatform measures approximately .05 inches\r\nUpper made with premium leather from an LWG Silver-rated tannery\r\nSeam-sealed construction with rustproof hardware for long-lasting wear\r\n400 Grams Of PrimaLoft insulati', '../upload/Timberland Men Classic Boot Ankle1Wheat Nubuck.jpg,../upload/Timberland Men Classic Boot Ankle2Wheat Nubuck.jpg,../upload/Timberland Men Classic Boot Ankle3Wheat Nubuck.jpg', '38,40,42', 'Boots'),
 (28, 'Timberland Men Flume Mid Waterproof Hiking Boot', '15', '1295175', 'Dark Brown', '100% Premium full-grain waterproof leather\r\nImported\r\nRubber sole\r\nBoot opening measures approximately 8 around\r\nPremium full-grain waterproof leather uppers for durability\r\nWaterproof seam-sealed construction keeps feet dry', '../upload/Timberland Men Flume Mid Waterproof Hiking Boot1Dark Brown.jpg,../upload/Timberland Men Flume Mid Waterproof Hiking Boot2Dark Brown.jpg,../upload/Timberland Men Flume Mid Waterproof Hiking Boot3Dark Brown.jpg', '40,41,42', 'Boots'),
 (29, 'Timberland 6 Premium Boot', '5', '1599522', 'Burgundy', 'Upper Material - Nubuck\nSole Material - Rubber\nPrimaloft lined\nWaterproof\nEmbroidered logo to side of heel\nBranding to the sole', '../upload/Timberland 6 Premium Boot1Burgundy.jpg,../upload/Timberland 6 Premium Boot2Burgundy.jpg,../upload/Timberland 6 Premium Boot3Burgundy.jpg', '41,43', 'Boots'),
 (30, 'Red Wing Heritage Men Classic Moc 6 Boot', '24', '3813426', 'Copper Rough and Tough', '100% Leather\r\nMade in USA\r\nMan Made sole\r\nLeather ankle boot featuring lace-up vamp and contrast-stitched moccasin toe\r\nMost customers buy Red Wing Heritage footwear 1/2 size smaller than their normal size\r\n80-inch Chestnut Leather Lace\r\nStyle No. 19', '../upload/Red Wing Heritage Men Classic Moc 6 Boot1Copper Rough and Tough.jpg,../upload/Red Wing Heritage Men Classic Moc 6 Boot2Copper Rough and Tough.jpg,../upload/Red Wing Heritage Men Classic Moc 6 Boot3Copper Rough and Tough.jpg', '38,39,40', 'Boots'),
 (31, 'Red Wing Men Iron Ranger 6 Boot', '10', '4605066', 'Amber Harness', '100% Leather\r\nMade in USA\r\nNitrile Cork sole\r\nThe product is natural leather and its easy for scuffs to happen but they rub out.This can be removed by a soft dry cloth and lightly buffed out the scuffs.\r\nMany customers size down ½ to 1 full size.', '../upload/Red Wing Men Iron Ranger 6 Boot1Amber Harness.jpg,../upload/Red Wing Men Iron Ranger 6 Boot2Amber Harness.jpg,../upload/Red Wing Men Iron Ranger 6 Boot3Amber Harness.jpg', '38,40,42', 'Boots'),
-(32, 'Red Wing Heritage Men Blacksmith Vibram Boot', '10', '4604922', 'Copper Rough and Tough', '100% Leather\r\nMade in US\r\nMan Made sole\r\nLeather ankle boot featuring classic round toe styling with triple stitched quality and Goodyear welt construction\r\nStyle No. 3343,Shank: Steel\r\nVibram 430 Mini-lug outsole', '../upload/Red Wing Heritage Men Blacksmith Vibram Boot1Copper Rough and Tough.jpg,../upload/Red Wing Heritage Men Blacksmith Vibram Boot2Copper Rough and Tough.jpg../upload/Red Wing Heritage Men Blacksmith Vibram Boot3Copper Rough and Tough.jpg', '38,39,42', ''),
+(32, 'Red Wing Heritage Men Blacksmith Vibram Boot', '10', '4604922', 'Copper Rough and Tough', '100% Leather\r\nMade in US\r\nMan Made sole\r\nLeather ankle boot featuring classic round toe styling with triple stitched quality and Goodyear welt construction\r\nStyle No. 3343,Shank: Steel\r\nVibram 430 Mini-lug outsole', '../upload/Red Wing Heritage Men Blacksmith Vibram Boot1Copper Rough and Tough.jpg,../upload/Red Wing Heritage Men Blacksmith Vibram Boot2Copper Rough and Tough.jpg../upload/Red Wing Heritage Men Blacksmith Vibram Boot3Copper Rough and Tough.jpg', '', ''),
 (33, 'ADIDAS nizza rf slip shoes', '15', '1000000', 'Black', '- adidas originals\r\n- Slip on sneakers nuansa monokrom untuk effortless urban\r\n- Warna core black (hitam)\r\n- Upper kanvas\r\n- Insole tekstil\r\n- Rubber outsole\r\n- Side gusset elastis\r\n- Round toe\r\n- Produk unisex', '../upload/ADIDAS nizza rf slip shoes1Black.jpg,../upload/ADIDAS nizza rf slip shoes2Black.jpg,../upl', '39,40,42', 'Slip-on'),
-(34, 'ADIDAS 3MC Slip x Disney Sport Goofy Shoes', '5', '1199999', 'Cream', '- Sepatu model laid-back yang cocok untuk jalan maupun sepatu harian.\r\n- Slip-on construction, Suede upper, Abrasion-resistance Adituff toe, Skate-inspired shoes with a disney print, Grippy, Flexible geoflex tread.\r\n- Persediaan Terbatas', '../upload/3MC Slip x Disney Sport Goofy Shoes1Cream.jpg,../upload/3MC Slip x Disney Sport Goofy Shoe', '39,41', 'Slip-on'),
+(34, 'ADIDAS 3MC Slip x Disney Sport Goofy Shoes', '5', '1199999', 'Cream', '- Sepatu model laid-back yang cocok untuk jalan maupun sepatu harian.\r\n- Slip-on construction, Suede upper, Abrasion-resistance Adituff toe, Skate-inspired shoes with a disney print, Grippy, Flexible geoflex tread.\r\n- Persediaan Terbatas', '../upload/3MC Slip x Disney Sport Goofy Shoes1Cream.jpg,../upload/3MC Slip x Disney Sport Goofy Shoes2Cream.jpg,../upload/3MC Slip x Disney Sport Goofy Shoes3Cream.jpg', '39,41', 'Slip-on'),
 (35, 'ADIDAS Originals womens Superstar Slip-On Shoes', '16', '2445722', 'Black/White/Gold Metallic', '100% Nylon\r\nRubber sole\r\nadidas Originals female sneaker\r\nAdidas is the original sports brand, Driven by innovation and a bias to action. We are creators, makers and doers\r\nNo matter how serious you are about sports – a sporting Lifestyle does not en', '../upload/ADIDAS Originals womens Superstar Slip-On Shoes1Black/White/Gold Metallic.jpg,../upload/AD', '39,41,42', 'Slip-on'),
 (36, 'Vans Classic Slip-On', '10', '999000', 'Black and Red', '- Slip on sneakers dengan detail motif kombinasi yang modern\r\n- Multiwarna\r\n- Kanvas upper\r\n- Insole tekstil\r\n- Rubber outsole\r\n- Side gusset elastis\r\n- Round toe', '../upload/Vans Classic Slip-On1Black and Red.jpg,../upload/Vans Classic Slip-On2Black and Red.jpg,..', '38,40', 'Slip-on'),
 (37, 'Vans Classic Slip-On 98 Dx', '5', '1099000', 'Checkboard', '- Slip-on sneakers dengan detail chekerboard print yang ikonik\r\n- Kombinasi warna hitam dan putih\r\n- Upper kanvas\r\n- Insole tekstil\r\n- Rubber outsole\r\n- Detail padding pada bagian collar untuk kenyamanan\r\n- Side gusset elastis\r\n- Round toe\r\n- Produk ', '../upload/Vans Classic Slip-On 98 Dx1Checkboard.jpg,../upload/Vans Classic Slip-On 98 Dx2Checkboard.', '39,40,42', 'Slip-on'),
@@ -108,15 +106,15 @@ INSERT INTO `item` (`id_item`, `item_nama`, `item_stock`, `item_price`, `item_co
 (48, 'ADIDAS Men Terrex Trailmaker Gore-tex Hiking Walking Shoe', '10', '1095430', 'Core Black/Core Black/Dark Grey Heather', 'Rubber sole\r\nadidas Adult Walking Shoe', '../upload/ADIDAS Men Terrex Trailmaker Gore-tex Hiking Walking Shoe1Core Black/Core Black/Dark Grey ', '39,41,43,44', 'Hiking'),
 (49, 'ADIDAS Men Terrex Eastrail Hiking Shoes', '10', '2014572', 'Carbon/Black/Grey Five', '100% Textile Synthetics\r\nRubber sole\r\nMen hiking shoes with cushioning and traction for rugged terrain\r\nRegular fit; Weight: 350 g (size 9)\r\nMesh and synthetic upper is soft and durable\r\nEVA midsole for lightweight cushioning\r\nTraxion outsole for opt', '../upload/ADIDAS Men Terrex Eastrail Hiking Shoes1Carbon/Black/Grey Five.jpg,../upload/ADIDAS Men Te', '38,39,41,44', 'Hiking'),
 (50, 'ADIDAS Men Terrex Free Hiker Hiking Boot', '11', '2414062', 'Core Black/Carbon/White', 'Synthetic-and-mesh\r\nImported\r\nRubber sole\r\nMale terrex free hiker\r\nThe adidas brand has a long history and deep-rooted Connection with sport.', '../upload/ADIDAS Men Terrex Free Hiker Hiking Boot1Core Black/Carbon/White.jpg,../upload/ADIDAS Men ', '38,40,43,44', 'Hiking'),
-(51, 'Clarks Men Tilden Cap Oxford Shoe', '20', '2095593', 'Black Leather', '100% Leather\r\nImported\r\nThermoplastic Elastomers sole\r\nThese smart men shoes with a square cap toe toe are crafted from a premium leather\r\nStretch Gore Panels for a Flexible Fit\r\nOrtholite footbed that softens impact and wicks away moisture', '../upload/Clarks Men Tilden Cap Oxford Shoe1Black Leather.jpg,../upload/Clarks Men Tilden Cap Oxford', '39,40,42,43', 'Oxford'),
-(52, 'Clarks Men Tilden Walk Oxford', '10', '2518971', 'Dark Tan Leather', '100% Leather\r\nImported\r\nSynthetic sole\r\nA shoe designed to take on the Monday through Friday grind\r\nStretch Gore Panels for a Flexible Fit\r\nOrtholite footbed that softens impact and wicks away moisture', '../upload/Clarks Men Tilden Walk Oxford1Dark Tan Leather.jpg,../upload/Clarks Men Tilden Walk Oxford', '38,40,42,44', 'Oxford'),
-(53, 'Clarks Men Touareg Vibe Oxford', '12', '1883904', 'Black Leather', '100% Leather\r\nImported\r\nSynthetic sole\r\nEasy care leather\r\nFlexible sole\r\nNon-marking outsole. PU Sole Material\r\nbreathable leather\r\ncomfort footbed', '../upload/Clarks Men Touareg Vibe Oxford1Black Leather.jpg,../upload/Clarks Men Touareg Vibe Oxford2', '40,42,44', 'Oxford'),
-(54, 'Clarks Men Whiddon Cap Oxford', '13', '2231154', 'Dark Tan Leather', 'fabric-and-synthetic\r\nImported\r\nRubber sole\r\nClarks Whiddon Cap lace-up oxford\r\nLeather upper\r\nRemovable Ortholite footbed that softens impact and wicks away moisture\r\nSynthetic sole is soft, flexible, and durable', '../upload/Clarks Men Whiddon Cap Oxford1Dark Tan Leather.jpg,../upload/Clarks Men Whiddon Cap Oxford', '38,39,40,42', 'Oxford'),
-(55, 'Eastland Women Sadie Oxford', '11', '2434353', 'Black/White', '100% Leather\r\nImported\r\nRubber sole\r\nHeel Height is 6/8 inch', '../upload/Eastland Women Sadie Oxford1Black/White.jpg,../upload/Eastland Women Sadie Oxford2Black/Wh', '39,40,41,43', 'Oxford'),
-(56, 'Eastland Women Plainview', '12', '2466876', 'Black', '100% Leather\r\nPlatform measures approximately 0.75 inches\r\nFull-grain leather upper\r\nRemovable insole\r\nPolyurethane outsole\r\nFabric', '../upload/Eastland Women Plainview1Black.jpg,../upload/Eastland Women Plainview2Black.jpg,../upload/', '38,39,40,42', 'Oxford'),
-(57, 'Eastland Men Plainview Oxford', '5', '956702', 'Black', '100% Leather\r\nManmade sole\r\nLeather upper\r\nRemovable cushioned insole\r\nFabric knit lining\r\nPolyurethane sole', '../upload/Eastland Men Plainview Oxford1Black.jpg,../upload/Eastland Men Plainview Oxford2Black.jpg,', '39,41,43,44', 'Oxford'),
-(58, 'Cole Haan Men Original grand Cloudfeel Energy Merid Sw Oxford', '5', '1062043', 'British Tan Full Grain', 'Made in USA or Imported\r\nRubber sole\r\nOxford with wingtip upper pattern in rich leather\r\nLined in moisture-wicking textile\r\nREBOUND TECHNOLOGY - engineered fusion of Cole Haan Rebound cushioning compound and Grandfoam.', '../upload/Cole Haan Men Original grand Cloudfeel Energy Merid Sw Oxford1British Tan Full Grain.jpg,.', '38,39,40,42,44', 'Oxford'),
-(59, 'Cole Haan Men Lenox Hill Cap Oxford', '10', '1007070', 'British Tan', '100% Leather\r\nImported\r\nRubber sole\r\nShaft measures approximately low-top from arch\r\nClassic lace-up oxford featuring blind eyelets and cap toe\r\nStacked heel', '../upload/Cole Haan Men Lenox Hill Cap Oxford1British Tan.jpg,../upload/Cole Haan Men Lenox Hill Cap', '38,40,41,44', 'Oxford'),
+(51, 'Clarks Men Tilden Cap Oxford Shoe', '20', '2095593', 'Black Leather', '100% Leather\r\nImported\r\nThermoplastic Elastomers sole\r\nThese smart men shoes with a square cap toe toe are crafted from a premium leather\r\nStretch Gore Panels for a Flexible Fit\r\nOrtholite footbed that softens impact and wicks away moisture', '../upload/Clarks Men Tilden Cap Oxford Shoe1Black Leather.jpg,../upload/Clarks Men Tilden Cap Oxford Shoe2Black Leather.jpg,../upload/Clarks Men Tilden Cap Oxford Shoe3Black Leather.jpg', '39,40,42,43', 'Oxford'),
+(52, 'Clarks Men Tilden Walk Oxford', '10', '2518971', 'Dark Tan Leather', '100% Leather\r\nImported\r\nSynthetic sole\r\nA shoe designed to take on the Monday through Friday grind\r\nStretch Gore Panels for a Flexible Fit\r\nOrtholite footbed that softens impact and wicks away moisture', '../upload/Clarks Men Tilden Walk Oxford1Dark Tan Leather.jpg,../upload/Clarks Men Tilden Walk Oxford2Dark Tan Leather.jpg,../upload/Clarks Men Tilden Walk Oxford3Dark Tan Leather.jpg', '38,40,42,44', 'Oxford'),
+(53, 'Clarks Men Touareg Vibe Oxford', '12', '1883904', 'Black Leather', '100% Leather\r\nImported\r\nSynthetic sole\r\nEasy care leather\r\nFlexible sole\r\nNon-marking outsole. PU Sole Material\r\nbreathable leather\r\ncomfort footbed', '../upload/Clarks Men Touareg Vibe Oxford1Black Leather.jpg,../upload/Clarks Men Touareg Vibe Oxford2Black Leather.jpg,../upload/Clarks Men Touareg Vibe Oxford3Black Leather.jpg', '40,42,44', 'Oxford'),
+(54, 'Clarks Men Whiddon Cap Oxford', '13', '2231154', 'Dark Tan Leather', 'fabric-and-synthetic\r\nImported\r\nRubber sole\r\nClarks Whiddon Cap lace-up oxford\r\nLeather upper\r\nRemovable Ortholite footbed that softens impact and wicks away moisture\r\nSynthetic sole is soft, flexible, and durable', '../upload/Clarks Men Whiddon Cap Oxford1Dark Tan Leather.jpg,../upload/Clarks Men Whiddon Cap Oxford2Dark Tan Leather.jpg,../upload/Clarks Men Whiddon Cap Oxford3Dark Tan Leather.jpg', '38,39,40,42', 'Oxford'),
+(55, 'Eastland Women Sadie Oxford', '11', '2434353', 'Black/White', '100% Leather\r\nImported\r\nRubber sole\r\nHeel Height is 6/8 inch', '../upload/Eastland Women Sadie Oxford1Black/White.jpg,../upload/Eastland Women Sadie Oxford2Black/White.jpg,../upload/Eastland Women Sadie Oxford3Black/White.jpg', '39,40,41,43', 'Oxford'),
+(56, 'Eastland Women Plainview', '12', '2466876', 'Black', '100% Leather\r\nPlatform measures approximately 0.75 inches\r\nFull-grain leather upper\r\nRemovable insole\r\nPolyurethane outsole\r\nFabric', '../upload/Eastland Women Plainview1Black.jpg,../upload/Eastland Women Plainview2Black.jpg,../upload/Eastland Women Plainview3Black.jpg', '38,39,40,42', 'Oxford'),
+(57, 'Eastland Men Plainview Oxford', '5', '956702', 'Black', '100% Leather\r\nManmade sole\r\nLeather upper\r\nRemovable cushioned insole\r\nFabric knit lining\r\nPolyurethane sole', '../upload/Eastland Men Plainview Oxford1Black.jpg,../upload/Eastland Men Plainview Oxford2Black.jpg,../upload/Eastland Men Plainview Oxford3Black.jpg', '39,41,43,44', 'Oxford'),
+(58, 'Cole Haan Men Original grand Cloudfeel Energy Merid Sw Oxford', '5', '1062043', 'British Tan Full Grain', 'Made in USA or Imported\r\nRubber sole\r\nOxford with wingtip upper pattern in rich leather\r\nLined in moisture-wicking textile\r\nREBOUND TECHNOLOGY - engineered fusion of Cole Haan Rebound cushioning compound and Grandfoam.', '../upload/Cole Haan Men Original grand Cloudfeel Energy Merid Sw Oxford1British Tan Full Grain.jpg,../upload/Cole Haan Men Original grand Cloudfeel Energy Merid Sw Oxford2British Tan Full Grain.jpg,../upload/Cole Haan Men Original grand Cloudfeel Energy Merid Sw Oxford3British Tan Full Grain.jpg', '38,39,40,42,44', 'Oxford'),
+(59, 'Cole Haan Men Lenox Hill Cap Oxford', '10', '1007070', 'British Tan', '100% Leather\r\nImported\r\nRubber sole\r\nShaft measures approximately low-top from arch\r\nClassic lace-up oxford featuring blind eyelets and cap toe\r\nStacked heel', '../upload/Cole Haan Men Lenox Hill Cap Oxford1British Tan.jpg,../upload/Cole Haan Men Lenox Hill Cap Oxford2British Tan.jpg.../upload/Cole Haan Men Lenox Hill Cap Oxford3British Tan.jpg', '38,40,41,44', 'Oxford'),
 (60, 'Cole Haan Men Zerogrand Stitchlite Wingtip Oxford', '7', '4632984', 'Marine/Ivory', '100% Synthetic\r\nImported\r\nRubber sole\r\nShaft measures approximately low-top from arch\r\nRipstop and nylon upper\r\nNatural storm welt\r\nEVA midsole with rubber outsole\r\nCole Haan Grand OS technology for ultimate comfort', '../upload/Cole Haan Men Zerogrand Stitchlite Wingtip Oxford1Marine/Ivory.jpg,../upload/Cole Haan Men', '38,39,41,43,44', 'Oxford'),
 (61, 'Cole Haan Men Zerogrand Stitchlite Wingtip Oxford', '10', '4632984', 'Ironstone/Ivory', '100% Synthetic\r\nImported\r\nRubber sole\r\nShaft measures approximately low-top from arch\r\nRipstop and nylon upper\r\nNatural storm welt\r\nEVA midsole with rubber outsole\r\nCole Haan Grand OS technology for ultimate comfort', '../upload/Cole Haan Men Zerogrand Stitchlite Wingtip Oxford1Ironstone/Ivory.jpg,../upload/Cole Haan ', '40,41,42,44', 'Oxford'),
 (62, 'Vizzano Jiwoo', '10', '795000', 'Begie', '- Wedges detail statementable embellishment bergaya chic\n- Warna krem\n- Upper sintetis\n- Insole sintetis\n- Rubber outsole\n- Round toe', '../upload/Vizzano Jiwoo1Begie.jpg,../upload/Vizzano Jiwoo2Begie.jpg,../upload/Vizzano Jiwoo3Begie.jpg', '38,39,40', 'Wedges'),
@@ -145,15 +143,15 @@ INSERT INTO `item` (`id_item`, `item_nama`, `item_stock`, `item_price`, `item_co
 (86, 'Sepatu High Top Kasual Cowok', '5', '257500', 'Brown', '• Berbahan 100% kulit sapi full grain berkualitas maksimal\r\nToleransi ukuran tiap size : ± 0.25 cm\r\nSize 39 Fit to  : 24 cm \r\nSize 40 Fit to  : 25 cm \r\nSize 41 Fit to  : 26 cm \r\nSize 42 Fit to  : 27 cm \r\nSize 43 Fit to  : 28 cm ', '../upload/Sepatu High Top Kasual Cowok1Brown.jpg,../upload/Sepatu High Top Kasual Cowok2Brown.jpg,../upload/Sepatu High Top Kasual Cowok3Brown.jpg', '39,40,41,42,43', 'High-Tops'),
 (87, 'ALDO Masari Sneakers', '3', '2099000', 'Black', '- High top sneakers with croc panels and accent buckles\r\n- Polyurethane upper\r\n- Polyester inner\r\n- Rubber outsole\r\n- Lace up fastening', '../upload/ALDO Masari Sneakers1Black.jpg,../upload/ALDO Masari Sneakers2Black.jpg,../upload/ALDO Masari Sneakers3Black.jpg', '39,41,42,43', 'High-Tops'),
 (88, 'ALDO Frealia-Wr Sneakers', '3', '1879000', 'Black and Orange', '- Perforated high cut lace up sneakers\r\n- Polyester blend\r\n- Textile inner\r\n- Rubber outsole\r\n- Round toe\r\n- Lace closure', '../upload/ALDO Frealia-Wr Sneakers1Black and Orange.jpg,../upload/ALDO Frealia-Wr Sneakers2Black and Orange.jpg,../upload/ALDO Frealia-Wr Sneakers3Black and Orange.jpg', '40,41,42,43', 'High-Tops'),
-(89, 'Hummel Stadil 3.0 Classic High Sneakers', '10', '1399000', 'Navy, Orange, and White', '- Sneakers bergaya klasik dengan desain high cut\r\n- Warna navy\r\n- Suede upper\r\n- Insole tekstil\r\n- Rubber outsole\r\n- Tali depan\r\n- Round toe\r\n- Produk unisex', '../upload/Hummel Stadil 3.0 Classic High Sneakers1Navy, Orange, and White.jpg,../upload/Hummel Stadil 3.0 Classic High Sneakers2Navy, Orange, and White.jpg,../upload/Hummel Stadil 3.0 Classic High Sneakers3Navy, Orange, and White.jpg', '40,41,42,43', 'High-Tops'),
+(89, 'Hummel Stadil 3.0 Classic High Sneakers', '10', '1399000', 'Navy and Orange and White', '- Sneakers bergaya klasik dengan desain high cut\r\n- Warna navy\r\n- Suede upper\r\n- Insole tekstil\r\n- Rubber outsole\r\n- Tali depan\r\n- Round toe\r\n- Produk unisex', '../upload/Hummel Stadil 3.0 Classic High Sneakers1Navy and Orange and White.jpg,../upload/Hummel Stadil 3.0 Classic High Sneakers2Navy and Orange and White.jpg,../upload/Hummel Stadil 3.0 Classic High Sneakers3Navy and Orange and White.jpg', '40,41,42,43', 'High-Tops'),
 (90, 'Hummel Slimmer Stadil High Sneakers', '3', '949000', 'Grey', '- Sneakers desain hi-top dengan aksen chevron kontras\r\n- Warna abu-abu\r\n- Upper kanvas dan suede leather\r\n- PU insole\r\n- Rubber outsole\r\n- Tali depan\r\n- Round toe\r\n- Produk unisex', '../upload/Hummel Slimmer Stadil High Sneakers1Grey.jpg,../upload/Hummel Slimmer Stadil High Sneakers2Grey.jpg,../upload/Hummel Slimmer Stadil High Sneakers3Grey.jpg', '40,41,42,43', 'High-Tops'),
 (91, 'Converse Run Star Hike', '10', '1582991', 'Black and White', 'A chunky platform and jagged rubber sole put an unexpected twist on your everyday Chucks. Details like a canvas build, rubber toe cap and Chuck Taylor ankle patch stay true to the original.', '../upload/Converse Run Star Hike1Black and White.jpg,../upload/Converse Run Star Hike2Black and White.jpg,../upload/Converse Run Star Hike3Black and White.jpg', '41,42,43', 'High-Tops'),
 (92, 'Converse Chuck Taylor All Star', '10', '863450', 'Black and White', 'We could tell you that it’s the OG basketball shoe, created over 100 years ago. Or that the design has largely stayed the same, because why mess with a good thing.', '../upload/Converse Chuck Taylor All Star1Black and White.jpg,../upload/Converse Chuck Taylor All Star2Black and White.jpg,../upload/Converse Chuck Taylor All Star3Black and White.jpg', '40,42,43', 'High-Tops'),
 (93, 'Converse Chuck Taylor 70s Hi Optical', '5', '399000', 'White', 'Converse Chuck Taylor 70s Hi \r\n\r\nCondition : Brand New In Box Premium Import Perfect Kick \r\n\r\n( Tidak sesui Foto Garansi Uang Kembali ) \r\n\r\n\r\n#converseoriginal #converse70sopticalwhite\r\n#converseallstar #allstar #sepatuallstar\r\n', '../upload/Converse Chuck Taylor 70s Hi Optical1White.jpg,../upload/Converse Chuck Taylor 70s Hi Optical2White.jpg,../upload/Converse Chuck Taylor 70s Hi Optical3White.jpg', '40,42,43', 'High-Tops'),
-(94, 'Nike Asuna Crater', '12', '749000', 'Cream, White, Orange, and Black', 'Bridging sport and fashion, the Nike Asuna Crater takes a fresh step towards sustainability. Made from at least 20% recycled material by weight, the design features soft Crater foam underfoot and a rugged tread pattern that grips sand.', '../upload/Nike Asuna Crater1Cream, White, Orange, and Black.png,../upload/Nike Asuna Crater2Cream, White, Orange, and Black.png,../upload/Nike Asuna Crater3Cream, White, Orange, and Black.png', '40,42,43', 'Sandals'),
-(95, 'Nike Victori One', '12', '529000', 'Black, Off-Noir, and Dark Smoke', 'From the beach to the streets, the Nike Victori One perfects a classic, must-have design. Delivering lightweight comfort that is easy to wear, it features new, softer foam that feels comfortable while the contoured footbed with grip pattern.', '../upload/Nike Victori One1Black, Off-Noir, and Dark Smoke.png,../upload/Nike Victori One2Black, Off-Noir, and Dark Smoke.png,../upload/Nike Victori One3Black, Off-Noir, and Dark Smoke.png', '40,41,42,44', 'Sandals'),
-(96, 'Nike Air Max Camden', '13', '649000', 'Anthracite, Dark Grey, Cool Grey, and Volt', 'Inspired by an icon, the Nike Air Max Camden Slide uses soft foam, deep flex grooves and a cushioned upper strap to give you 360 degrees of comfort.', '../upload/Nike Air Max Camden1Anthracite, Dark Grey, Cool Grey, and Volt.jpg,../upload/Nike Air Max Camden2Anthracite, Dark Grey, Cool Grey, and Volt.jpg,../upload/Nike Air Max Camden3Anthracite, Dark Grey, Cool Grey, and Volt.jpg', '38,40,41,42', 'Sandals'),
-(97, 'Nike Canyon', '14', '999000', 'Moon Fossil - Orange - Black - Racer Blue', 'Your journey starts with the Nike Canyon Sandal. This rugged hiker is ready to explore. The Nike heritage-inspired design features a beefy outsole, plush foam midsole, triple-strap closure and premium metallic finishes.', '../upload/Nike Canyon1MMoon Fossil - Orange - Black - Racer Blue.jpg,../upload/Nike Canyon2Moon Fossil - Orange - Black - Racer Blue.jpg,../upload/Nike Canyon3Moon Fossil - Orange - Black - Racer Blue.jpg', '38,40,41,42', 'Sandals'),
+(94, 'Nike Asuna Crater', '12', '749000', 'Cream and White and Orange and Black', 'Bridging sport and fashion, the Nike Asuna Crater takes a fresh step towards sustainability. Made from at least 20% recycled material by weight, the design features soft Crater foam underfoot and a rugged tread pattern that grips sand.', '../upload/Nike Asuna Crater1Cream and White and Orange and Black.png,../upload/Nike Asuna Crater2Cream and White and Orange and Black.png,../upload/Nike Asuna Crater3Cream and White and Orange and Black.png', '40,42,43', 'Sandals'),
+(95, 'Nike Victori One', '12', '529000', 'Black and Off-Noir and Dark Smoke', 'From the beach to the streets, the Nike Victori One perfects a classic, must-have design. Delivering lightweight comfort that is easy to wear, it features new, softer foam that feels comfortable while the contoured footbed with grip pattern.', '../upload/Nike Victori One1Black and Off-Noir and Dark Smoke.png,../upload/Nike Victori One2Black and Off-Noir and Dark Smoke.png,../upload/Nike Victori One3Black and Off-Noir and Dark Smoke.png', '40,41,42,44', 'Sandals'),
+(96, 'Nike Air Max Camden', '13', '649000', 'Anthracite and Dark Grey and Cool Grey and Volt', 'Inspired by an icon, the Nike Air Max Camden Slide uses soft foam, deep flex grooves and a cushioned upper strap to give you 360 degrees of comfort.', '../upload/Nike Air Max Camden1Anthracite and Dark Grey and Cool Grey and Volt.jpg,../upload/Nike Air Max Camden2Anthracite and Dark Grey and Cool Grey and Volt.jpg,../upload/Nike Air Max Camden3Anthracite and Dark Grey and Cool Grey and Volt.jpg', '38,40,41,42', 'Sandals'),
+(97, 'Nike Canyon', '14', '999000', 'Moon Fossil and Orange and Black and Racer Blue', 'Your journey starts with the Nike Canyon Sandal. This rugged hiker is ready to explore. The Nike heritage-inspired design features a beefy outsole, plush foam midsole, triple-strap closure and premium metallic finishes.', '../upload/Nike Canyon1Moon Fossil and Orange and Black and Racer Blue.jpg,../upload/Nike Canyon2Moon Fossil and Orange and Black and Racer Blue.jpg,../upload/Nike Canyon3Moon Fossil and Orange and Black and Racer Blue.jpg', '38,40,41,42', 'Sandals'),
 (98, 'CERRUTI 1881 Unisex Slide Sandals', '8', '5320000', 'Black', 'Comfortable and relaxed sandals :\r\n100% Calf Leather mix\r\nNew anti slippery technology soles\r\nMade in Italy', '../upload/CERRUTI 1881 Unisex Slide Sandals1Black.jpg,../upload/CERRUTI 1881 Unisex Slide Sandals2Black.jpg,../upload/CERRUTI 1881 Unisex Slide Sandals3Black.jpg', '39,41,42', 'Sandals'),
 (99, 'CERRUTI 1881 Unisex Slide Sandals (Strap)', '4', '3420000', 'Black', 'Comfortable and relaxed sandals :\r\nNylon and Cotton mix\r\nNew anti slippery technology soles\r\nMade in Italy', '../upload/CERRUTI 1881 Unisex Slide Sandals (Strap)1Black.jpg,../upload/CERRUTI 1881 Unisex Slide Sandals (Strap)2Black.jpg,../upload/CERRUTI 1881 Unisex Slide Sandals (Strap)3Black.jpg', '39,42,43,44', 'Sandals'),
 (100, 'CERRUTI 1881 Unisex Slide Sandals (Backbelt and Strap)', '5', '3608100', 'Black', 'Comfortable and relaxed sandals :\r\nNylon and Cotton mix\r\nNew anti slippery technology soles\r\nMade in Italy', '../upload/CERRUTI 1881 Unisex Slide Sandals (Backbelt and Strap)1Black.jpg,../upload/CERRUTI 1881 Unisex Slide Sandals (Backbelt and Strap)2Black.jpg,../upload/CERRUTI 1881 Unisex Slide Sandals (Backbelt and Strap)3Black.jpg', '38,39,40,42', 'Sandals'),
@@ -178,7 +176,7 @@ INSERT INTO `item` (`id_item`, `item_nama`, `item_stock`, `item_price`, `item_co
 --
 
 DROP TABLE IF EXISTS `order`;
-CREATE TABLE IF NOT EXISTS `order` (
+CREATE TABLE `order` (
   `id_order` varchar(150) NOT NULL,
   `id_user` varchar(150) NOT NULL,
   `harga_total` varchar(150) NOT NULL,
@@ -187,6 +185,14 @@ CREATE TABLE IF NOT EXISTS `order` (
   `address` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`id_order`, `id_user`, `harga_total`, `tanggal_order`, `status`, `address`) VALUES
+('TEST0', '1', '6396000', '11/29/2021 03:03:27 pm', 'Finished', 'RT.001/RW.09 Sukolilo'),
+('TEST1', '1', '6396000', '11/29/2021 03:03:27 pm', 'Confirmed', 'RT.001/RW.09 Sukolilo');
+
 -- --------------------------------------------------------
 
 --
@@ -194,14 +200,21 @@ CREATE TABLE IF NOT EXISTS `order` (
 --
 
 DROP TABLE IF EXISTS `ordered_item`;
-CREATE TABLE IF NOT EXISTS `ordered_item` (
-  `id_order` int(100) NOT NULL,
+CREATE TABLE `ordered_item` (
+  `id_order` varchar(100) NOT NULL,
   `id_item` int(100) NOT NULL,
   `item_price` int(100) NOT NULL,
   `quantity` int(100) NOT NULL,
-  `item_size` int(100) NOT NULL,
-  PRIMARY KEY (`id_order`,`id_item`)
+  `item_size` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `ordered_item`
+--
+
+INSERT INTO `ordered_item` (`id_order`, `id_item`, `item_price`, `quantity`, `item_size`) VALUES
+('TEST0', 11, 1599000, 4, 42),
+('TEST1', 11, 1599000, 4, 42);
 
 -- --------------------------------------------------------
 
@@ -210,15 +223,20 @@ CREATE TABLE IF NOT EXISTS `ordered_item` (
 --
 
 DROP TABLE IF EXISTS `review`;
-CREATE TABLE IF NOT EXISTS `review` (
-  `id_review` int(100) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `review` (
+  `id_review` int(100) NOT NULL,
   `id_item` int(100) NOT NULL,
   `id_user` int(100) NOT NULL,
   `stars` int(100) NOT NULL,
-  `title` varchar(100) NOT NULL,
-  `comment` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_review`)
+  `comment` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `review`
+--
+
+INSERT INTO `review` (`id_review`, `id_item`, `id_user`, `stars`, `comment`) VALUES
+(3, 11, 1, 4, 'these shoes are clean');
 
 -- --------------------------------------------------------
 
@@ -227,16 +245,13 @@ CREATE TABLE IF NOT EXISTS `review` (
 --
 
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
-  `id_user` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user` (
+  `id_user` int(10) NOT NULL,
   `user_name` varchar(100) NOT NULL,
   `user_password` varchar(100) NOT NULL,
   `user_email` varchar(100) NOT NULL,
-  `user_phone` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_user`),
-  UNIQUE KEY `user_email` (`user_email`),
-  UNIQUE KEY `user_phone` (`user_phone`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  `user_phone` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
@@ -253,19 +268,93 @@ INSERT INTO `user` (`id_user`, `user_name`, `user_password`, `user_email`, `user
 --
 
 DROP TABLE IF EXISTS `wishlist`;
-CREATE TABLE IF NOT EXISTS `wishlist` (
-  `id_wishlist` int(100) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `wishlist` (
+  `id_wishlist` int(100) NOT NULL,
   `id_item` int(100) NOT NULL,
-  `id_user` int(100) NOT NULL,
-  PRIMARY KEY (`id_wishlist`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  `id_user` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `wishlist`
+-- Indexes for dumped tables
 --
 
-INSERT INTO `wishlist` (`id_wishlist`, `id_item`, `id_user`) VALUES
-(1, 2, 1);
+--
+-- Indexes for table `discount`
+--
+ALTER TABLE `discount`
+  ADD PRIMARY KEY (`id_discount`);
+
+--
+-- Indexes for table `item`
+--
+ALTER TABLE `item`
+  ADD PRIMARY KEY (`id_item`);
+
+--
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`id_order`);
+
+--
+-- Indexes for table `ordered_item`
+--
+ALTER TABLE `ordered_item`
+  ADD PRIMARY KEY (`id_order`,`id_item`);
+
+--
+-- Indexes for table `review`
+--
+ALTER TABLE `review`
+  ADD PRIMARY KEY (`id_review`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`),
+  ADD UNIQUE KEY `user_email` (`user_email`),
+  ADD UNIQUE KEY `user_phone` (`user_phone`);
+
+--
+-- Indexes for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  ADD PRIMARY KEY (`id_wishlist`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `discount`
+--
+ALTER TABLE `discount`
+  MODIFY `id_discount` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `item`
+--
+ALTER TABLE `item`
+  MODIFY `id_item` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+
+--
+-- AUTO_INCREMENT for table `review`
+--
+ALTER TABLE `review`
+  MODIFY `id_review` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  MODIFY `id_wishlist` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
