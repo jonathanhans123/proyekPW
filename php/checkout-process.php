@@ -28,6 +28,35 @@ Config::$is3ds = true;
 // Config::$appendNotifUrl = "https://example.com";
 // Config::$overrideNotifUrl = "https://example.com";
 
+
+$firstname = $_SESSION["auth"]["user_name"];
+$lastname = "";
+$email = $_SESSION["auth"]["user_email"];
+$phone = "";
+
+$address = $_REQUEST["address"];
+$city = $_REQUEST["city"];
+$postal_code = $_REQUEST["zipcode"];
+$phone = "";
+$country_code = strtoupper($_REQUEST["country"]);
+$_SESSION["shipping_address"] = array(
+    'first_name'    => $firstname,
+    'last_name'     => $lastname,
+    'address'       => $address,
+    'city'          => $city,
+    'postal_code'   => $postal_code,
+    'phone'         => "",
+    'country_code'  => $country_code
+);
+$_SESSION["customer_details"] = array(
+    'first_name'    => $firstname,
+    'last_name'     => $lastname,
+    'email'         => $email,
+    'phone'         => "",
+    'shipping_address' => $_SESSION["shipping_address"]
+);
+
+
 // Optional
 $item_details = array ();
 
@@ -90,7 +119,7 @@ catch (\Exception $e) {
     echo $e->getMessage();
 }
 
-echo "snapToken = ".$snap_token;
+// echo "snapToken = ".$snap_token;
 
 function printExampleWarningMessage() {
     if (strpos(Config::$serverKey, 'your ') != false ) {
@@ -103,45 +132,31 @@ function printExampleWarningMessage() {
         die();
     } 
 }
+echo '<button id="pay-button">Pay!</button>
 
-?>
-
-<!DOCTYPE html>
-<html>
-    <body>
-        <button id="pay-button">Pay!</button>
-        <pre><div id="result-json">JSON result will appear here after payment:<br></div></pre> 
-
-        <!-- TODO: Remove ".sandbox" from script src URL for production environment. Also input your client key in "data-client-key" -->
-        <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?php echo Config::$clientKey;?>"></script>
-        <script src="../java/jquery.min.js"></script>
-        <script type="text/javascript">
-            document.getElementById('pay-button').onclick = function(){
-                // SnapToken acquired from previous step
-                snap.pay('<?php echo $snap_token?>', {
-                    // Optional
-                    onSuccess: function(result){
-                        $.ajax({
-                            type:"POST",
-                            url:"controller.php",
-                            data:{
-                                'action':'payment'
-                            },
-                            success:function(response){
-                                window.location.href = "../php/user.php";
-                            }
-                        });
+<!-- TODO: Remove ".sandbox" from script src URL for production environment. Also input your client key in "data-client-key" -->
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?php echo Config::$clientKey;?>"></script>
+<script type="text/javascript">
+    document.getElementById("pay-button").onclick = function(){
+        // SnapToken acquired from previous step
+        snap.pay("'.$snap_token.'", {
+            // Optional
+            onSuccess: function(result){
+                $.ajax({
+                    type:"POST",
+                    url:"controller.php",
+                    data:{
+                        "action":"payment"
                     },
-                    // Optional
-                    onPending: function(result){
-                        
-                    },
-                    // Optional
-                    onError: function(result){
-                        /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                    success:function(response){
+                        window.location.href = "../php/user.php";
                     }
                 });
-            };
-        </script>
-    </body>
-</html>
+            }
+        });
+    };
+</script>';
+?>
+
+
+        

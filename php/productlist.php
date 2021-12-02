@@ -1,8 +1,10 @@
 <?php
     require_once("koneksi.php");
     $query="";
-
-    if (isset($_REQUEST["category"])){
+    if (isset($_REQUEST["autocomplete"])&&!isset($_REQUEST["category"])){
+        $item_nama = $_REQUEST["item_name"];
+        $query = "select * from item where item_nama like '%$item_nama%'";
+    }else if (isset($_REQUEST["category"])&&!isset($_REQUEST["autocomplete"])){
         $category = $_REQUEST["category"];
         $query="";
         if ($category=="all"){
@@ -43,7 +45,13 @@
 
     <?php include_once("navbar.php"); ?>
     <div class="container">
-        <h1><?php echo ucfirst($category); ?></h1>
+        <h1><?php
+        if (isset($_REQUEST["autocomplete"])&&!isset($_REQUEST["category"])){
+            echo "Search Result : ".$item_nama;
+        }else if (isset($_REQUEST["category"])&&!isset($_REQUEST["autocomplete"])){ 
+            echo ucfirst($category); 
+        }
+        ?></h1>
         <div class="wrapper" style="overflow:hidden;">
         <div class="wrap">
         Availability <br>
@@ -66,7 +74,10 @@
             <?php
                 foreach($color as $key=>$value){
                     $temp = ucfirst($value["item_color"]);
-                    echo '<option value="'.$value["item_color"].'">'.$temp.'</option>';
+                    $temp2 = explode(" and ",$temp);
+                    foreach($temp2 as $key2=>$value2){
+                        echo '<option value="'.$value2.'">'.$value2.'</option>';
+                    }
                 }
             ?>
         </select>

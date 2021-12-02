@@ -1,41 +1,6 @@
-!<?php
+<?php
     require_once("../php/koneksi.php");
-    $base = $_SERVER['REQUEST_URI'];
-
-    if (isset($_REQUEST["confirm"])){
-        $firstname = $_SESSION["auth"]["user_name"];
-        $lastname = "";
-        $email = $_SESSION["auth"]["user_email"];
-        $phone = "";
-        
-        $address = $_REQUEST["address"];
-        $city = $_REQUEST["city"];
-        $postal_code = $_REQUEST["zipcode"];
-        $phone = "";
-        $country_code = strtoupper($_REQUEST["country"]);
-        $_SESSION["shipping_address"] = array(
-            'first_name'    => $firstname,
-            'last_name'     => $lastname,
-            'address'       => $address,
-            'city'          => $city,
-            'postal_code'   => $postal_code,
-            'phone'         => "",
-            'country_code'  => $country_code
-        );
-        $_SESSION["customer_details"] = array(
-            'first_name'    => $firstname,
-            'last_name'     => $lastname,
-            'email'         => $email,
-            'phone'         => "",
-            'shipping_address' => $_SESSION["shipping_address"]
-        );
-        if ($address!=""&&$city!=""&&$country_code!=""&&$postal_code!=""){
-            header("Location:../php/checkout-process.php");
-        }else{
-            echo '<script>alert("Fill in everything");</script>';
-        }
-        
-    }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,6 +21,7 @@
 </head>
 <body>
     <div class="container-fluid">
+        <div class="back">&larr;Previous page</div>
         <div class="left">
             <h1>Shopping Cart</h1>
             <hr color="#ccc">
@@ -123,7 +89,6 @@
             ?>
         </div>
         <div class="right">
-            <form action="" method="POST">
                 <h1>Checkout</h1>
                 <p>Email used for this transaction is <?php echo $_SESSION["auth"]["user_email"]; ?>. This email will be used if there are any updates.</p>
                 <h4>Zip-code/Post Code</h4>
@@ -135,15 +100,41 @@
                 <h4>Address</h4>
                 <input type="text" name="address" id="address" placeholder="Enter your address" style="width:80%; height:40px; padding-left:2%;"><br>
 
-                
-                    <input type="hidden" name="amount" value="94000"/>
-                    <input type="submit" value="Confirm" name="confirm">
-            </form>
+                <div class="wrapper">
+                    <input type="submit" value="Confirm" name="confirm" id="confirm">
+                </div>
 
         </div>
     </div>
     <script>
-        
+        $(document).on("click","#confirm", function () {
+            var zipcode = $("#zipcode").val();
+            var country = $("#country").val();
+            var city = $("#city").val();
+            var address = $("#address").val();
+            if (address!=""&&city!=""&&country!=""&&zipcode!=""){
+                $.ajax({
+                    type:"POST",
+                    url:"checkout-process.php",
+                    data:{
+                        "zipcode":zipcode,
+                        "country":country,
+                        "city":city,
+                        "address":address
+                    },
+                    success:function(response){
+                        $(".wrapper").html("");
+                        $(".wrapper").append(response);
+                    }
+                });
+            }else{
+                alert("Fill in everything");
+            }
+            
+        });
+        $(document).on("click",".back", function () {
+            history.back();
+        });
     </script>
 </body>
 </html>

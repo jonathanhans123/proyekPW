@@ -150,9 +150,9 @@
             box-shadow: 0 0 50px #ccc;
         }
         img{
-            height: 100%;
             width:100%;
-            object-fit: cover;
+            object-fit: contain;
+            height: 100%;
             object-position: center center;
         }
         .rating{

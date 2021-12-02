@@ -99,6 +99,8 @@
             <div class="nav update"><a href="../php/adminupdate.php">Update products</a></div>
             <div class="nav delete"><a href="../php/admindelete.php">Delete products</a></div>
             <div class="nav discount"><a href="../php/admindiscount.php">Add Discount</a></div>
+            <div class="nav-bold">Order</div>
+            <div class="nav"><a href="../php/adminorder.php">Update Order</a></div>
         </div>
         <div class="main">
             <div class="navbar">
@@ -116,13 +118,13 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     <div class="kotak insert">
                         <p class="title">Add new Item</p>
-                            <div class="text">Nama Barang</div>
+                            <div class="text">Nama Barang (no special characters)</div>
                             <input type="text" id="namabarang" name="namabarang" placeholder="Item Name">
                             <div class="text">Stock</div>
                             <input type="text" id="stokbarang" name="stokbarang" placeholder="Item Stock">
                             <div class="text">Price</div>
                             <input type="text" id="hargabarang" name="hargabarang" placeholder="Item Price">
-                            <div class="text">Color</div>
+                            <div class="text">Color (if multiple color use " and " divider)</div>
                             <input type="text" id="warnabarang" name="warnabarang" placeholder="Item Color">
                             <div class="text">Category</div>
                             <select name="catebarang" id="">

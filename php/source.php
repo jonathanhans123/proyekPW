@@ -15,7 +15,7 @@ $conn = new mysqli($host, $username, $password, $database);
 $item_nama = $_GET["query"];
 
 // Query ke database.
-$query  = $conn->query("SELECT * FROM item WHERE item_nama LIKE '%$item_nama%' ORDER BY item_nama DESC");
+$query  = $conn->query("SELECT DISTINCT * FROM item WHERE item_nama LIKE '%$item_nama%' ORDER BY item_nama DESC");
 $result = $query->fetch_all(MYSQLI_ASSOC);
 
 // Format bentuk data untuk autocomplete.

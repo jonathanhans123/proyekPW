@@ -259,9 +259,9 @@
             
         }else{
             if (str_ends_with($query,"where")){
-                $query .= " color='$color'";
+                $query .= " item_color like '%$color%'";
             }else {
-                $query .= " and color='$color'";
+                $query .= " and item_color like '%$color%'";
             }
         }
         if ($category=="All"){
@@ -302,7 +302,7 @@
                 $image = explode(",",$value["imageurl"]);
                 echo '<div class="item">
                     <img src="../upload/'.$image[0].'" alt="">
-                    <p class="name">'.$value["item_nama"].'</p>';
+                    <p class="name">'.$value["item_nama"].' ~ '.$value["item_color"].'</p>';
                 $temp = $value["id_item"];
                 $discount = $conn->query("select * from discount where id_item=$temp")->fetch_assoc();
                 if (empty($discount)){
