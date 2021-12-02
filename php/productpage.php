@@ -23,9 +23,9 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/styleproductpage.css">
-    <script src="../java/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../java/jquery.min.js"></script>
     <script src="../java/java.js"></script>
     <script src="../java/rater.min.js"></script>
     <script src="../java/Nzoom.min.js"></script>
@@ -313,6 +313,7 @@
         <?php require_once("footer.php"); ?>
 </div>
 </body>
+
 <script>
     $(document).ready(function(){
         var left = 0;
@@ -350,8 +351,11 @@
                     }
                 });
             }else{
-                alert("Rate and Comment first!");
-            }
+                $("body").append('<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Oh no!</strong> Rate and Comment first!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                $(".alert").fadeTo(4000, 500).slideUp(500, function() {
+                    $("#success-alert").slideUp(500);   
+                });
+            }   
         });
 
 
@@ -403,12 +407,16 @@
                         'item_size':item_size
                     },
                     success:function(response){
-                        $(".container-fluid").append(response);
+                        $(".offcanvas-body").html("");
+                        $(".offcanvas-body").append(response);
                     
                     }
                 });
             }else{
-                alert("Pick the shoe size");    
+                $("body").append('<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Oh no!</strong> You should pick the shoes size first!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                $(".alert").fadeTo(4000, 500).slideUp(500, function() {
+                    $("#success-alert").slideUp(500);   
+                });
             }
         });
         $(".sbtnclr2").hide();

@@ -506,3 +506,10 @@ input[type=text]:focus {
 #spinner-border {
     z-index: 100;
 }
+.alert{
+    position: fixed;
+    width: 50%;
+    left: 25%;
+    top: 5%;
+    z-index: 9999;
+}

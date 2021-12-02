@@ -17,9 +17,18 @@
         $stmt->execute();
 
         if ($stmt){
-            echo '<script>alert("Berhasil Delete");</script>';
+            echo "
+                <script>$(\"body\").append('<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\"><strong>Nice!</strong> Item successfully deleted!<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>');
+                $(\".alert\").fadeTo(4000, 500).slideUp(500, function() {
+                    $(\"#success-alert\").slideUp(500);   
+                });</script>";
+
         }else {
-            echo '<script>alert("Fail");</script>';
+            echo "
+                <script>$(\"body\").append('<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\"><strong>Oh no!</strong> Something went wrong while deleting!<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>');
+                $(\".alert\").fadeTo(4000, 500).slideUp(500, function() {
+                    $(\"#success-alert\").slideUp(500);   
+                });</script>";
         }
         $items = $conn->query("select * from item")->fetch_all(MYSQLI_ASSOC);
         foreach($items as $key=>$value){
@@ -130,8 +139,12 @@
         $stmt = $conn->prepare("UPDATE item SET item_stock=?,item_price=?,item_color=?,item_desc=?,item_size=?,item_cate=? WHERE item_nama=?");
         $stmt->bind_param("sssssss",$item_stock,$item_price,$item_color,$item_desc,$item_size,$item_cate,$item_nama);
         $stmt->execute();
+        echo "
+        <script>$(\"body\").append('<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\"><strong>Nice!</strong> Item is successfully updated!<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>');
+        $(\".alert\").fadeTo(4000, 500).slideUp(500, function() {
+            $(\"#success-alert\").slideUp(500);   
+        });</script>";
 
-        echo '<script>alert("Update Successfull");</script>';
         $items = $conn->query("select * from item")->fetch_all(MYSQLI_ASSOC);
         foreach($items as $key=>$value){
             if (strlen($value["item_desc"])>100){
@@ -338,12 +351,26 @@
                 $stmt = $conn->prepare("insert into wishlist(id_item,id_user) values(?,?)");
                 $stmt->bind_param("ii",$id_item,$id_user);
                 $stmt->execute();
-                echo '<script>alert("Successfully added to your wishlist");</script>';
+                echo "
+                <script>$(\"body\").append('<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\"><strong>Nice!</strong> Successfully added to your wishlist!<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>');
+                $(\".alert\").fadeTo(4000, 500).slideUp(500, function() {
+                    $(\"#success-alert\").slideUp(500);   
+                });</script>";
             }else{
-                echo '<script>alert("Item already added to your wishlist");</script>';
+                echo "
+                <script>$(\"body\").append('<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\"><strong>Oh no!</strong> Item already added to your wishlist!<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>');
+                $(\".alert\").fadeTo(4000, 500).slideUp(500, function() {
+                    $(\"#success-alert\").slideUp(500);   
+                });</script>";
+                
+                
             }
         }else{
-            echo '<script>alert("You need to sign before add wishlist");</script>';
+            echo "
+                <script>$(\"body\").append('<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\"><strong>Oh no!</strong> You need to sign before add wishlist!<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>');
+                $(\".alert\").fadeTo(4000, 500).slideUp(500, function() {
+                    $(\"#success-alert\").slideUp(500);   
+                });</script>";
         }
         
     }
@@ -370,27 +397,84 @@
             if (!$exist){
                 array_push($_SESSION["order"],$order);
             }
-            echo '<script>
-                alert("Item added to cart");
-                location.reload();
-                
-                </script>';
+            
+            echo "
+                <script>$(\"body\").append('<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\"><strong>Nice!</strong> Item successfully added!<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>');
+                $(\".alert\").fadeTo(4000, 500).slideUp(500, function() {
+                    $(\"#success-alert\").slideUp(500);   
+                });</script>";
         }else{
             $_SESSION["order"] = [];
             array_push($_SESSION["order"],$order);
-            echo '<script>
-                alert("Item added to cart");
-                location.reload();
-                
-                </script>';
+            echo "
+                <script>$(\"body\").append('<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\"><strong>Nice!</strong> Item successfully added!<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>');
+                $(\".alert\").fadeTo(4000, 500).slideUp(500, function() {
+                    $(\"#success-alert\").slideUp(500);   
+                });</script>";
         }
+        echo '<label for="">';        
+        $count = 0;
+        if (isset($_SESSION["order"])){
+            foreach($_SESSION["order"] as $key=>$value){
+                $count += $value["quantity"];
+            }
+            echo $count;
+        }
+        else{
+            echo "0";
+        }
+        echo ' item</label><br><br>
+        <div class="container-checkout">';
+            
+        if (isset($_SESSION["order"])){
+            foreach($_SESSION["order"] as $key=>$value){
+                $id_itemnavbar = $value["id_item"];
+                $itemnavbar = $conn->query("select * from item where id_item=$id_itemnavbar")->fetch_assoc();
+                $imagenavbar = explode(",",$itemnavbar["imageurl"]);
+                $image1navbar = $imagenavbar[0];
+                echo '<button type="button" class="btn-close text-reset" id="deleteorder"></button>
+                
+                <div style="width:100%;height:100px;margin-bottom:40px;">
+                <div style="width:100px;height:100px;float:left;"><img src="'.$image1navbar.'" alt=""></div>
+                <div style="margin-left:150px">
+                    <label style="font-weight:bold;font-size:lager">'.$itemnavbar["item_nama"].' ~ '.$itemnavbar["item_color"].'</label><br>
+                    <label for="">';
+                $discount = $conn->query("select * from discount where id_item=$id_itemnavbar")->fetch_assoc();
+                if (empty($discount)){
+                    echo 'Rp. '.number_format($itemnavbar["item_price"],2).',-';
+                }else{
+                    if ($discount["discount_type"]=="percentage"){
+                        $truevalue = floor($itemnavbar["item_price"]/100*(100-$discount["value"]));
+                    }else if ($discount["discount_type"]=="fixed"){
+                        $truevalue = $itemnavbar["item_price"]-$discount["value"];
+                    }
+                    echo 'Rp. '.number_format($truevalue,2) .',-';
+                }    
+                echo '</label><br>
+                    <label for="">Size : '.$value["item_size"].'</label><br>
+                    <label for="">Quantity : '.$value["quantity"].'</label><br>
+                </div>
+                <hr color="#ccc">
+            </div>';
+            }
+        }
+    
+            
+            
+        echo '</div>
+        <div class="checkout">Checkout</div>';
     }
     else if ($action=="gotocheckout"){
         echo "berhasil";
         if (isset($_SESSION["auth"])&&isset($_SESSION["order"])){
             echo '<script>window.location.href = "../php/checkout.php";</script>';
         }else{
-            echo '<script>alert("Sign in to go to checkout page!");</script>';
+            echo "
+                <script>$(\"body\").append('<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\"><strong>Oh no!</strong> You need to sign before going to checkout!<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>');
+                $(\".alert\").fadeTo(4000, 500).slideUp(500, function() {
+                    $(\"#success-alert\").slideUp(500);   
+                });</script>";
+
         }
     }
     else if ($action=="payment"){
@@ -439,7 +523,7 @@
             echo $count;
         }
         else{
-            echo "0 item";
+            echo "0";
         }
         echo ' item</label><br><br>
         <div class="container-checkout">';
@@ -490,7 +574,11 @@
         $stmt = $conn->prepare("INSERT INTO `review`(id_item,id_user,stars,comment) VALUES(?,?,?,?)");
         $stmt->bind_param("iiis",$id_item,$_SESSION["auth"]["id_user"],$star,$comment);
         $stmt->execute();
-        echo '<script>alert("Thank you for rating and reviewing our product");</script>';
+        echo "
+                <script>$(\"body\").append('<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\"><strong>Oh no!</strong> Thank you for rating and reviewing our product!<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>');
+                $(\".alert\").fadeTo(4000, 500).slideUp(500, function() {
+                    $(\"#success-alert\").slideUp(500);   
+                });</script>";
     }
 
 ?>

@@ -50,6 +50,7 @@
                         move_uploaded_file($asal1,$nama_file_tujuan1);
                         move_uploaded_file($asal2,$nama_file_tujuan2);
                         move_uploaded_file($asal3,$nama_file_tujuan3);
+                        
                         echo '<script>alert("Item uploaded successfully!");</script>';
                         header("Location:adminupdate.php");
                     }else{

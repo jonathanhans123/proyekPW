@@ -168,7 +168,11 @@
             var color = $("#color").find("option:selected").val();
             var category = $("#category").find("option:selected").val();
             if (min>=max && min!="" && max!=""){
-                alert("Minimum value needs to be smaller than maximum value");
+                $("body").append('<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Oh no!</strong> The minimum value needs to be smaller than maximum value!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                $(".alert").fadeTo(4000, 500).slideUp(500, function() {
+                    $("#success-alert").slideUp(500);   
+                });
+                
             }else{
                 $.ajax({
                     type:"post",

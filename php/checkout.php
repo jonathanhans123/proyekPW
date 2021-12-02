@@ -128,7 +128,11 @@
                     }
                 });
             }else{
-                alert("Fill in everything");
+                $("body").append('<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Oh no!</strong> You need to fill in everything!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                $(".alert").fadeTo(4000, 500).slideUp(500, function() {
+                    $("#success-alert").slideUp(500);   
+                });
+                
             }
             
         });
