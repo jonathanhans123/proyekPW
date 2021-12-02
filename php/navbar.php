@@ -1,5 +1,9 @@
 <script src="../java/jquery.autocomplete.min.js"></script>
-
+<div id="loading">
+    <div class="spinner-border text-dark" role="status">
+    <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
 <div class="navbar">
             <div class="top">
                 <div class="search">
@@ -122,6 +126,12 @@
 
         <script type="text/javascript">
             $(document).ready(function() {
+                $(window).on('load', function () {
+                    $('#loading').hide();
+                }) 
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
                 $( "#search" ).autocomplete({
                     serviceUrl: "source.php",
                     dataType: "JSON",

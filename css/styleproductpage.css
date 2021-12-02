@@ -13,3 +13,62 @@
     
     margin-left: 15%;
 }
+.zoom{
+    border: 3px solid black;
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    /* display: none; */
+    z-index: 1;
+    display: none;
+}
+.zoomArea {
+    width:200px;
+    height:200px;
+    overflow:hidden;
+    width: 100%;
+    height: 400px;
+    border: 2px solid #ccc;
+}
+.zoomArea:hover{
+    cursor: zoom-in;
+}
+.zoomArea > img {
+  width:100%;
+  height:100%;
+}
+.addtochart{
+    width: 70%;
+    height: 50px;
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    padding-top: 15px;
+    text-align: center;
+    transition: 0.5s;
+    
+}
+.addtowishlist{
+    width: 70%;
+    height: 50px;
+    background-color: white;
+    color: black;
+    border-radius: 30px;
+    border: 3px solid black;
+    padding-top: 10px;
+    text-align: center;
+    transition: 0.5s;
+    
+}
+.addtochart:hover{
+    cursor: pointer;
+    background-color:white ;
+    color: black;
+    box-shadow: 0 0 50px #ccc;
+}
+.addtowishlist:hover{
+    cursor: pointer;
+    background-color:black ;
+    color: white;
+    box-shadow: 0 0 50px rgb(48, 48, 48);
+}

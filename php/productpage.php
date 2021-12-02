@@ -28,6 +28,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="../java/java.js"></script>
     <script src="../java/rater.min.js"></script>
+    <script src="../java/Nzoom.min.js"></script>
 
     <style>
         *{
@@ -132,23 +133,7 @@
             cursor: pointer;
         }
 
-        .addtochart,.addtowishlist{
-            width: 70%;
-            height: 50px;
-            background-color: black;
-            color: white;
-            border-radius: 30px;
-            padding-top: 15px;
-            text-align: center;
-            transition: 0.5s;
-            
-        }
-        .addtochart:hover,.addtowishlist:hover{
-            cursor: pointer;
-            background-color:white ;
-            color: black;
-            box-shadow: 0 0 50px #ccc;
-        }
+        
         img{
             width:100%;
             object-fit: contain;
@@ -204,7 +189,7 @@
             <div class="submain">
                 <div class="kiri">
                     <center>
-                    <div class="gambarutama"><img id="gmbrutama" src="../upload/<?php echo $image[0]; ?>" /></div>
+                    <div class="zoomArea"><img id="NZoomImg" data-NZoomscale="2" src="../upload/<?php echo $image[0]; ?>" /></div>
                     </center>
                 </div>
                 <div class="kanans">
@@ -330,6 +315,10 @@
 </body>
 <script>
     $(document).ready(function(){
+        var left = 0;
+        var top = 0;
+        
+
         var options = {
             max_value: 5,
             step_size: 1,
@@ -428,21 +417,21 @@
             console.log("jwioefjwofej")
             var url = "../upload/"+$(".subgambar1 img").attr("src");
             console.log(url);
-            $("#gmbrutama").attr("src", url);
+            $("#NZoomImg").attr("src", url);
             $(".subgambar1").css("border-color", "black");
             $(".subgambar2").css("border-color", "#ccc");
             $(".subgambar3").css("border-color", "#ccc");
         });
         $(".subgambar2").click(function(){
             var url = "../upload/"+$(".subgambar2 img").attr("src");
-            $("#gmbrutama").attr("src", url);
+            $("#NZoomImg").attr("src", url);
             $(".subgambar1").css("border-color", "#ccc");
             $(".subgambar2").css("border-color", "black");
             $(".subgambar3").css("border-color", "#ccc");
         });
         $(".subgambar3").click(function(){
             var url = "../upload/"+$(".subgambar3 img").attr("src");
-            $("#gmbrutama").attr("src", url);
+            $("#NZoomImg").attr("src", url);
             $(".subgambar1").css("border-color", "#ccc");
             $(".subgambar2").css("border-color", "#ccc");
             $(".subgambar3").css("border-color", "black");
