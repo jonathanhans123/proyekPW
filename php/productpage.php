@@ -19,7 +19,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shoes Inc</title>
+    <link rel="icon" type="image/x-icon" href="../icon/logo.svg">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/styleproductpage.css">
@@ -222,6 +223,7 @@
                     ?>
                     <div style="clear: both;"></div>
                     <label for="color" class="color" style="font-size: larger;" >Color : <?php echo ucfirst($item["item_color"]); ?></label> <br>
+                    <label for="color" class="stock" style="font-size: larger;" >Stock : <?php echo $item["item_stock"]; ?></label> <br>
                     <!-- <div class="btnclr1" style="width:30px;height:30px;border: 2px solid black;background-color:white;border-radius: 50%;float: left;"><div class="sbtnclr1" style="width:20px;height:20px;border: 2px solid #ccc;background-color:red;border-radius: 50%;margin:3px 0px 0px 3px;"></div></div>
                     <div class="btnclr2" style="border: 2px solid #ccc;margin-left: 10px;width:30px;height:30px;background-color:black;border-radius: 50%;float: left;"><div class="sbtnclr2" style="width:20px;height:20px;border: 2px solid #ccc;background-color:black;border-radius: 50%;margin:3px 0px 0px 3px;"></div></div> -->
                     <div style="clear: both;"></div><br>
@@ -230,7 +232,7 @@
                     <hr>
                     <p><?php echo $item["item_desc"]; ?></p>
                     <br>
-                    <div class="addtochart" >Add to Cart</div>
+                    <div class="addtochart<?php if ($item["item_stock"]<=0){echo '2'; } ?>" <?php if ($item["item_stock"]<=0){echo 'data-bs-toggle="tooltip" title="Item is out of stock!"'; }?>>Add to Cart</div>
                     <br>
                     <div class="addtowishlist">Add to Wish List</div>
                     <br>
@@ -247,6 +249,7 @@
         <div class="review" style="margin-bottom:200px;">
             <center><h1>Reviews</h1></center>
             <?php
+            if (isset($_SESSION["auth"])){
                 $temp = $_SESSION["auth"]["id_user"];
                 $orders = $conn->query("SELECT * FROM `order` where id_user=$temp")->fetch_all(MYSQLI_ASSOC);
                 $bought = false;
@@ -272,6 +275,7 @@
                         <input type="hidden" id="index_item" value="'. $item["id_item"].'">
                     </div>';
                 }
+            }
             ?>
             
             <?php 

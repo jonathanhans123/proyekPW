@@ -15,6 +15,10 @@
             $query = "select * from item where item_cate='Sports'";
         }else if ($category=="Formal"){
             $query = "select * from item where item_cate='Oxford'";
+        }else if ($category=="women"){
+            $query = "select * from item where (item_cate='Slip-on' or item_cate='High heel' or item_cate='High-Tops' or item_cate='Wedges')";
+        }else if ($category=="men"){
+            $query = "select * from item where (item_cate='Sneakers' or item_cate='Boots' or item_cate='Hiking' or item_cate='Oxford' or item_cate='Sandals' or item_cate='Sports')";
         }else{
             $query = "select * from item where item_cate='".$category."'";
         }
@@ -22,16 +26,22 @@
         $category = "all";
         $query = "select * from item";
     }
+    $query2 = $query;
+    if ($query=="select * from item"){
+        $query2 .= " where item_price>=0";
+    }
+    echo '<input type="hidden" value="'.$query2.'" class="itemlistname">';
     $items = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
     $color = $conn->query("select distinct item_color from item")->fetch_all(MYSQLI_ASSOC);
-    
+    $colorarray = [];
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shoes Inc</title>
+    <link rel="icon" type="image/x-icon" href="../icon/logo.svg">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/productlist.css">
@@ -76,7 +86,10 @@
                     $temp = ucfirst($value["item_color"]);
                     $temp2 = explode(" and ",$temp);
                     foreach($temp2 as $key2=>$value2){
-                        echo '<option value="'.$value2.'">'.$value2.'</option>';
+                        if (!in_array($value2,$colorarray)){
+                            array_push($colorarray,$value2);
+                            echo '<option value="'.$value2.'">'.$value2.'</option>';
+                        }
                     }
                 }
             ?>
@@ -167,6 +180,7 @@
             var max = $("#max").val();
             var color = $("#color").find("option:selected").val();
             var category = $("#category").find("option:selected").val();
+            var itemlistname = $(".itemlistname").val();
             if (min>=max && min!="" && max!=""){
                 $("body").append('<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Oh no!</strong> The minimum value needs to be smaller than maximum value!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
                 $(".alert").fadeTo(4000, 500).slideUp(500, function() {
@@ -183,7 +197,8 @@
                         'min':min,
                         'max':max,
                         'color':color,
-                        'category':category
+                        'category':category,
+                        'itemlistname':itemlistname
                     },
                     success:function(response){
                         $(".container-item").html("");

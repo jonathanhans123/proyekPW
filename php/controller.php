@@ -4,8 +4,8 @@
     $action = $_REQUEST["action"];
 
     if ($action=="delete"){
-        $item_nama = $_POST["item_nama"];
-        $item_color = $_POST["item_color"];
+        $item_nama = $_REQUEST["item_nama"];
+        $item_color = $_REQUEST["item_color"];
         $item = $conn->query("select * from item where item_nama='$item_nama' and item_color='$item_color'")->fetch_assoc();
         $imageurl = explode($item["imageurl"],",");
         foreach($imageurl as $key=>$value){
@@ -45,8 +45,8 @@
         
     }
     else if ($action=="update"){
-        $item_nama = $_POST["item_nama"];
-        $item_color = $_POST["item_color"];
+        $item_nama = $_REQUEST["item_nama"];
+        $item_color = $_REQUEST["item_color"];
         $item = $conn->query("select * from item where item_nama='$item_nama' and item_color='$item_color'")->fetch_assoc();
         $ukuran = explode(",",$item["item_size"]);
 
@@ -128,13 +128,13 @@
                 ';
     }
     else if ($action=="save"){
-        $item_nama = $_POST["item_nama"];
-        $item_stock = $_POST["item_stock"];
-        $item_price = $_POST["item_price"];
-        $item_color = $_POST["item_color"];
-        $item_desc = $_POST["item_desc"];
-        $item_size = $_POST["item_size"];
-        $item_cate = $_POST["item_cate"];
+        $item_nama = $_REQUEST["item_nama"];
+        $item_stock = $_REQUEST["item_stock"];
+        $item_price = $_REQUEST["item_price"];
+        $item_color = $_REQUEST["item_color"];
+        $item_desc = $_REQUEST["item_desc"];
+        $item_size = $_REQUEST["item_size"];
+        $item_cate = $_REQUEST["item_cate"];
 
         $stmt = $conn->prepare("UPDATE item SET item_stock=?,item_price=?,item_color=?,item_desc=?,item_size=?,item_cate=? WHERE item_nama=?");
         $stmt->bind_param("sssssss",$item_stock,$item_price,$item_color,$item_desc,$item_size,$item_cate,$item_nama);
@@ -159,9 +159,9 @@
         }
     }
     else if ($action=="adddiscount2"){
-        $discount_type = $_POST["type"];
-        $value = $_POST["value"];
-        $id_item = $_POST["item"];
+        $discount_type = $_REQUEST["type"];
+        $value = $_REQUEST["value"];
+        $id_item = $_REQUEST["item"];
         $stmt = $conn->prepare("insert into discount(id_item,value,discount_type) values(?,?,?)");
         $stmt->bind_param("iss",$id_item,$value,$discount_type);
         $stmt->execute();   
@@ -215,7 +215,7 @@
     </div>';
     }
     else if ($action=="deletediscount"){
-        $index = $_POST["id_item"];
+        $index = $_REQUEST["id_item"];
         $stmt = $conn->prepare("delete from discount where id_item=?");
         $stmt->bind_param("i",$index);
         $stmt->execute();
@@ -245,68 +245,30 @@
         
     }
     else if ($action=="listproduct"){
-        $available = $_POST["available"];
-        $min=$_POST["min"];
-        $max=$_POST["max"];
-        $color=$_POST["color"];
-        $category=$_POST["category"];
-        $query = "select * from item where";
-        if ($available=="All"){
-            
-        }else{
-            if (str_ends_with($available,"where")){
-                if ($available=="instock"){
-                    $query .= " item_stock>0";
-                }else{
-                    $query .= " item_stock=0";
-                }
-            }else {
-                if ($available=="outofstock"){
-                    $query .= " and item_stock>0";
-                }else{
-                    $query .= " and item_stock=0";
-                }
-            }
-        }
-        if ($color=="All"){
-            
-        }else{
-            if (str_ends_with($query,"where")){
-                $query .= " item_color like '%$color%'";
-            }else {
-                $query .= " and item_color like '%$color%'";
-            }
-        }
-        if ($category=="All"){
-
-        }else{
-            if (str_ends_with($query,"where")){
-                $query .= " item_cate='$category'";
-            }else {
-                $query .= " and item_cate='$category'";
-            }
-        }
-        if (str_ends_with($query,"where")){
-            if ($min!=""){
-                $query .= " item_price>$min";
-            }
-        }else{
-            if ($min!=""){
-                $query .= " and item_price>$min";
-            }
-        }
-        if (str_ends_with($query,"where")){
-            if ($max!=""){
-                $query .= " item_price<$max";
-            }
-        }else{
-            if ($max!=""){
-                $query .= " and item_price<$max";
-            }
-        }
+        $available = $_REQUEST["available"];
+        $min=$_REQUEST["min"];
+        $max=$_REQUEST["max"];
+        $color=$_REQUEST["color"];
+        $category=$_REQUEST["category"];
+        $itemlistname = $_REQUEST["itemlistname"];
         
-        if (str_ends_with($query,"where")){
-            $query = substr($query,0,strlen($query)-5);
+        $query = $itemlistname;
+        if ($available=="instock"){
+            $query .= " and item_stock>0";
+        }else if ($available=="outofstock"){
+            $query .= " and item_stock<=0";
+        }
+        if ($min!=""){
+            $query .= " and item_price>$min";
+        }
+        if ($max!=""){
+            $query .= " and item_price<$max";
+        }
+        if ($color!=""&&$color!="All"){
+            $query .= " and item_color='$color'";
+        }
+        if ($category!=""&&$category!="All"){
+            $query .= " and item_cate='$category'";
         }
         $items = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
 
@@ -342,7 +304,7 @@
     }
     else if ($action=="addtowishlist"){
         if (isset($_SESSION["auth"])){
-            $item_nama = $_POST["item_name"];
+            $item_nama = $_REQUEST["item_name"];
             $item = $conn->query("select * from item where item_nama='$item_nama'")->fetch_assoc();
             $id_item = $item["id_item"];
             $id_user = $_SESSION["auth"]["id_user"];
@@ -388,7 +350,6 @@
         if (isset($_SESSION["order"])){
             $exist = false;
             foreach($_SESSION["order"] as $key=>$value){
-                echo $order["id_item"].$value["id_item"].$order["item_size"].$value["item_size"];
                 if ($order["id_item"] == $value["id_item"]&&$order["item_size"] == $value["item_size"]){
                     $_SESSION["order"][$key]["quantity"]++; 
                     $exist = true;
@@ -498,6 +459,10 @@
             $stmt = $conn->prepare("INSERT INTO `ordered_item`(id_order,id_item,item_price,quantity,item_size) VALUES(?,?,?,?,?)");
             $stmt->bind_param("siiii",$id_order,$temp,$truevalue,$value["quantity"],$value["item_size"]);
             $stmt->execute();
+
+            $temp1 = $value["quantity"];
+            
+            $stmt = $conn->query("UPDATE item SET item_stock=item_stock-$temp1 WHERE id_item=$temp");
             $total += $value["quantity"]*$truevalue;
         }
         $orders = $conn->query("SELECT * FROM `order`")->fetch_all(MYSQLI_ASSOC);

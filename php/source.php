@@ -2,15 +2,7 @@
 // Set header type konten.
 header("Content-Type: application/json; charset=UTF-8");
 
-// Deklarasi variable untuk koneksi ke database.
-$host     = "localhost";    // Server database
-$username = "root";         // Username database
-$password = "";             // Password database
-$database = "proyekPW"; // Nama database
-
-// Koneksi ke database.
-$conn = new mysqli($host, $username, $password, $database);
-
+require_once("koneksi.php");
 // Deklarasi variable keyword buah.
 $item_nama = $_GET["query"];
 

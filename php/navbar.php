@@ -117,8 +117,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="nav-child"><a href="">Shop Men's</a></div>
-                    <div class="nav-child"><a href="">Shop Women's</a></div>
+                    <div class="nav-child"><a href="../php/productlist.php?category=men">Shop Men's</a></div>
+                    <div class="nav-child"><a href="../php/productlist.php?category=women">Shop Women's</a></div>
                     <div class="nav-child"><a href="">About</a></div>
                 </ul>
             </div>
