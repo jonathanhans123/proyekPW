@@ -1,5 +1,11 @@
 <?php
     require_once("../php/koneksi.php");
+    if(isset($_REQUEST["btnDisc"])){
+        header("Location:...");
+    }
+    if(isset($_REQUEST["btnAbout"])){
+        header("Location: about.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
