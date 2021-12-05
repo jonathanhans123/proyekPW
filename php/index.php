@@ -60,17 +60,18 @@
             <div class="left">
             </div>
             <div class="right">
-                <div class="title">Shoes shoes shoes</div>
-                <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, nisi ab maxime et, pariatur facere laborum totam eaque sunt odit architecto harum debitis explicabo corporis amet voluptate aut numquam. Impedit!</div>
-                <div class="button">Go now</div>
+                <div class="title">Discount Shoes!</div>
+                <div class="text">Discount Shoes, just for you! Only today! Don't miss this chance! Take a look by clicking this button below!</div>
+                <div class="button" name="btnDisc">Go now</div>
+            </div>
             </div>
         </div>
         <!-- showcase picture right -->
         <div class="showcase">
             <div class="right">
-                <div class="title">Shoes shoes shoes</div>
-                <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, nisi ab maxime et, pariatur facere laborum totam eaque sunt odit architecto harum debitis explicabo corporis amet voluptate aut numquam. Impedit!</div>
-                <div class="button">Go now</div>
+                <div class="title">About Us</div>
+                <div class="text">Want to know more about our shoes store? Click this button below!</div>
+                <div class="button" name="btnAbout">Learn more about our shop!</div>
             </div>
             <div class="left">
             </div>
