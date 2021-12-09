@@ -86,14 +86,14 @@
                         </div>
                     <?php
                         if (isset($_SESSION["auth"])){
-                            echo '<a href="../php/wishlist.php"><img src="../icon/wishlist.png" class="wishlist" data-bs-toggle="tooltip" title="Wishlist" style="float:right;width:30px; height:30px; margin-right:20px;margin-top: 2%;" alt=""></a>';
+                            echo '<a href="../php/wishlist.php"><img src="../icon/wishlist.png" class="wishlist" data-bs-toggle="tooltip" title="Wishlist" style="float:right;width:30px; height:30px; margin-right:3%;margin-top: 2%;" alt=""></a>';
                         }
                     ?>
                 </div>
             </div>
             <div class="bottom">
                     <div class="nav-child drop">
-                        <a href="">Categories <p style="font-size: 10pt;float: right;margin-top: 4%;">&#9660;</p> </a>
+                        <div class="categories">Categories <p style="font-size: 10pt;float: right;margin-top: 4%;">&#9660;</p> </div>
                         <div class="drop-content">
                             <div class="drop-wrap">
                                 <a href="productlist.php?category=Sneakers">Sneakers</a>

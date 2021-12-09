@@ -61,23 +61,20 @@
                 </div>
             </div>
         </div>
-        <!-- showcase picture left -->
         <div class="showcase">
             <div class="left">
             </div>
             <div class="right">
-                <div class="title">Discount Shoes!</div>
+            <div class="title">Discount Shoes!</div>
                 <div class="text">Discount Shoes, just for you! Only today! Don't miss this chance! Take a look by clicking this button below!</div>
                 <div class="button" name="btnDisc">Go now</div>
             </div>
-            </div>
         </div>
-        <!-- showcase picture right -->
         <div class="showcase">
             <div class="right">
                 <div class="title">About Us</div>
                 <div class="text">Want to know more about our shoes store? Click this button below!</div>
-                <div class="button" name="btnAbout">Learn more about our shop!</div>
+                <div class="button" name="btnAbout"><a href="about.php"  style="color:white;text-decoration:none;">Learn more about our shop!</a></div>
             </div>
             <div class="left">
             </div>

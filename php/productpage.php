@@ -42,6 +42,7 @@
             background-color: white;
             margin-bottom: 50px;
             padding-bottom: 15%;
+            overflow:hidden;
         }
 
         .submain{
@@ -49,6 +50,7 @@
             margin-left: auto;
             margin-right: auto;
             margin-left: 10;
+            height: auto;
         }
 
         .kiri{

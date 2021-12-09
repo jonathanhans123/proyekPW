@@ -112,9 +112,7 @@
                     viewBox="0 0 24 24"
                     style=" fill:rgb(80, 80, 80);"><path d="M 2 5 L 2 7 L 22 7 L 22 5 L 2 5 z M 2 11 L 2 13 L 22 13 L 22 11 L 2 11 z M 2 17 L 2 19 L 22 19 L 22 17 L 2 17 z"></path></svg>
                 </div>
-                <div class="nav">
-                    Admin Panel
-                </div>
+                
             </div>
             <div class="container2">
                 <form action="" method="post" enctype="multipart/form-data">
@@ -178,33 +176,34 @@
     <script>
         $(document).ready(function(){
 
-            var open = true;
-            $(".hamburger").click(function(){
-                if (open){
-                    $(".sidebar").animate({
-                        left: "-15%"
-                    }, { duration: 500 },)
+var open = true;
 
-                    $(".main").animate({
-                        width: "100%",
-                        marginLeft: "0%"
-                    }, { duration: 500 });
-                    open = false;
-                }else{
-                    $(".sidebar").css("display","block");
-                    $(".sidebar").animate({
-                        left: "0%"
-                    }, { duration: 500},function(){
-                        $(".sidebar").css("display","block");
-                    });
-                    $(".main").animate({
-                        width: "85%",
-                        marginLeft: "15%"
-                    }, { duration: 500});
-                    open = true;
-                }
-            });
+$(".hamburger").click(function(){
+    if (open){
+        $(".sidebar").animate({
+            left: "-45%"
+        }, { duration: 500 })
+
+        $(".main").animate({
+            width: "100%",
+            marginLeft: "0%"
+        }, { duration: 500 });
+        open = false;
+    }else{
+        $(".sidebar").css("display","block");
+        $(".sidebar").animate({
+            left: "0%"
+        }, { duration: 500},function(){
+            $(".sidebar").css("display","block");
         });
+        $(".main").animate({
+            width: "65%",
+            marginLeft: "35%"
+        }, { duration: 500});
+        open = true;
+    }
+});
+});
     
     </script>
 </body>

@@ -49,9 +49,6 @@
                     viewBox="0 0 24 24"
                     style=" fill:rgb(80, 80, 80);"><path d="M 2 5 L 2 7 L 22 7 L 22 5 L 2 5 z M 2 11 L 2 13 L 22 13 L 22 11 L 2 11 z M 2 17 L 2 19 L 22 19 L 22 17 L 2 17 z"></path></svg>
                 </div>
-                <div class="nav">
-                    Admin Panel
-                </div>
             </div>
             <div class="container2">
                 <?php
@@ -80,8 +77,8 @@
             $(".hamburger").click(function(){
                 if (open){
                     $(".sidebar").animate({
-                        left: "-15%"
-                    }, { duration: 500 },)
+                        left: "-45%"
+                    }, { duration: 500 })
 
                     $(".main").animate({
                         width: "100%",
@@ -96,8 +93,8 @@
                         $(".sidebar").css("display","block");
                     });
                     $(".main").animate({
-                        width: "85%",
-                        marginLeft: "15%"
+                        width: "65%",
+                        marginLeft: "35%"
                     }, { duration: 500});
                     open = true;
                 }

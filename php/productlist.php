@@ -19,6 +19,8 @@
             $query = "select * from item where (item_cate='Slip-on' or item_cate='High heel' or item_cate='High-Tops' or item_cate='Wedges')";
         }else if ($category=="men"){
             $query = "select * from item where (item_cate='Sneakers' or item_cate='Boots' or item_cate='Hiking' or item_cate='Oxford' or item_cate='Sandals' or item_cate='Sports')";
+        }else if ($category=="Discount Shoes!"){
+            $query = "SELECT * FROM item WHERE EXISTS (SELECT 2 FROM discount WHERE discount.id_item = item.id_item)";
         }else{
             $query = "select * from item where item_cate='".$category."'";
         }
