@@ -90,7 +90,7 @@
             $(".hamburger").click(function(){
                 if (open){
                     $(".sidebar").animate({
-                        left: "-45%"
+                        left: "-35%"
                     }, { duration: 500 })
 
                     $(".main").animate({
@@ -174,7 +174,7 @@
                         'id_item':index
                     },
                     success:function(response){
-                        $(".container2").html("");
+                        $(".container2").html("");  
                         $(".container2").append(response);
                     }
                 });

@@ -17,6 +17,8 @@
     $totalquantity = 0;
     $totalquantity2 = 0;
     $solditem = [];
+    $overallrevenue = 0;
+    $overallorder = 0;
     foreach($orders as $key=>$value){
         if (strtotime($value["tanggal_order"])>=strtotime($today)){
             $totalrevenue += $value["harga_total"];
@@ -28,6 +30,8 @@
             $total = $conn->query("SELECT SUM(`quantity`) as TOTAL FROM `ordered_item` WHERE `id_order`='$temp'")->fetch_assoc();
             $totalquantity += $total["TOTAL"];
         }
+        $overallorder++;
+        $overallrevenue += $value["harga_total"];
     }
     foreach($orders as $key=>$value){
         if (strtotime($value["tanggal_order"])<strtotime($today)&&strtotime($value["tanggal_order"])>=strtotime($lastweek)){
@@ -88,7 +92,7 @@
                 
             </div>
             <div class="container2">
-            <div class="kotak mx-6" style="overflow-y:scroll;">
+                <div class="kotak mx-6" style="overflow-y:scroll;">
                     <div class="title" style="margin-top:20px;margin-left:3%;font-size:14pt;">TOP SELLER</div>
                     <?php 
                     if (empty($solditem)){
@@ -97,13 +101,13 @@
                         foreach($solditem as $key=>$value){
                             $item = $conn->query("SELECT * FROM item where id_item='$value'")->fetch_assoc();
                             $imageurl = explode(",",$item["imageurl"]);
-                            echo 'div class="wrap" style="display:flex;justify-content:left;margin-top:20px;margin-left:3%;align-items:center;">
+                            echo '<div class="wrap" style="display:flex;justify-content:left;margin-top:20px;margin-left:3%;align-items:center;">
                             <img src="'.$imageurl[0].'" style="width:100px;height:100px;">
                             <b>'.$item["item_nama"].'</b>
                         </div>';
                         }
                     }
-                     ?>
+                    ?>
                 </div>
                 <div class="kotak mx-3 kecil">
                     <p class="title">Revenue</p>
@@ -127,6 +131,19 @@
                     }?>% </p>
                     <p class="time">Since Last Week</p>
                 </div>
+                
+                <div class="kotak mx-3 kecil">
+                    <p class="title">Revenue</p>
+                    <p class="result">Rp. <?php echo number_format($overallrevenue); ?></p>
+                    
+                    <p class="time">Overall</p>
+                </div>
+                <div class="kotak mx-3 kecil">
+                    <p class="title">Orders</p>
+                    <p class="result"><?php echo $overallorder; ?></p>
+                    
+                    <p class="time">Overall</p>
+                </div>
             </div>
             
         </div>
@@ -141,7 +158,7 @@
             $(".hamburger").click(function(){
                 if (open){
                     $(".sidebar").animate({
-                        left: "-45%"
+                        left: "-35%"
                     }, { duration: 500 })
 
                     $(".main").animate({

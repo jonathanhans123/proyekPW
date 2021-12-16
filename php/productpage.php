@@ -32,154 +32,7 @@
     <script src="../java/Nzoom.min.js"></script>
 
     <style>
-        *{
-            margin: 0;
-        }
-        .main{
-            margin-top: 50px;
-            width: 100%;
-            height: auto;
-            background-color: white;
-            margin-bottom: 50px;
-            padding-bottom: 15%;
-            overflow:hidden;
-        }
-
-        .submain{
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            margin-left: 10;
-            height: auto;
-        }
-
-        .kiri{
-            width: 40%;
-            height: 400px;
-            float: left;
-            margin-left: 10%;
-        }
-        .gambarutama{
-            width: 100%;
-            height: 400px;
-            border: 2px solid #ccc;
-        }
-        .subgambar1{
-            margin-top:10px;
-            width:13%;
-            height: 150px;
-            float: left;
-            text-align: center;
-            border: 2px solid black;
-            margin-left: 10%;
-            margin-right: 0.5%;
-        }
-        .subgambar2{
-            margin-top:10px;
-            width:13%;
-            height: 150px;
-            float: left;      
-            text-align: center;
-            border: 2px solid #ccc;
-            margin-right: 0.5%;
-        }
-        .subgambar3{
-            margin-top:10px;
-            width:13%;
-            height: 150px;
-            float: left;   
-            text-align: center;  
-            border: 2px solid #ccc;
-
-        }
         
-        .subgambar1:hover{
-            cursor: pointer;
-        }
-        .subgambar2:hover{
-            cursor: pointer;
-        }
-        .subgambar3:hover{
-            cursor: pointer;
-        }
-
-        .kanans{
-            float: left;
-            width: 40%;
-            height: 400px;
-            background-color: white;
-            padding-left: 5%;
-        }
-        .btnsize1:hover{
-            cursor: pointer;
-        }
-        .btnsize2:hover{
-            cursor: pointer;
-        }
-        .btnsize3:hover{
-            cursor: pointer;
-        }
-        .btnsize4:hover{
-            cursor: pointer;
-            
-        }
-        .btnsize5:hover{
-            cursor: pointer;
-        }
-        .btnsize6:hover{
-            cursor: pointer;
-        }
-        .btnclr1:hover{
-            cursor: pointer;
-        }
-        .btnclr2:hover{
-            cursor: pointer;
-        }
-
-        
-        img{
-            width:100%;
-            object-fit: contain;
-            height: 100%;
-            object-position: center center;
-        }
-        .rating{
-            width: 100%;
-            background-color: white;
-        }
-        .ratingtiapprofile{
-            width: 100%;
-            height: auto;
-            background-color: white;
-            padding-top: 20px;
-            padding-left: 20px;
-        }
-        .profilepicture{
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background-color: rgb(245, 245, 245);
-            float: left;
-            margin-bottom: 10px;
-        }
-        .profilename{
-            margin-left: 20px;
-            float: left;
-        }
-        .verifiedbuyer{
-            color: rgb(45, 175, 45);
-            margin-left: 10px;
-            float: left;
-        }
-        .country{
-            margin-left: 20px;
-            color: #ccc;
-        }
-        #star{
-            width:120px;
-            margin-bottom:10px;
-            
-        }
     </style>
 </head>
 <body>
@@ -194,6 +47,9 @@
                     <center>
                     <div class="zoomArea"><img id="NZoomImg" data-NZoomscale="2" src="../upload/<?php echo $image[0]; ?>" /></div>
                     </center>
+                    <div class="subgambar1"><img src="../upload/<?php echo $image[0]; ?>" alt=""></div>
+                <div class="subgambar2"><img src="../upload/<?php echo $image[1]; ?>" alt=""></div>
+                <div class="subgambar3"><img src="../upload/<?php echo $image[2]; ?>" alt=""></div>
                 </div>
                 <div class="kanans">
                     <p style="font-size: xx-large; font-weight: bold;" class="item_name"><?php echo $item["item_nama"]; ?></p>
@@ -242,9 +98,7 @@
                 </div>
                 <div style="clear: both;"></div>
                 
-                <div class="subgambar1"><img src="../upload/<?php echo $image[0]; ?>" alt=""></div>
-                <div class="subgambar2"><img src="../upload/<?php echo $image[1]; ?>" alt=""></div>
-                <div class="subgambar3"><img src="../upload/<?php echo $image[2]; ?>" alt=""></div>
+                
 
             </div>
         </div>

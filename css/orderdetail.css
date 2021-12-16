@@ -45,12 +45,14 @@ table tr td:last-child {
     margin-left: auto;
     margin-right: auto;
 }
-@media screen and (max-width: 768px){
-    .table{
+@media screen and (max-width:760px){
+    table{
         width: 100%;
+        margin-left: 0;
     }
     .info{
         width: 100%;
+        margin-left: 0;
     }
     .wrap{
         width: 100%;

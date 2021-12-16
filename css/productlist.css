@@ -62,8 +62,16 @@
 .item .price{
     margin-bottom: 5px;
 }
-@media screen and (max-width:768px){
+@media screen and (max-width:768px) and (min-width:441px){
     .item{
-        height: 500px;
+        width: 45%;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+    }
+}
+@media screen and (max-width:520px){
+    .item{
+        width: 90%;
+        margin-left: 5%;
     }
 }

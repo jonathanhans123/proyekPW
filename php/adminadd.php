@@ -176,34 +176,34 @@
     <script>
         $(document).ready(function(){
 
-var open = true;
+            var open = true;
 
-$(".hamburger").click(function(){
-    if (open){
-        $(".sidebar").animate({
-            left: "-45%"
-        }, { duration: 500 })
+            $(".hamburger").click(function(){
+                if (open){
+                    $(".sidebar").animate({
+                        left: "-45%"
+                    }, { duration: 500 })
 
-        $(".main").animate({
-            width: "100%",
-            marginLeft: "0%"
-        }, { duration: 500 });
-        open = false;
-    }else{
-        $(".sidebar").css("display","block");
-        $(".sidebar").animate({
-            left: "0%"
-        }, { duration: 500},function(){
-            $(".sidebar").css("display","block");
+                    $(".main").animate({
+                        width: "100%",
+                        marginLeft: "0%"
+                    }, { duration: 500 });
+                    open = false;
+                }else{
+                    $(".sidebar").css("display","block");
+                    $(".sidebar").animate({
+                        left: "0%"
+                    }, { duration: 500},function(){
+                        $(".sidebar").css("display","block");
+                    });
+                    $(".main").animate({
+                        width: "65%",
+                        marginLeft: "35%"
+                    }, { duration: 500});
+                    open = true;
+                }
+            });
         });
-        $(".main").animate({
-            width: "65%",
-            marginLeft: "35%"
-        }, { duration: 500});
-        open = true;
-    }
-});
-});
     
     </script>
 </body>

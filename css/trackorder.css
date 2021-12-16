@@ -40,7 +40,6 @@ body {
 .track {
     position: relative;
     background-color: #ddd;
-    height: 7px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

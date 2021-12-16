@@ -93,7 +93,7 @@
             </div>
             <div class="bottom">
                     <div class="nav-child drop">
-                        <div class="categories">Categories <p style="font-size: 10pt;float: right;margin-top: 4%;">&#9660;</p> </div>
+                        <div class="categories">Categories<p style="font-size: 10pt;float: right;margin-top: 4%;">&#9660;</p> </div>
                         <div class="drop-content">
                             <div class="drop-wrap">
                                 <a href="productlist.php?category=Sneakers">Sneakers</a>
@@ -119,16 +119,16 @@
                     </div>
                     <div class="nav-child"><a href="../php/productlist.php?category=men">Shop Men's</a></div>
                     <div class="nav-child"><a href="../php/productlist.php?category=women">Shop Women's</a></div>
-                    <div class="nav-child"><a href="">About</a></div>
+                    <div class="nav-child"><a href="../php/about.php">About</a></div>
                 </ul>
             </div>
         </div>
 
         <script type="text/javascript">
             $(document).ready(function() {
-                $(window).on('load', function () {
+                setInterval(function(){
                     $('#loading').hide();
-                }) 
+                },500);
                 if ( window.history.replaceState ) {
                     window.history.replaceState( null, null, window.location.href );
                 }

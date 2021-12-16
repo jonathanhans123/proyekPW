@@ -44,7 +44,7 @@
                 foreach ($orders as $key=>$value){
                     echo '<div class="wrapper1">
                     <p>'.$value["id_order"].'</p>
-                    <p>Rp. '.number_format($value["harga_total"],2).',-</p>
+                    <p>Rp. '.number_format($value["harga_total"]).'</p>
                     <p>'.date("l,d M Y",strtotime($value["tanggal_order"])).'</p>
                     <p>'.$value["status"].'</p>
 

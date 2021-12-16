@@ -14,6 +14,9 @@
     font-family: "archivo-italic";
     src: url("../font/Archivo_Narrow/ArchivoNarrow-Italic.ttf");
 }
+html,body{
+    overflow-x: hidden;
+}
 *{
     margin: 0;
     box-sizing: border-box;
@@ -26,6 +29,7 @@
     width: 100%;
     height: auto;
     padding: 0;
+    overflow: hidden;
 }
 .navbar{
     height: 130px;
@@ -40,7 +44,7 @@
 }
 .search{
     margin-top: 10px;
-    width: 25%;
+    width: 33%;
 }
 .searchicon{
     width: 45px;
@@ -66,7 +70,7 @@
     border-bottom: 3px solid gray;
 }
 .logo{
-    width: 50%;
+    width: 33%;
     display: flex;
     justify-content: center;
 }
@@ -85,7 +89,7 @@
     margin-left: 10px;
 }
 .shop{
-    width: 25%;
+    width: 33%;
     margin-top: 20px;
 }
 .shop a{
@@ -304,8 +308,13 @@
     min-height: 450px;
     background-color: gray;
     float: left;
-    background-image: url("../images/catecasual.jpg");
     background-size: cover;
+}
+.showcase.one .left{
+    background-image: url("../images/showcase1.jpg");
+}
+.showcase.two .left{
+    background-image: url("../images/showcase2.jpg");
 }
 .showcase .right{
     padding: 5%;
@@ -345,6 +354,7 @@ footer{
     padding-left: 10%;
     padding-right: 10%;
     padding-bottom: 5%;
+    overflow: hidden;
 }
 footer .footer-cont{
     display: flex;
@@ -403,6 +413,7 @@ footer .footer-cont{
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 100px;
+    overflow: hidden;
 }
 .container2 .title{
     font-size: 30pt;
@@ -527,7 +538,31 @@ input[type=text]:focus {
     top: 5%;
     z-index: 9999;
 }
-@media screen and (max-width: 780px){
+.about1{
+    width: 100%;
+    height: calc(100vh - 130px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../images//about.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 60%;
+    color: white;
+}
+.container.about{
+    width: 50%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.container.about h2{
+    text-align: center;
+    margin-top: 50px;
+}
+.container.about p{
+    text-align: center;
+}
+@media screen and (max-width: 780px) and (min-width:541px){
     footer .footer-cont{
         width: 45%;
     }
@@ -536,7 +571,7 @@ input[type=text]:focus {
         overflow: hidden;
     }
 }
-@media screen and (max-width: 480px){
+@media screen and (max-width: 540px) and (min-width:441px){
     .logoicon{
         display: none;
     }
@@ -555,4 +590,59 @@ input[type=text]:focus {
     .showcase .right .title{
         margin-top: 5%;
     }
+}
+@media screen and (max-width:440px){
+    .logoicon{
+        display: none;
+    }
+    .bottom a{
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }
+    .searchbar{
+        width: calc(90% - 45px) ;
+        float: left;
+    }
+    #search{
+        width: 100%;
+    }
+    .categories{
+        height: auto;
+        padding-bottom: 50px;
+    }
+    .cate-wrap{
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+    .category.a{
+        width: 80%;
+    }
+    .category.b{
+        margin-top: 50px;
+        width: 80%;
+    }
+    .category.c{
+        display: none;
+    }
+    .showcase .right .title{
+        font-size: 24pt;
+    }
+    footer .footer-cont{
+        width: 45%;
+    }
+    footer{
+        display: block;
+        overflow: hidden;
+    }
+    .bottom .categories{
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }
+    .bottom .categories p{
+        display: none;
+    }
+
 }

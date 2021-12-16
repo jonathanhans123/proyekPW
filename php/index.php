@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="showcase">
+        <div class="showcase one">
             <div class="left">
             </div>
             <div class="right">
@@ -70,7 +70,7 @@
                 <div class="button" name="btnDisc">Go now</div>
             </div>
         </div>
-        <div class="showcase">
+        <div class="showcase two">
             <div class="right">
                 <div class="title">About Us</div>
                 <div class="text">Want to know more about our shoes store? Click this button below!</div>

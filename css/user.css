@@ -3,7 +3,7 @@
     min-height: 600px;
 }
 .wrapper .logout{
-    width: 100px;
+    width: 70px;
     position: absolute;
     top: 180px;
     right: 2%;
@@ -33,4 +33,5 @@
         width: 100%;
         margin-left: 0%;
     }
+
 }

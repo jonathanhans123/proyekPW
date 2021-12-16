@@ -183,9 +183,10 @@
             echo '</p>
                 <p class="textbutton">Delete Discount</p>
         </div>
-        <input type="submit" value="Add Discount" id="adddiscount">
         ';
+        
         }
+        echo '<input type="submit" value="Add Discount" id="adddiscount">';
     }
     else if ($action=="adddiscount"){
         $discounts = $conn->query("select * from discount")->fetch_all(MYSQLI_ASSOC);
@@ -237,9 +238,9 @@
             echo '</p>
                 <p class="textbutton">Delete Discount</p>
         </div>
-        <input type="submit" value="Add Discount" id="adddiscount">
         ';
         }
+        echo '<input type="submit" value="Add Discount" id="adddiscount">';
     }
     else if ($action=="product"){
         
@@ -290,11 +291,7 @@
                     }
                     echo '<p class="price"><strike>Rp. '.number_format($value["item_price"],2) .',-</strike>';
                     echo '&nbsp;&nbsp;Rp. '.number_format($truevalue,2) .',-</p>';
-                    if ($value["item_stock"]>0){
-                        echo '<p>In Stock</p>';
-                    }else{
-                        echo '<p>Out of Stock</p>';
-                    }
+                    
                 }
                 echo '</div>';
             }
@@ -455,10 +452,10 @@
             }
             $orders = $conn->query("SELECT * FROM `order`")->fetch_all(MYSQLI_ASSOC);
             $count = count($orders);
-            $id_order = "ORDER".$count;
-            $stmt = $conn->prepare("INSERT INTO `ordered_item`(id_order,id_item,item_price,quantity,item_size) VALUES(?,?,?,?,?)");
-            $stmt->bind_param("siiii",$id_order,$temp,$truevalue,$value["quantity"],$value["item_size"]);
-            $stmt->execute();
+            $id_order = "ORDER_".$count;
+            $stmt2 = $conn->prepare("INSERT INTO `ordered_item`(id_order,id_item,item_price,quantity,item_size) VALUES(?,?,?,?,?)");
+            $stmt2->bind_param("siiii",$id_order,$temp,$truevalue,$value["quantity"],$value["item_size"]);
+            $stmt2->execute();
 
             $temp1 = $value["quantity"];
             
@@ -467,18 +464,20 @@
         }
         $orders = $conn->query("SELECT * FROM `order`")->fetch_all(MYSQLI_ASSOC);
         $count = count($orders);
-        $id_order = "TEST".$count;
+        $id_order = "ORDER_".$count;
         $date = date('m/d/Y h:i:s a', time());
         $status = "Pending";
-        $stmt = $conn->prepare ("INSERT INTO `order`(`id_order`, `id_user`, `harga_total`, `tanggal_order`, `status`, `address`) VALUES (?,?,?,?,?,?)");
+        $stmt = $conn->prepare("INSERT INTO `order`(`id_order`, `id_user`, `harga_total`, `tanggal_order`, `status`, `address`) VALUES (?,?,?,?,?,?)");
         $stmt->bind_param("ssssss",$id_order,$_SESSION["auth"]["id_user"],$total,$date,$status,$_SESSION["shipping_address"]["address"]);
         $stmt->execute();
         unset($_SESSION["order"]);
+        echo '<script>window.location.href = "../php/user.php"; </script>';
     }
     else if ($action=="deleteorder"){
         $index = $_REQUEST["index"];
         unset($_SESSION["order"][$index]);
-
+        $_SESSION["order"] = array_values($_SESSION["order"]);
+    
         echo '<label for="">';        
         $count = 0;
         if (isset($_SESSION["order"])){
@@ -525,8 +524,6 @@
             </div>';
             }
         }
-    
-            
             
         echo '</div>
         <div class="checkout">Checkout</div>';

@@ -90,7 +90,7 @@ foreach($item_details as $key=>$value){
 }
 
 $transaction_details = array(
-    'order_id' => "ORDER".$count,
+    'order_id' => "ORDER_".$count,
     'gross_amount' => $total
 );
 
@@ -149,7 +149,8 @@ echo '<button id="pay-button">Pay!</button>
                         "action":"payment"
                     },
                     success:function(response){
-                        window.location.href = "../php/user.php";
+                        $(".wrapper").html("");
+                        $(".wrapper").append(response);
                     }
                 });
             }

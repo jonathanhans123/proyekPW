@@ -73,7 +73,7 @@
                 </div>
             </div>
             
-            <div class="container2">
+            <div class="container2 order">
                 <?php
                 
                     foreach($orders as $key=>$value){

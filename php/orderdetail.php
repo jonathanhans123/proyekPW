@@ -31,7 +31,7 @@
         <div class="info">
             <p>Order Placed <br><strong><?php echo date("d-M-Y",strtotime($order["tanggal_order"])); ?></strong></p>
             <p>Status <br><strong><?php echo $order["status"]; ?></strong></p>
-            <p>Total <br><strong>Rp. <?php echo number_format($order["harga_total"],2); ?>,-</strong></p>
+            <p>Total <br><strong>Rp. <?php echo number_format($order["harga_total"]); ?></strong></p>
             <p>Shipment <br><strong><?php echo $order["address"]; ?></strong></p>
             <p>Order ID <br><strong><?php echo $order["id_order"]; ?></strong></p>
         </div>
@@ -73,7 +73,7 @@
                 <input type="hidden" name="index" value="<?php echo $id_order; ?>">
                 <input type="submit" value="Track Order" name="track">
             </form>
-            <form action="user.php" method="post">
+            <form action="user.php" method="post" style="margin-bottom:50px">
                 <input type="submit" value="Back to Order History">
             </form>
         </div>
